@@ -39,6 +39,7 @@ namespace FMB_SYS
             {
                 try
                 {
+                    update.PicRemove = _message;
                     update.FmbLine = null;
                     update.FmbNo = null;
                     update.Place = null;

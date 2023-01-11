@@ -61,6 +61,7 @@ namespace FMB_SYS
                     {
                         if (update.RubberWeight >= int.Parse(txtWeight.Text))
                         {
+                            update.PicReturn = _message;
                             update.RubberWeight = int.Parse(txtWeight.Text);
                             update.Place = "FMB Stock";
                             if (check.FmbNo == 6)
@@ -109,6 +110,7 @@ namespace FMB_SYS
                     {
                         if (update.RubberWeight >= int.Parse(txtWeight.Text))
                         {
+                            update.PicReturn = _message;
                             update.RubberWeight = int.Parse(txtWeight.Text);
                             update.Place = "FMB Stock";
                             update.FmbLine = first.FmbLine;

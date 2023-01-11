@@ -45,15 +45,32 @@ namespace FMB_SYS
                 button91, button92, button93, button94, button95,
                 button96, button97, button98, button99, button100,
             };
-            for (int i = 1; i <= 20; i++)
+            for (int i = 1; i <= 21; i++)
             {
                 for (int j = 1; j <= 5; j++)
                 {
                     var check = fmb.PFmbLabels.SingleOrDefault(c => c.FmbLine == i && c.FmbNo == j);
                     if (check != null && check.InputTime != null)
                     {
-                        buttons[(i - 1) * 5 + j - 1].Text = check.RubberName + "\n" + check.RubberWeight + "kg\n" + check.InputTime.Value.ToShortDateString();
-                        buttons[(i - 1) * 5 + j - 1].BackColor = Color.LightGreen;
+                        var due = fmb.PFmbMasterListRubbers.SingleOrDefault(c => c.RubberName == listBox1.Text);
+                        if (due != null)
+                        {
+                            int duemax = Convert.ToInt32(due.VadilityMax);
+                            int duemin = Convert.ToInt32(due.VadilityMin);
+                            if (check.InputTime.Value.AddHours(duemin) <= DateTime.Now)
+                            {
+                                buttons[(i - 1) * 5 + j - 1].BackColor = Color.LightGreen;
+                            }
+                            if (check.InputTime.Value.AddHours(duemax - 72) <= DateTime.Now)
+                            {
+                                buttons[(i - 1) * 5 + j - 1].BackColor = Color.Yellow;
+                            }
+                            if (check.InputTime.Value.AddHours(duemax) <= DateTime.Now)
+                            {
+                                buttons[(i - 1) * 5 + j - 1].BackColor = Color.Red;
+                            }
+                            buttons[(i - 1) * 5 + j - 1].Text = check.RubberName + "\n" + check.RubberWeight + "kg\n" + check.InputTime.Value.ToShortDateString() + "\nCòn" + (check.InputTime.Value.AddHours(duemax) - DateTime.Now).TotalHours + "giờ";
+                        }
                     }
                     else
                     {

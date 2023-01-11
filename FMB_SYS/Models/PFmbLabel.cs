@@ -12,7 +12,7 @@ namespace FMB_SYS.Models1
         public double? RubberWeight { get; set; }
         public DateTime? MixingDate { get; set; }
         public DateTime? InputTime { get; set; }
-        public string Pic { get; set; }
+        public string PicInput { get; set; }
         public int? FmbLine { get; set; }
         public int? FmbNo { get; set; }
         public string Place { get; set; }
@@ -20,5 +20,8 @@ namespace FMB_SYS.Models1
         public string LabKind { get; set; }
         public DateTime? MinDuedate { get; set; }
         public DateTime? MaxDuedate { get; set; }
+        public string PicOutput { get; set; }
+        public string PicReturn { get; set; }
+        public string PicRemove { get; set; }
     }
 }
