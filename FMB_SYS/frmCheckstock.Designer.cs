@@ -154,6 +154,7 @@
             this.label21 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.btnOut = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
@@ -1314,7 +1315,19 @@
             // timer1
             // 
             this.timer1.Enabled = true;
-            this.timer1.Interval = 10000;
+            this.timer1.Interval = 60000;
+            // 
+            // btnOut
+            // 
+            this.btnOut.BackColor = System.Drawing.Color.Red;
+            this.btnOut.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnOut.Location = new System.Drawing.Point(1634, 26);
+            this.btnOut.Name = "btnOut";
+            this.btnOut.Size = new System.Drawing.Size(242, 100);
+            this.btnOut.TabIndex = 124;
+            this.btnOut.Text = "Thoát";
+            this.btnOut.UseVisualStyleBackColor = false;
+            this.btnOut.Click += new System.EventHandler(this.btnOut_Click);
             // 
             // frmCheckstock
             // 
@@ -1322,6 +1335,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1902, 1033);
+            this.Controls.Add(this.btnOut);
             this.Controls.Add(this.label21);
             this.Controls.Add(this.label22);
             this.Controls.Add(this.label19);
@@ -1582,5 +1596,6 @@
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Button btnOut;
     }
 }

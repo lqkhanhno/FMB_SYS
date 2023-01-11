@@ -87,5 +87,10 @@ namespace FMB_SYS
                        select c.RubberWeight).Sum();
             textBox1.Text = sum.ToString();
         }
+
+        private void btnOut_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

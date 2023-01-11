@@ -85,5 +85,11 @@ namespace FMB_SYS
         {
             this.Close();
         }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            frmPIC open = new frmPIC();
+            open.ShowDialog();
+        }
     }
 }

@@ -28,7 +28,7 @@ namespace FMB_SYS
         HVN_SYSContext fmb = new HVN_SYSContext();
         private void btnEnter_Click(object sender, EventArgs e)
         {
-            string input = txtID.Text.Substring(0, 4);
+            string input = txtID.Text.Substring(2, 4);
             if(input == "PFMB")
             {
                 timer1.Enabled = false;
@@ -89,6 +89,7 @@ namespace FMB_SYS
                 }
                 txtID.Text = string.Empty;
                 timer1.Enabled = true;
+
             }
             else
             {
