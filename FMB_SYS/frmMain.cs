@@ -70,5 +70,20 @@ namespace FMB_SYS
             frmBacknew backnew = new frmBacknew();
             backnew.ShowDialog();
         }
+        private string _message = default!;
+        public string Message
+        {
+            get { return _message; }
+            set { _message = value; }
+        }
+        private void frmMain_Load(object sender, EventArgs e)
+        {
+            label1.Text = _message;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

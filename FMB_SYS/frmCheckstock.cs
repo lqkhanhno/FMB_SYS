@@ -45,7 +45,7 @@ namespace FMB_SYS
                 button91, button92, button93, button94, button95,
                 button96, button97, button98, button99, button100,
             };
-            for (int i = 1; i <= 16; i++)
+            for (int i = 1; i <= 20; i++)
             {
                 for (int j = 1; j <= 5; j++)
                 {
