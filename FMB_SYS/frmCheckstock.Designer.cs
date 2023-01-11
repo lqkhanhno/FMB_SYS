@@ -972,7 +972,7 @@
             this.button91.Name = "button91";
             this.button91.Size = new System.Drawing.Size(120, 90);
             this.button91.TabIndex = 99;
-            this.button91.Text = "button91\r\n\r\n\r\n";
+            this.button91.Text = "button91";
             this.button91.UseVisualStyleBackColor = true;
             // 
             // button92
