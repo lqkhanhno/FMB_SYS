@@ -18,6 +18,12 @@ namespace FMB_SYS
         {
             InitializeComponent();
         }
+        private string _message = default!;
+        public string Message
+        {
+            get { return _message; }
+            set { _message = value; }
+        }
         HVN_SYSContext fmb = new HVN_SYSContext();
         private void btnEnter_Click(object sender, EventArgs e)
         {
@@ -33,7 +39,8 @@ namespace FMB_SYS
                     {
                         if (update != null)
                         {
-                            lbInformation.Text = "Xe được lấy đi ở hàng " + update.FmbLine + " vị trí " + update.FmbNo + "\nMã xe: " + update.CartId;
+                            lbInformation.Text = "Xe được lấy đi ở hàng " + update.FmbLine + " vị trí " + update.FmbNo + "\nMã xe: " + update.CartId + "\nNgười lấy: " + _message;
+                            update.PicOutput = _message;
                             update.FmbLine = null;
                             update.FmbNo = null;
                             update.Place = "PD";
@@ -54,7 +61,7 @@ namespace FMB_SYS
             }
             else if (update != null && update.Place != "FMB Stock")
             {
-                lbError.Text = "Xe " + update.CartId + " đã được lấy ra khỏi kho";
+                lbError.Text = "Xe " + update.CartId + " không còn trong kho";
                 lbInformation.Text = "";
             }
             else if (update == null)

@@ -18,6 +18,12 @@ namespace FMB_SYS
         {
             InitializeComponent();
         }
+        private string _message = default!;
+        public string Message
+        {
+            get { return _message; }
+            set { _message = value; }
+        }
         HVN_SYSContext fmb = new HVN_SYSContext();
         private void timer1_Tick(object sender, EventArgs e)
         {
@@ -70,7 +76,7 @@ namespace FMB_SYS
                             int save = fmb.SaveChanges();
                             if (save > 0)
                             {
-                                lbInformation.Text = ("Xe " + update.CartId + " đã được trả về hàng " + update.FmbLine + " vị trí " + update.FmbNo + "\nXe còn lại " + txtWeight.Text);
+                                lbInformation.Text = ("Xe " + update.CartId + " đã được trả về hàng " + update.FmbLine + " vị trí " + update.FmbNo + "\nXe còn lại " + txtWeight.Text + ".Người trả xe: " + _message);
                             }
                             txtWeight.Text = "";
                             lbError.Text = "";
@@ -110,7 +116,7 @@ namespace FMB_SYS
                             int save = fmb.SaveChanges();
                             if (save > 0)
                             {
-                                lbInformation.Text = ("Xe " + update.CartId + " đã được về trả về hàng " + update.FmbLine + " vị trí " + update.FmbNo + "\nXe còn lại " + txtWeight.Text);
+                                lbInformation.Text = ("Xe " + update.CartId + " đã được về trả về hàng " + update.FmbLine + " vị trí " + update.FmbNo + "\nXe còn lại " + txtWeight.Text + ".Người trả xe: " + _message);
                             }
                             txtWeight.Text = "";
                             lbError.Text = "";

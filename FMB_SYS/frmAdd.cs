@@ -25,10 +25,6 @@ namespace FMB_SYS
             get { return _message; }
             set { _message = value; }
         }
-        private void frmMain_Load(object sender, EventArgs e)
-        {
-            label1.Text = _message;
-        }
         HVN_SYSContext fmb = new HVN_SYSContext();
         private void btnEnter_Click(object sender, EventArgs e)
         {
@@ -61,12 +57,12 @@ namespace FMB_SYS
                                 }
                                 fmb.SaveChanges();
                             }
-                            update.Pic = _message;
+                            update.PicInput = _message;
                             update.FmbLine = first.FmbLine;
                             update.FmbNo = 1;
                             update.Place = "FMB Stock";
                             fmb.SaveChanges();
-                            lbInformation.Text = "Xe " + update.CartId + " được thêm vào hàng " + update.FmbLine;
+                            lbInformation.Text = "Xe " + update.CartId + " được thêm vào hàng " + update.FmbLine + "\nNgười thêm: " + _message;
                             lbError.Text = "";
                         }
                         catch (Exception ex)
@@ -96,7 +92,8 @@ namespace FMB_SYS
             }
             else
             {
-
+                lbError.Text = "Hãy quét mã xe trước!";
+                lbInformation.Text = string.Empty;
             }
         }
 

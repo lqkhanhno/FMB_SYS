@@ -23,6 +23,12 @@ namespace FMB_SYS
         {
             this.Close();
         }
+        private string _message = default!;
+        public string Message
+        {
+            get { return _message; }
+            set { _message = value; }
+        }
         HVN_SYSContext fmb = new HVN_SYSContext();
         private void btnEnter_Click(object sender, EventArgs e)
         {
@@ -39,7 +45,7 @@ namespace FMB_SYS
                     int save = fmb.SaveChanges();
                     if (save > 0)
                     {
-                        lbInformation.Text = ("Xe " + update.CartId + " đã hết");
+                        lbInformation.Text = ("Xe " + update.CartId + " đã hết.\nNgười báo hết: " + _message);
                         lbError.Text = "";
                     }
                     else
@@ -63,7 +69,7 @@ namespace FMB_SYS
                         .FirstOrDefault(c => c.RubberName == update.RubberName);
                     if (check != null && update != check)
                     {
-                        lbError.Text = "Xe không ở vị trí cuối cùng!\nXe ở cuối cùng hiện tại ở hàng" + check.FmbLine + " vị trí " + check.FmbNo + "\nMã xe: " + check.CartId;
+                        lbError.Text = "Xe không ở vị trí cuối cùng!\nXe ở cuối cùng hiện tại ở hàng" + check.FmbLine + " vị trí " + check.FmbNo + "\nMã xe: " + check.CartId + "\nNgười báo hết: " + _message;
                         lbInformation.Text = "";
                     }
                     else
