@@ -44,6 +44,8 @@
             this.btnCheck = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.lbName = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtIDlab = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -52,7 +54,7 @@
             // btnEnter
             // 
             this.btnEnter.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnEnter.Location = new System.Drawing.Point(978, 227);
+            this.btnEnter.Location = new System.Drawing.Point(973, 266);
             this.btnEnter.Name = "btnEnter";
             this.btnEnter.Size = new System.Drawing.Size(150, 65);
             this.btnEnter.TabIndex = 12;
@@ -79,6 +81,7 @@
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(650, 65);
             this.txtID.TabIndex = 10;
+            this.txtID.TextChanged += new System.EventHandler(this.txtID_TextChanged);
             // 
             // label1
             // 
@@ -206,6 +209,24 @@
             this.lbName.TabIndex = 21;
             this.lbName.Text = "__________";
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label4.Location = new System.Drawing.Point(138, 315);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(107, 38);
+            this.label4.TabIndex = 24;
+            this.label4.Text = "Mã lab";
+            // 
+            // txtIDlab
+            // 
+            this.txtIDlab.Font = new System.Drawing.Font("Segoe UI", 25.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtIDlab.Location = new System.Drawing.Point(278, 305);
+            this.txtIDlab.Name = "txtIDlab";
+            this.txtIDlab.Size = new System.Drawing.Size(650, 65);
+            this.txtIDlab.TabIndex = 23;
+            // 
             // frmAdd
             // 
             this.AcceptButton = this.btnEnter;
@@ -213,6 +234,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnOut;
             this.ClientSize = new System.Drawing.Size(1902, 1033);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.txtIDlab);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.lbName);
             this.Controls.Add(this.btnCheck);
@@ -255,5 +278,7 @@
         private System.Windows.Forms.Button btnCheck;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lbName;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox txtIDlab;
     }
 }

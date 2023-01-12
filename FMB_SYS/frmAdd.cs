@@ -27,76 +27,131 @@ namespace FMB_SYS
             set { _message = value; }
         }
         HVN_SYSContext fmb = new HVN_SYSContext();
+        COEX_MESContext lab = new COEX_MESContext();
         private void btnEnter_Click(object sender, EventArgs e)
         {
-            if (txtID.Text.Length>=10)
+            if (txtID.Text.Length >= 10)
             {
-                string input = txtID.Text.Substring(2, 4);
-                if (input == "PFMB")
+                if (txtIDlab.Text.Length >= 5)
                 {
-                    timer1.Enabled = false;
-                    var update = fmb.PFmbLabels.SingleOrDefault(
-                        c => c.CartId == txtID.Text.Substring(2, 10));
-                    if (update != null
-                        && update.Place == null
-                        )
+                    string input = txtID.Text.Substring(2, 4);
+                    if (input == "PFMB")
                     {
-                        var first = (from p in fmb.PFmbLabels
-                                     join m in fmb.PFmbMasterLocationRubbers on p.RubberName equals m.RubberName
-                                     where p.CartId == txtID.Text.Substring(2, 10)
-                                     select m).FirstOrDefault();
-                        if (first != null)
+                        timer1.Enabled = false;
+                        var update = fmb.PFmbLabels.SingleOrDefault(
+                            c => c.CartId == txtID.Text.Substring(2, 10));
+                        if (update != null
+                            && update.Place == null
+                            )
                         {
-                            try
+                            var first = (from p in fmb.PFmbLabels
+                                         join m in fmb.PFmbMasterLocationRubbers on p.RubberName equals m.RubberName
+                                         where p.CartId == txtID.Text.Substring(2, 10)
+                                         select m).FirstOrDefault();
+                            if (first != null)
                             {
-                                var up = fmb.PFmbLabels.Where(c => c.RubberName == update.RubberName).ToList();
-                                foreach (var item in up)
+                                try
                                 {
-                                    item.FmbNo++;
-                                    if (item.FmbNo > 6)
+                                    var up = fmb.PFmbLabels.Where(c => c.RubberName == update.RubberName).ToList();
+                                    foreach (var item in up)
                                     {
-                                        item.FmbNo = 1;
-                                        item.FmbLine = item.FmbLine + 1;
+                                        item.FmbNo++;
+                                        if (item.FmbNo > 6)
+                                        {
+                                            item.FmbNo = 1;
+                                            item.FmbLine = item.FmbLine + 1;
+                                        }
+                                        fmb.SaveChanges();
                                     }
+                                    update.PicInput = _message;
+                                    update.FmbLine = first.FmbLine;
+                                    update.FmbNo = 1;
+                                    update.Place = "FMB Stock";
                                     fmb.SaveChanges();
+                                    lbInformation.Text = "Xe " + update.CartId + " được thêm vào hàng " + update.FmbLine + "\nNgười thêm: " + _message;
+                                    lbError.Text = "";
                                 }
-                                update.PicInput = _message;
-                                update.FmbLine = first.FmbLine;
-                                update.FmbNo = 1;
-                                update.Place = "FMB Stock";
-                                fmb.SaveChanges();
-                                lbInformation.Text = "Xe " + update.CartId + " được thêm vào hàng " + update.FmbLine + "\nNgười thêm: " + _message;
-                                lbError.Text = "";
+                                catch (Exception ex)
+                                {
+                                    MessageBox.Show(ex.Message, "Error");
+                                }
                             }
-                            catch (Exception ex)
+                            //lab qr test /////////////////////////////////////
+                            var insertlab = lab.Barcodes.SingleOrDefault(c => c.MaCode == txtIDlab.Text);
+                            if (insertlab != null)
                             {
-                                MessageBox.Show(ex.Message, "Error");
+                                update.LabQrCode = insertlab.MaCode;
+                                fmb.SaveChanges();
+                                PFmbLabResult insertlabresult = new PFmbLabResult()
+                                {
+                                    Id = insertlab.Id,
+                                    MaCode = insertlab.MaCode,
+                                    ThoiGian = insertlab.ThoiGian,
+                                    NgayCan = insertlab.NgayCan,
+                                    IdspthongSo = insertlab.IdspthongSo,
+                                    IdNl = insertlab.IdNl,
+                                    Lotruber = insertlab.Lotruber,
+                                    Idca = insertlab.Idca,
+                                    IdloaiSp = insertlab.IdloaiSp,
+                                    Cmb = insertlab.Cmb,
+                                    Fmb = insertlab.Fmb,
+                                    Reometer = insertlab.Reometer,
+                                    Tenlsi = insertlab.Tenlsi,
+                                    TenlsiUts = insertlab.TenlsiUts,
+                                    TenlsiBelong = insertlab.TenlsiBelong,
+                                    Moisture = insertlab.Moisture,
+                                    GravityCmb = insertlab.GravityCmb,
+                                    KhoiLuong = insertlab.KhoiLuong,
+                                    Kq = insertlab.Kq,
+                                    ByPass = insertlab.ByPass,
+                                    Huy = insertlab.Huy,
+                                    MaNguyenLieu = insertlab.MaNguyenLieu,
+                                    CardId = update.CartId
+                                };
+                                try
+                                {
+                                    fmb.PFmbLabResults.Add(insertlabresult);
+                                    int count = fmb.SaveChanges();
+                                    if (count > 0)
+                                    {
+                                        lbInformation.Text += "\n Mã lab hợp lệ";
+                                    }
+                                }
+                                catch (Exception ex)
+                                {
+                                    MessageBox.Show(ex.Message, "Error");
+                                }
                             }
-                        }
-                    }
-                    else if (update != null && update.Place == "FMB Stock")
-                    {
-                        lbError.Text = "Xe " + update.CartId + " đã ở trong kho\nHàng " + update.FmbLine + " vị trí " + update.FmbNo;
-                        lbInformation.Text = "";
 
-                    }
-                    else if (update != null && update.Place == "PD")
-                    {
-                        lbError.Text = "Chọn sai chức năng\nXe " + update.CartId + " hiện tại đang ở PD\nCần báo hết cho xe!";
-                        lbInformation.Text = "";
+                        }
+                        else if (update != null && update.Place == "FMB Stock")
+                        {
+                            lbError.Text = "Xe " + update.CartId + " đã ở trong kho\nHàng " + update.FmbLine + " vị trí " + update.FmbNo;
+                            lbInformation.Text = "";
+
+                        }
+                        else if (update != null && update.Place == "PD")
+                        {
+                            lbError.Text = "Chọn sai chức năng\nXe " + update.CartId + " hiện tại đang ở PD\nCần báo hết cho xe!";
+                            lbInformation.Text = "";
+                        }
+                        else
+                        {
+                            lbInformation.Text = string.Empty;
+                            lbError.Text = string.Empty;
+                        }
+                        txtID.Text = string.Empty;
+                        timer1.Enabled = true;
                     }
                     else
                     {
+                        lbError.Text = "Mã nhập vào không phải mã xe";
                         lbInformation.Text = string.Empty;
-                        lbError.Text = string.Empty;
                     }
-                    txtID.Text = string.Empty;
-                    timer1.Enabled = true;
-
                 }
                 else
                 {
-                    lbError.Text = "Hãy quét mã xe trước!";
+                    lbError.Text = "Chưa quét mã lab";
                     lbInformation.Text = string.Empty;
                 }
             }
@@ -131,6 +186,15 @@ namespace FMB_SYS
         {
             frmCheckstock open = new frmCheckstock();
             open.ShowDialog();
+        }
+
+        private void txtID_TextChanged(object sender, EventArgs e)
+        {
+            if(txtID.Text.Length >= 10)
+            {
+                lbSP.Text = "Quét mã QR của lab";
+                txtIDlab.Focus();
+            }
         }
     }
 }
