@@ -28,7 +28,7 @@ namespace FMB_SYS
         private void btnEnter_Click(object sender, EventArgs e)
         {
             timer1.Enabled = false;
-            if (txtID.Text != "")
+            if (txtID.Text.Length >= 10)
             {
                 var update = fmb.PFmbLabels.SingleOrDefault(c => c.CartId == txtID.Text.Substring(2, 10));
                 if (update != null && update.Place == "FMB Stock")
@@ -92,8 +92,6 @@ namespace FMB_SYS
         private void btnOut_Click(object sender, EventArgs e)
         {
             this.Close();
-            frmMain load = new frmMain();
-            load.ShowDialog();
         }
 
         private void timer1_Tick(object sender, EventArgs e)

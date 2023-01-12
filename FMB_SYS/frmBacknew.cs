@@ -22,8 +22,6 @@ namespace FMB_SYS
         private void btnOut_Click(object sender, EventArgs e)
         {
             this.Close();
-            frmMain load = new frmMain();
-            load.ShowDialog();
         }
         private string _message = default!;
         public string Message
@@ -34,7 +32,7 @@ namespace FMB_SYS
         HVN_SYSContext fmb = new HVN_SYSContext();
         private void btnEnter_Click(object sender, EventArgs e)
         {
-            if (txtID.Text != "")
+            if (txtID.Text.Length >= 10)
             {
                 timer1.Enabled = false;
                 var update = fmb.PFmbLabels.SingleOrDefault(

@@ -18,10 +18,14 @@ namespace FMB_SYS
         }
         private void btnEnter_Click(object sender, EventArgs e)
         {
-            frmMain child = new frmMain();
-            child.Message = txtName.Text;
+            frmMain child = new frmMain(); child.Message = txtName.Text;
             child.ShowDialog();
             txtName.Text = string.Empty;
+        }
+
+        private void frmPIC_Load(object sender, EventArgs e)
+        {
+            txtName.Focus();
         }
     }
 }

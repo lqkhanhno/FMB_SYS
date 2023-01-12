@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace FMB_SYS
 {
@@ -23,7 +24,7 @@ namespace FMB_SYS
             {
                 timer1.Enabled = false;
                 frmAdd add = new frmAdd();
-                this.Hide();
+                add.Message = lbName.Text;
                 add.ShowDialog();
             }
             else
@@ -38,7 +39,7 @@ namespace FMB_SYS
             {
                 timer1.Enabled = false;
                 frmTake take = new frmTake();
-                this.Hide();
+                take.Message = lbName.Text;
                 take.ShowDialog();
             }
             else
@@ -53,7 +54,7 @@ namespace FMB_SYS
             {
                 timer1.Enabled = false;
                 frmBack back = new frmBack();
-                this.Hide();
+                back.Message = lbName.Text;
                 back.ShowDialog();
             }
             else
@@ -68,7 +69,7 @@ namespace FMB_SYS
             {
                 timer1.Enabled = false;
                 frmBacknew backnew = new frmBacknew();
-                this.Hide();
+                backnew.Message = lbName.Text;
                 backnew.ShowDialog();
             }
             else
@@ -83,7 +84,6 @@ namespace FMB_SYS
             {
                 timer1.Enabled = false;
                 frmCheckstock checkstock = new frmCheckstock();
-                this.Hide();
                 checkstock.ShowDialog();
             }
             else
@@ -98,7 +98,7 @@ namespace FMB_SYS
             {
                 timer1.Enabled = false;
                 frmAdd add = new frmAdd();
-                this.Hide();
+                add.Message = lbName.Text;
                 add.ShowDialog();
             }
             else
@@ -113,7 +113,7 @@ namespace FMB_SYS
             {
                 timer1.Enabled = false;
                 frmTake take = new frmTake();
-                this.Hide();
+                take.Message = lbName.Text;
                 take.ShowDialog();
             }
             else
@@ -128,7 +128,7 @@ namespace FMB_SYS
             {
                 timer1.Enabled = false;
                 frmBack back = new frmBack();
-                this.Hide();
+                back.Message = lbName.Text;
                 back.ShowDialog();
             }
             else
@@ -143,7 +143,7 @@ namespace FMB_SYS
             {
                 timer1.Enabled = false;
                 frmBacknew backnew = new frmBacknew();
-                this.Hide();
+                backnew.Message = lbName.Text;
                 backnew.ShowDialog();
             }
             else
@@ -173,7 +173,6 @@ namespace FMB_SYS
         {
             timer1.Enabled = false;
             frmCheckstock open = new frmCheckstock();
-            this.Hide();
             open.ShowDialog();
         }
     }

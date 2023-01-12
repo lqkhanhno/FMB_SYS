@@ -29,10 +29,8 @@ namespace FMB_SYS
         HVN_SYSContext fmb = new HVN_SYSContext();
         private void btnEnter_Click(object sender, EventArgs e)
         {
-            if (txtID.Text != "")
+            if (txtID.Text.Length>=10)
             {
-
-
                 string input = txtID.Text.Substring(2, 4);
                 if (input == "PFMB")
                 {
@@ -113,8 +111,6 @@ namespace FMB_SYS
         private void btnOut_Click(object sender, EventArgs e)
         {
             this.Close();
-            frmMain load = new frmMain();
-            load.ShowDialog();
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -128,6 +124,7 @@ namespace FMB_SYS
         {
             lbSP.Text = "Quét mã QR của xe";
             txtID.Focus();
+            lbName.Text = _message;
         }
 
         private void btnCheck_Click(object sender, EventArgs e)

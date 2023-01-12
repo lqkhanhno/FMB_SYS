@@ -18,9 +18,10 @@ namespace FMB_SYS
         {
             InitializeComponent();
         }
+
         HVN_SYSContext fmb = new HVN_SYSContext();
         private void frmCheckstock_Load(object sender, EventArgs e)
-        {
+        {      
             List<Button> buttons = new List<Button>
             {
                 button1, button2, button3, button4, button5,
@@ -90,9 +91,7 @@ namespace FMB_SYS
 
         private void btnOut_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            frmMain open = new frmMain();
-            open.ShowDialog();
+            this.Close();
         }
     }
 }

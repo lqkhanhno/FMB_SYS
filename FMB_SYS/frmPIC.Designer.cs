@@ -74,6 +74,7 @@
             this.Name = "frmPIC";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmPIC";
+            this.Load += new System.EventHandler(this.frmPIC_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
