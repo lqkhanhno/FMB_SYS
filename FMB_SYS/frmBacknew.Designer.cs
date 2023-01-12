@@ -38,8 +38,13 @@
             this.btnOut = new System.Windows.Forms.Button();
             this.txtID = new System.Windows.Forms.TextBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.lbSP = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btnCheck = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox2
@@ -90,7 +95,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(136, 214);
+            this.label1.Location = new System.Drawing.Point(135, 254);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(97, 38);
             this.label1.TabIndex = 25;
@@ -99,7 +104,7 @@
             // btnEnter
             // 
             this.btnEnter.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnEnter.Location = new System.Drawing.Point(976, 204);
+            this.btnEnter.Location = new System.Drawing.Point(975, 244);
             this.btnEnter.Name = "btnEnter";
             this.btnEnter.Size = new System.Drawing.Size(150, 65);
             this.btnEnter.TabIndex = 24;
@@ -122,7 +127,7 @@
             // txtID
             // 
             this.txtID.Font = new System.Drawing.Font("Segoe UI", 25.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtID.Location = new System.Drawing.Point(276, 204);
+            this.txtID.Location = new System.Drawing.Point(275, 244);
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(650, 65);
             this.txtID.TabIndex = 22;
@@ -133,6 +138,52 @@
             this.timer1.Interval = 60000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.lbSP);
+            this.groupBox3.Controls.Add(this.label2);
+            this.groupBox3.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.groupBox3.Location = new System.Drawing.Point(1157, 131);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(693, 218);
+            this.groupBox3.TabIndex = 28;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Thao tác";
+            // 
+            // lbSP
+            // 
+            this.lbSP.AutoSize = true;
+            this.lbSP.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lbSP.Location = new System.Drawing.Point(33, 117);
+            this.lbSP.Name = "lbSP";
+            this.lbSP.Size = new System.Drawing.Size(42, 50);
+            this.lbSP.TabIndex = 1;
+            this.lbSP.Text = "..";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label2.Location = new System.Drawing.Point(15, 39);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(249, 45);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "B1: Quét mã xe ";
+            // 
+            // btnCheck
+            // 
+            this.btnCheck.AutoSize = true;
+            this.btnCheck.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.btnCheck.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnCheck.Location = new System.Drawing.Point(744, 15);
+            this.btnCheck.Margin = new System.Windows.Forms.Padding(10, 11, 10, 11);
+            this.btnCheck.Name = "btnCheck";
+            this.btnCheck.Size = new System.Drawing.Size(400, 200);
+            this.btnCheck.TabIndex = 29;
+            this.btnCheck.Text = "Kiểm tra tình trạng kho";
+            this.btnCheck.UseVisualStyleBackColor = false;
+            this.btnCheck.Click += new System.EventHandler(this.btnCheck_Click);
+            // 
             // frmBacknew
             // 
             this.AcceptButton = this.btnEnter;
@@ -140,6 +191,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnOut;
             this.ClientSize = new System.Drawing.Size(1902, 1033);
+            this.Controls.Add(this.btnCheck);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
@@ -149,10 +202,13 @@
             this.Name = "frmBacknew";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmBacknew";
+            this.Load += new System.EventHandler(this.frmBacknew_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -169,5 +225,9 @@
         private System.Windows.Forms.Button btnOut;
         private System.Windows.Forms.TextBox txtID;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Label lbSP;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnCheck;
     }
 }

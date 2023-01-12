@@ -90,7 +90,9 @@ namespace FMB_SYS
 
         private void btnOut_Click(object sender, EventArgs e)
         {
-            this.Close();
+            this.Hide();
+            frmMain open = new frmMain();
+            open.ShowDialog();
         }
     }
 }

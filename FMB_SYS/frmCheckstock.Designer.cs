@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -153,7 +152,6 @@
             this.label20 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.btnOut = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -1312,11 +1310,6 @@
             this.label22.TabIndex = 122;
             this.label22.Text = "48E650";
             // 
-            // timer1
-            // 
-            this.timer1.Enabled = true;
-            this.timer1.Interval = 60000;
-            // 
             // btnOut
             // 
             this.btnOut.BackColor = System.Drawing.Color.Red;
@@ -1595,7 +1588,6 @@
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Button btnOut;
     }
 }

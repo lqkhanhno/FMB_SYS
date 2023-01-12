@@ -28,59 +28,72 @@ namespace FMB_SYS
         private void btnEnter_Click(object sender, EventArgs e)
         {
             timer1.Enabled = false;
-            var update = fmb.PFmbLabels.SingleOrDefault(c => c.CartId == txtID.Text);
-            if (update != null && update.Place == "FMB Stock")
+            if (txtID.Text != "")
             {
-                var check = fmb.PFmbLabels.Where(c => c.Place == "FMB Stock").OrderByDescending(c => c.FmbLine).ThenByDescending(c => c.FmbNo)
-                        .FirstOrDefault(c => c.RubberName == update.RubberName);
-                if (check == update)
+                var update = fmb.PFmbLabels.SingleOrDefault(c => c.CartId == txtID.Text.Substring(2, 10));
+                if (update != null && update.Place == "FMB Stock")
                 {
-                    try
+                    var check = fmb.PFmbLabels.Where(c => c.Place == "FMB Stock").OrderByDescending(c => c.FmbLine).ThenByDescending(c => c.FmbNo)
+                            .FirstOrDefault(c => c.RubberName == update.RubberName);
+                    if (check == update)
                     {
-                        if (update != null)
+                        try
                         {
-                            lbInformation.Text = "Xe được lấy đi ở hàng " + update.FmbLine + " vị trí " + update.FmbNo + "\nMã xe: " + update.CartId + "\nNgười lấy: " + _message;
-                            update.PicOutput = _message;
-                            update.FmbLine = null;
-                            update.FmbNo = null;
-                            update.Place = "PD";
-                            fmb.SaveChanges();
-                            lbError.Text = "";
+                            if (update != null)
+                            {
+                                lbInformation.Text = "Xe được lấy đi ở hàng " + update.FmbLine + " vị trí " + update.FmbNo + "\nMã xe: " + update.CartId + "\nNgười lấy: " + _message;
+                                update.PicOutput = _message;
+                                update.FmbLine = null;
+                                update.FmbNo = null;
+                                update.Place = "PD";
+                                fmb.SaveChanges();
+                                lbError.Text = "";
+                                lbSP.Text = "Thoát hoặc quét mã QR của xe tiếp theo";
+                                txtID.Focus();
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message, "Error");
                         }
                     }
-                    catch (Exception ex)
+                    else if (check != update && check != null)
                     {
-                        MessageBox.Show(ex.Message, "Error");
+                        lbError.Text = "Xe " + update.CartId + " không ở vị trí cuối cùng\nXe ở cuối cùng hiện tại ở hàng " + check.FmbLine + " vị trí " + check.FmbNo + "\nMã xe: " + check.CartId;
+                        lbInformation.Text = "";
                     }
                 }
-                else if (check != update && check != null)
+                else if (update != null && update.Place != "FMB Stock")
                 {
-                    lbError.Text = "Xe " + update.CartId + " không ở vị trí cuối cùng\nXe ở cuối cùng hiện tại ở hàng " + check.FmbLine + " vị trí " + check.FmbNo + "\nMã xe: " + check.CartId;
+                    lbError.Text = "Xe " + update.CartId + " không còn trong kho";
                     lbInformation.Text = "";
                 }
-            }
-            else if (update != null && update.Place != "FMB Stock")
-            {
-                lbError.Text = "Xe " + update.CartId + " không còn trong kho";
-                lbInformation.Text = "";
-            }
-            else if (update == null)
-            {
-                lbError.Text = "Xe không tồn tại";
-                lbInformation.Text = "";
+                else if (update == null)
+                {
+                    lbError.Text = "Xe không tồn tại";
+                    lbInformation.Text = "";
+                }
+                else
+                {
+                    lbInformation.Text = string.Empty;
+                    lbError.Text = string.Empty;
+                }
+                txtID.Text = string.Empty;
+                timer1.Enabled = true;
             }
             else
             {
-                lbInformation.Text = string.Empty;
-                lbError.Text = string.Empty;
+                txtID.Focus();
+                lbError.Text = "Chưa quét mã QR của xe";
+                lbSP.Text = "Quét mã QR của xe rồi mới Enter";
             }
-            txtID.Text = string.Empty;
-            timer1.Enabled = true;
         }
 
         private void btnOut_Click(object sender, EventArgs e)
         {
             this.Close();
+            frmMain load = new frmMain();
+            load.ShowDialog();
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -88,6 +101,18 @@ namespace FMB_SYS
             lbInformation.Text = string.Empty;
             lbError.Text = string.Empty;
             timer1.Enabled = false;
+        }
+
+        private void frmTake_Load(object sender, EventArgs e)
+        {
+            lbSP.Text = "Quét mã QR của xe";
+            txtID.Focus();
+        }
+
+        private void btnCheck_Click(object sender, EventArgs e)
+        {
+            frmCheckstock open = new frmCheckstock();
+            open.ShowDialog();
         }
     }
 }

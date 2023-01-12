@@ -39,8 +39,8 @@
             this.btnBack = new System.Windows.Forms.Button();
             this.btnTake = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.lbName = new System.Windows.Forms.Label();
+            this.btnChangename = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
@@ -163,27 +163,27 @@
             this.btnAdd.UseVisualStyleBackColor = false;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
-            // label1
+            // lbName
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(741, 99);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(107, 45);
-            this.label1.TabIndex = 18;
-            this.label1.Text = "label1";
+            this.lbName.AutoSize = true;
+            this.lbName.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lbName.Location = new System.Drawing.Point(741, 99);
+            this.lbName.Name = "lbName";
+            this.lbName.Size = new System.Drawing.Size(160, 45);
+            this.lbName.TabIndex = 18;
+            this.lbName.Text = "__________";
             // 
-            // button1
+            // btnChangename
             // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.button1.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button1.Location = new System.Drawing.Point(958, 61);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(158, 125);
-            this.button1.TabIndex = 19;
-            this.button1.Text = "Đổi tên";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnChangename.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btnChangename.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnChangename.Location = new System.Drawing.Point(958, 61);
+            this.btnChangename.Name = "btnChangename";
+            this.btnChangename.Size = new System.Drawing.Size(158, 125);
+            this.btnChangename.TabIndex = 19;
+            this.btnChangename.Text = "Đổi tên";
+            this.btnChangename.UseVisualStyleBackColor = false;
+            this.btnChangename.Click += new System.EventHandler(this.button1_Click);
             // 
             // label2
             // 
@@ -208,8 +208,8 @@
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(1902, 1033);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.btnChangename);
+            this.Controls.Add(this.lbName);
             this.Controls.Add(this.btnCheck);
             this.Controls.Add(this.pictureBox4);
             this.Controls.Add(this.pictureBox3);
@@ -243,8 +243,8 @@
         private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.Button btnTake;
         private System.Windows.Forms.Button btnAdd;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label lbName;
+        private System.Windows.Forms.Button btnChangename;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Timer timer1;
     }
