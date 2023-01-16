@@ -74,6 +74,8 @@ namespace FMB_SYS
 
         private void btnOut_Click(object sender, EventArgs e)
         {
+            frmMain main = new frmMain();
+            main.Refresh();
             this.Close();
         }
     }

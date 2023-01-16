@@ -21,22 +21,20 @@ namespace FMB_SYS
             frmMain child = new frmMain(); child.Message = txtName.Text;
             child.ShowDialog();
             txtName.Text = string.Empty;
-            timer1.Enabled = false;
         }
 
         private void frmPIC_Load(object sender, EventArgs e)
         {
             txtName.Focus();
-            timer1.Enabled = true;
+            lbSP.Text = string.Empty;
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
+        private void txtName_TextChanged(object sender, EventArgs e)
         {
-            frmMain child = new frmMain(); 
-            child.Message = txtName.Text;
-            child.ShowDialog();
-            txtName.Text = string.Empty;
-            timer1.Enabled = false;
+            if (txtName.Text.Length > 2)
+            {
+                lbSP.Text = "Enter";
+            }
         }
     }
 }

@@ -142,6 +142,7 @@ namespace FMB_SYS
             else
             {
                 button1_Click(sender, e);
+                timer1.Enabled = false;
             }
         }
         private string _message = default!;
@@ -160,8 +161,6 @@ namespace FMB_SYS
         {
             timer1.Enabled = false;
             this.Close();
-            frmPIC load = new frmPIC();
-            load.Refresh();
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -169,7 +168,6 @@ namespace FMB_SYS
             timer1.Enabled = false;
             frmCheckstock open = new frmCheckstock();
             open.ShowDialog();
-            lbName.Text = string.Empty;
         }
     }
 }
