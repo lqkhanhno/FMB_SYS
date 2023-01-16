@@ -80,16 +80,9 @@ namespace FMB_SYS
 
         private void btnCheck_Click(object sender, EventArgs e)
         {
-            if (lbName.Text != string.Empty)
-            {
-                timer1.Enabled = false;
-                frmCheckstock checkstock = new frmCheckstock();
-                checkstock.ShowDialog();
-            }
-            else
-            {
-                button1_Click(sender, e);
-            }
+            timer1.Enabled = false;
+            frmCheckstock checkstock = new frmCheckstock();
+            checkstock.ShowDialog();
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -167,6 +160,8 @@ namespace FMB_SYS
         {
             timer1.Enabled = false;
             this.Close();
+            frmPIC load = new frmPIC();
+            load.Refresh();
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -174,6 +169,7 @@ namespace FMB_SYS
             timer1.Enabled = false;
             frmCheckstock open = new frmCheckstock();
             open.ShowDialog();
+            lbName.Text = string.Empty;
         }
     }
 }

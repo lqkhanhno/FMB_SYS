@@ -1,4 +1,4 @@
-﻿using FMB_SYS.Models1;
+﻿using FMB_SYS.Models2;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,6 +22,8 @@ namespace FMB_SYS
         private void btnOut_Click(object sender, EventArgs e)
         {
             this.Close();
+            frmMain load = new frmMain();
+            load.Refresh();
         }
         private string _message = default!;
         public string Message
@@ -35,8 +37,7 @@ namespace FMB_SYS
             if (txtID.Text.Length >= 10)
             {
                 timer1.Enabled = false;
-                var update = fmb.PFmbLabels.SingleOrDefault(
-                    c => c.CartId == txtID.Text.Substring(2, 10));
+                var update = fmb.PFmbLabels.SingleOrDefault(c => c.CartId == txtID.Text);
                 if (update != null && update.Place != "FMB Stock")
                 {
                     try
@@ -130,12 +131,21 @@ namespace FMB_SYS
         {
             lbSP.Text = "Quét mã QR của xe";
             txtID.Focus();
+            lbName.Text = _message;
         }
 
         private void btnCheck_Click(object sender, EventArgs e)
         {
             frmCheckstock check = new frmCheckstock();
             check.ShowDialog();
+        }
+
+        private void txtID_TextChanged(object sender, EventArgs e)
+        {
+            if (txtID.Text.Length >= 10)
+            {
+                lbSP.Text = "Enter";
+            }
         }
     }
 }

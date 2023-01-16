@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 #nullable disable
 
-namespace FMB_SYS.Models1
+namespace FMB_SYS.Models2
 {
     public partial class PFmbLabel
     {
@@ -16,7 +16,6 @@ namespace FMB_SYS.Models1
         public int? FmbLine { get; set; }
         public int? FmbNo { get; set; }
         public string Place { get; set; }
-        public string LabQrCode { get; set; }
         public string LabKind { get; set; }
         public DateTime? MinDuedate { get; set; }
         public DateTime? MaxDuedate { get; set; }

@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Net.Mime.MediaTypeNames;
+using FMB_SYS.Models2;
 
 namespace FMB_SYS
 {
@@ -21,14 +22,13 @@ namespace FMB_SYS
 
         HVN_SYSContext fmb = new HVN_SYSContext();
         private void frmCheckstock_Load(object sender, EventArgs e)
-        {      
+        {
             List<Button> buttons = new List<Button>
             {
                 button1, button2, button3, button4, button5,
                 button6, button7, button8, button9, button10,
                 button11, button12, button13, button14, button15,
                 button16, button17, button18, button19, button20,
-                button21, button22, button23, button24, button25,
                 button21, button22, button23, button24, button25,
                 button26, button27, button28, button29, button30,
                 button31, button32, button33, button34, button35,
@@ -46,32 +46,15 @@ namespace FMB_SYS
                 button91, button92, button93, button94, button95,
                 button96, button97, button98, button99, button100,
             };
-            for (int i = 1; i <= 21; i++)
+            for (int i = 1; i <= 20; i++)
             {
                 for (int j = 1; j <= 5; j++)
                 {
                     var check = fmb.PFmbLabels.SingleOrDefault(c => c.FmbLine == i && c.FmbNo == j);
                     if (check != null && check.InputTime != null)
                     {
-                        var due = fmb.PFmbMasterListRubbers.SingleOrDefault(c => c.RubberName == listBox1.Text);
-                        if (due != null)
-                        {
-                            int duemax = Convert.ToInt32(due.VadilityMax);
-                            int duemin = Convert.ToInt32(due.VadilityMin);
-                            if (check.InputTime.Value.AddHours(duemin) <= DateTime.Now)
-                            {
-                                buttons[(i - 1) * 5 + j - 1].BackColor = Color.LightGreen;
-                            }
-                            if (check.InputTime.Value.AddHours(duemax - 72) <= DateTime.Now)
-                            {
-                                buttons[(i - 1) * 5 + j - 1].BackColor = Color.Yellow;
-                            }
-                            if (check.InputTime.Value.AddHours(duemax) <= DateTime.Now)
-                            {
-                                buttons[(i - 1) * 5 + j - 1].BackColor = Color.Red;
-                            }
-                            buttons[(i - 1) * 5 + j - 1].Text = check.RubberName + "\n" + check.RubberWeight + "kg\n" + check.InputTime.Value.ToShortDateString() + "\nCòn" + (check.InputTime.Value.AddHours(duemax) - DateTime.Now).TotalHours + "giờ";
-                        }
+                        buttons[(i - 1) * 5 + j - 1].Text = check.RubberName + "\n" + check.RubberWeight + "kg\n" + check.InputTime.Value.ToShortDateString();
+                        buttons[(i - 1) * 5 + j - 1].BackColor = Color.LightGreen;
                     }
                     else
                     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 #nullable disable
 
-namespace FMB_SYS.Models1
+namespace FMB_SYS.Models2
 {
     public partial class KpiHrAbsenteeism
     {

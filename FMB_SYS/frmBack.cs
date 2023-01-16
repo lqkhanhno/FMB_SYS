@@ -1,4 +1,4 @@
-﻿using FMB_SYS.Models1;
+﻿using FMB_SYS.Models2;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -35,6 +35,8 @@ namespace FMB_SYS
         private void btnOut_Click(object sender, EventArgs e)
         {
             this.Close();
+            frmMain load = new frmMain();
+            load.Refresh();
         }
 
         private void btnEnter_Click(object sender, EventArgs e)
@@ -42,15 +44,14 @@ namespace FMB_SYS
             if (txtID.Text.Length >= 10)
             {
                 timer1.Enabled = false;
-                var update = fmb.PFmbLabels
-                        .SingleOrDefault(c => c.CartId == txtID.Text.Substring(2, 10));
+                var update = fmb.PFmbLabels.SingleOrDefault(c => c.CartId == txtID.Text);
                 if (update != null)
                 {
                     var check = fmb.PFmbLabels.Where(c => c.Place == "FMB Stock").OrderByDescending(c => c.FmbLine).ThenByDescending(c => c.FmbNo)
                 .FirstOrDefault(c => c.RubberName == update.RubberName);
                     var first = (from p in fmb.PFmbLabels
                                  join m in fmb.PFmbMasterLocationRubbers on p.RubberName equals m.RubberName
-                                 where p.CartId == txtID.Text.Substring(2, 10)
+                                 where p.CartId == txtID.Text
                                  select m).FirstOrDefault();
                     if (check != null && update.Place == "PD")
                     {
@@ -159,6 +160,7 @@ namespace FMB_SYS
         {
             lbSP.Text = "Quét mã QR của xe";
             txtID.Focus();
+            lbName.Text = _message;
         }
 
         private void txtID_TextChanged(object sender, EventArgs e)
@@ -172,7 +174,15 @@ namespace FMB_SYS
         private void btnCheck_Click(object sender, EventArgs e)
         {
             frmCheckstock open = new frmCheckstock();
-            open.Close();
+            open.ShowDialog();
+        }
+
+        private void txtWeight_TextChanged(object sender, EventArgs e)
+        {
+            if (txtWeight.Text.Length >= 1)
+            {
+                lbSP.Text = "Enter";
+            }
         }
     }
 }

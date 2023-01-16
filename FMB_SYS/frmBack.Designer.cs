@@ -44,6 +44,8 @@
             this.lbSP = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.btnCheck = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.lbName = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -148,6 +150,7 @@
             this.txtWeight.Name = "txtWeight";
             this.txtWeight.Size = new System.Drawing.Size(125, 65);
             this.txtWeight.TabIndex = 28;
+            this.txtWeight.TextChanged += new System.EventHandler(this.txtWeight_TextChanged);
             // 
             // label2
             // 
@@ -205,6 +208,26 @@
             this.btnCheck.UseVisualStyleBackColor = false;
             this.btnCheck.Click += new System.EventHandler(this.btnCheck_Click);
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label4.Location = new System.Drawing.Point(37, 25);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(256, 45);
+            this.label4.TabIndex = 33;
+            this.label4.Text = "Người thực hiện";
+            // 
+            // lbName
+            // 
+            this.lbName.AutoSize = true;
+            this.lbName.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lbName.Location = new System.Drawing.Point(306, 25);
+            this.lbName.Name = "lbName";
+            this.lbName.Size = new System.Drawing.Size(160, 45);
+            this.lbName.TabIndex = 32;
+            this.lbName.Text = "__________";
+            // 
             // frmBack
             // 
             this.AcceptButton = this.btnEnter;
@@ -212,6 +235,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnOut;
             this.ClientSize = new System.Drawing.Size(1902, 1033);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.lbName);
             this.Controls.Add(this.btnCheck);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.label2);
@@ -254,5 +279,7 @@
         private System.Windows.Forms.Label lbSP;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnCheck;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lbName;
     }
 }

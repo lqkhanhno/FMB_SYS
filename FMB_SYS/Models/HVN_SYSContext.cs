@@ -6,7 +6,7 @@ using Microsoft.Extensions.Configuration;
 
 #nullable disable
 
-namespace FMB_SYS.Models1
+namespace FMB_SYS.Models2
 {
     public partial class HVN_SYSContext : DbContext
     {
@@ -107,12 +107,13 @@ namespace FMB_SYS.Models1
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+
             if (!optionsBuilder.IsConfigured)
             {
                 var builder = new ConfigurationBuilder()
                                                 .SetBasePath(Directory.GetCurrentDirectory())
                                                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
-                IConfigurationRoot configuration = builder.Build(); optionsBuilder.UseSqlServer("server =172.16.180.24; database = HVN_SYS;uid=hvn;pwd=Vietnam2023;");
+                optionsBuilder.UseSqlServer("server =172.16.180.24; database = HVN_SYS;uid=hvn;pwd=Vietnam2023;");
             }
         }
 
@@ -1504,11 +1505,6 @@ namespace FMB_SYS.Models1
                     .HasMaxLength(30)
                     .IsUnicode(false)
                     .HasColumnName("lab_kind");
-
-                entity.Property(e => e.LabQrCode)
-                    .HasMaxLength(50)
-                    .IsUnicode(false)
-                    .HasColumnName("lab_qr_code");
 
                 entity.Property(e => e.MaxDuedate)
                     .HasColumnType("date")
