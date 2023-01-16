@@ -42,7 +42,7 @@
             this.txtName.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtName.Location = new System.Drawing.Point(171, 170);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(185, 43);
+            this.txtName.Size = new System.Drawing.Size(216, 43);
             this.txtName.TabIndex = 0;
             this.txtName.TextChanged += new System.EventHandler(this.txtName_TextChanged);
             // 
@@ -59,7 +59,7 @@
             // btnEnter
             // 
             this.btnEnter.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnEnter.Location = new System.Drawing.Point(393, 151);
+            this.btnEnter.Location = new System.Drawing.Point(412, 151);
             this.btnEnter.Name = "btnEnter";
             this.btnEnter.Size = new System.Drawing.Size(98, 80);
             this.btnEnter.TabIndex = 2;
@@ -104,7 +104,7 @@
             this.AcceptButton = this.btnEnter;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(976, 558);
+            this.ClientSize = new System.Drawing.Size(654, 505);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.btnEnter);
             this.Controls.Add(this.label1);
