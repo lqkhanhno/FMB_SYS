@@ -1,5 +1,5 @@
 ﻿using FMB_SYS.Models1;
-using FMB_SYS.Models;
+using FMB_SYS.Models2;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -32,149 +32,135 @@ namespace FMB_SYS
         COEX_MESContext lab = new COEX_MESContext();
         private void btnEnter_Click(object sender, EventArgs e)
         {
-            try
+            //try
+            //{
+            var labInfo = lab.Barcodes.SingleOrDefault(c => c.MaCode == txtID.Text);
+            var fmbInfo = fmb.PFmbLabResults.SingleOrDefault(c => c.MaCode == txtID.Text);
+            if (fmbInfo != null && fmbInfo.Place == "PD")
             {
-                var labInfo = lab.Barcodes.SingleOrDefault(c => c.MaCode == txtID.Text);
-                var fmbInfo = fmb.PFmbLabResults.SingleOrDefault(c => c.MaCode == txtID.Text);
-                if (fmbInfo != null && fmbInfo.Place == "PD")
+                lbError.Text = "Chọn sai chức năng\nXe có mã: " + fmbInfo.MaCode + " hiện tại đang ở PD\nCần báo hết cho xe!";
+                lbInformation.Text = "";
+            }
+            else if (fmbInfo != null && fmbInfo.Place == "FMB Stock")
+            {
+                lbError.Text = "Xe có mã: " + fmbInfo.MaCode + " đã ở trong kho\nHàng " + fmbInfo.FmbLine + " vị trí " + fmbInfo.FmbNo;
+                lbInformation.Text = "";
+            }
+            else if (fmbInfo != null && fmbInfo.Place == null && labInfo != null)
+            {
+                var first = fmb.PFmbMasterLocationRubbers.FirstOrDefault(c => c.RubberName == fmbInfo.MaNguyenLieu);
+                if (first != null)
                 {
-                    lbError.Text = "Chọn sai chức năng\nXe có mã: " + fmbInfo.MaCode + " hiện tại đang ở PD\nCần báo hết cho xe!";
-                    lbInformation.Text = "";
-                }
-                else if (fmbInfo != null && fmbInfo.Place == "FMB Stock")
-                {
-                    lbError.Text = "Xe có mã: " + fmbInfo.MaCode + " đã ở trong kho\nHàng " + fmbInfo.FmbLine + " vị trí " + fmbInfo.FmbNo;
-                    lbInformation.Text = "";
-                }
-                else if (fmbInfo != null && fmbInfo.Place == null && labInfo != null && labInfo.ThoiGian != null)
-                {
-                    var first = fmb.PFmbMasterLocationRubbers.FirstOrDefault(c => c.RubberName == fmbInfo.MaNguyenLieu);
-                    if (first != null)
+                    var due = fmb.PFmbMasterListRubbers.SingleOrDefault(c => c.RubberName == fmbInfo.MaNguyenLieu);
+                    var up = fmb.PFmbLabResults.Where(c => c.MaNguyenLieu == fmbInfo.MaNguyenLieu).ToList();
+                    foreach (var item in up)
                     {
-                        var due = fmb.PFmbMasterListRubbers.SingleOrDefault(c => c.RubberName == fmbInfo.MaNguyenLieu);
-                        var up = fmb.PFmbLabResults.Where(c => c.MaNguyenLieu == fmbInfo.MaNguyenLieu).ToList();
-                        foreach (var item in up)
+                        item.FmbNo++;
+                        if (item.FmbNo > 5)
                         {
-                            item.FmbNo++;
-                            if (item.FmbNo > 5)
-                            {
-                                item.FmbNo = 1;
-                                item.FmbLine = item.FmbLine + 1;
-                            }
+                            item.FmbNo = 1;
+                            item.FmbLine = item.FmbLine + 1;
                         }
-                        fmbInfo.ThoiGian = DateTime.Now;
-                        //fmbInfo.NgayCan = labInfo.NgayCan;
-                        //fmbInfo.IdspthongSo = labInfo.IdspthongSo;
-                        //fmbInfo.IdNl = labInfo.IdNl;
-                        //fmbInfo.Lotruber = labInfo.Lotruber;
-                        //fmbInfo.Idca = labInfo.Idca;
-                        //fmbInfo.Cmb = labInfo.Cmb;
-                        //fmbInfo.Fmb = labInfo.Fmb;
-                        //fmbInfo.Reometer = labInfo.Reometer;
-                        //fmbInfo.Tenlsi = labInfo.Tenlsi;
-                        //fmbInfo.TenlsiBelong = labInfo.TenlsiBelong;
-                        //fmbInfo.TenlsiUts = labInfo.TenlsiUts;
-                        //fmbInfo.Moisture = labInfo.Moisture;
-                        //fmbInfo.GravityCmb = labInfo.GravityCmb;
-                        //fmbInfo.KhoiLuong = labInfo.KhoiLuong;
-                        //fmbInfo.Kq = labInfo.Kq;
-                        //fmbInfo.ByPass = labInfo.ByPass;
-                        //fmbInfo.Huy = labInfo.Huy;
-                        fmbInfo.PicInput = lbName.Text;
-                        fmbInfo.FmbLine = first.FmbLine;
-                        fmbInfo.FmbNo = 1;
-                        fmbInfo.Place = "FMB Stock";
+                    }
+                    fmbInfo.InputFmb = DateTime.Now;
+                    fmbInfo.PicInput = lbName.Text;
+                    fmbInfo.FmbLine = first.FmbLine;
+                    fmbInfo.FmbNo = 1;
+                    fmbInfo.Place = "FMB Stock";
+                    fmb.SaveChanges();
+                    lbInformation.Text = "Mã xe: " + fmbInfo.MaCode + " được thêm vào hàng " + fmbInfo.FmbLine + " Thời gian: " + fmbInfo.ThoiGian + "\nNgười thêm: " + _message;
+                    lbError.Text = "";
+                    if (due != null)
+                    {
+                        int duemax = Convert.ToInt32(due.VadilityMax);
+                        int duemin = Convert.ToInt32(due.VadilityMin);
+                        fmbInfo.MinDuedate = fmbInfo.InputFmb.Value.AddHours(duemin);
+                        fmbInfo.MaxDuedate = fmbInfo.InputFmb.Value.AddHours(duemax);
                         fmb.SaveChanges();
-                        lbInformation.Text = "Mã xe: " + fmbInfo.MaCode + " được thêm vào hàng " + fmbInfo.FmbLine + " Thời gian: " + fmbInfo.ThoiGian + "\nNgười thêm: " + _message;
-                        lbError.Text = "";
-                        if (due != null)
-                        {
-                            int duemax = Convert.ToInt32(due.VadilityMax);
-                            int duemin = Convert.ToInt32(due.VadilityMin);
-                            fmbInfo.MinDuedate = fmbInfo.ThoiGian.Value.AddHours(duemin);
-                            fmbInfo.MaxDuedate = fmbInfo.ThoiGian.Value.AddHours(duemax);
-                            fmb.SaveChanges();
-                        }
-                        else
-                        {
-                            lbError.Text = "Chưa có thông tin hạn của mã cao su " + fmbInfo.MaNguyenLieu;
-                            lbInformation.Text = string.Empty;
-                        }
                     }
                     else
                     {
-                        lbError.Text = "Mã cao su chưa có trong kho";
+                        lbError.Text = "Chưa có thông tin hạn của mã cao su " + fmbInfo.MaNguyenLieu;
                         lbInformation.Text = string.Empty;
                     }
                 }
-                else if (fmbInfo == null && labInfo != null && labInfo.ThoiGian != null)
+                else
                 {
-                    PFmbLabResult insert = new PFmbLabResult()
-                    {
-                        MaCode = txtID.Text,
-                        MaNguyenLieu = labInfo.MaNguyenLieu,
-                        NgayCan = labInfo.NgayCan,
-                        ThoiGian = DateTime.Now,
-                        IdspthongSo = labInfo.IdspthongSo,
-                        IdNl = labInfo.IdNl,
-                        Lotruber = labInfo.Lotruber,
-                        Idca = labInfo.Idca,
-                        Cmb = labInfo.Cmb,
-                        Fmb = labInfo.Fmb,
-                        Reometer = labInfo.Reometer,
-                        Tenlsi = labInfo.Tenlsi,
-                        TenlsiBelong = labInfo.TenlsiBelong,
-                        TenlsiUts = labInfo.TenlsiUts,
-                        Moisture = labInfo.Moisture,
-                        GravityCmb = labInfo.GravityCmb,
-                        KhoiLuong = labInfo.KhoiLuong,
-                        Kq = labInfo.Kq,
-                        ByPass = labInfo.ByPass,
-                        Huy = labInfo.Huy,
-                    };
-                    fmb.PFmbLabResults.Add(insert);
-                    var first = fmb.PFmbMasterLocationRubbers.FirstOrDefault(c => c.RubberName == labInfo.MaNguyenLieu);
-                    if (first != null)
-                    {
-                        var due = fmb.PFmbMasterListRubbers.SingleOrDefault(c => c.RubberName == labInfo.MaNguyenLieu);
-                        var up = fmb.PFmbLabResults.Where(c => c.MaNguyenLieu == labInfo.MaNguyenLieu).ToList();
-                        foreach (var item in up)
-                        {
-                            item.FmbNo++;
-                            if (item.FmbNo > 5)
-                            {
-                                item.FmbNo = 1;
-                                item.FmbLine = item.FmbLine + 1;
-                            }
-                        }
-                        insert.PicInput = lbName.Text;
-                        insert.FmbLine = first.FmbLine;
-                        insert.FmbNo = 1;
-                        insert.Place = "FMB Stock";
-                        fmb.SaveChanges();
-                        lbInformation.Text = "Mã xe: " + insert.MaCode + " được thêm vào hàng " + insert.FmbLine + " Thời gian: " + insert.ThoiGian + "\nNgười thêm: " + _message;
-                        lbError.Text = "";
-                        if (due != null)
-                        {
-                            int duemax = Convert.ToInt32(due.VadilityMax);
-                            int duemin = Convert.ToInt32(due.VadilityMin);
-                            insert.MinDuedate = insert.ThoiGian.Value.AddHours(duemin);
-                            insert.MaxDuedate = insert.ThoiGian.Value.AddHours(duemax);
-                            fmb.SaveChanges();
-                        }
-                        else
-                        {
-                            lbError.Text = "Chưa có thông tin hạn của mã cao su " + insert.MaNguyenLieu;
-                            lbInformation.Text = string.Empty;
-                        }
-                    }
+                    lbError.Text = "Mã cao su chưa có trong kho";
+                    lbInformation.Text = string.Empty;
                 }
             }
-            catch (Exception ex)
+            else if (fmbInfo == null && labInfo != null)
             {
-                lbError.Text = ex.Message;
-                lbInformation.Text = string.Empty;
+                PFmbLabResult insert = new PFmbLabResult()
+                {
+                    MaCode = txtID.Text,
+                    MaNguyenLieu = labInfo.MaNguyenLieu,
+                    NgayCan = labInfo.NgayCan,
+                    ThoiGian = labInfo.ThoiGian,
+                    IdspthongSo = labInfo.IdspthongSo,
+                    IdNl = labInfo.IdNl,
+                    Lotruber = labInfo.Lotruber,
+                    Idca = labInfo.Idca,
+                    Cmb = labInfo.Cmb,
+                    Fmb = labInfo.Fmb,
+                    Reometer = labInfo.Reometer,
+                    Tenlsi = labInfo.Tenlsi,
+                    TenlsiBelong = labInfo.TenlsiBelong,
+                    TenlsiUts = labInfo.TenlsiUts,
+                    Moisture = labInfo.Moisture,
+                    GravityCmb = labInfo.GravityCmb,
+                    KhoiLuong = labInfo.KhoiLuong,
+                    Kq = labInfo.Kq,
+                    ByPass = labInfo.ByPass,
+                    Huy = labInfo.Huy,
+                };
+                fmb.PFmbLabResults.Add(insert);
+                var first = fmb.PFmbMasterLocationRubbers.FirstOrDefault(c => c.RubberName == labInfo.MaNguyenLieu);
+                if (first != null)
+                {
+                    var due = fmb.PFmbMasterListRubbers.SingleOrDefault(c => c.RubberName == labInfo.MaNguyenLieu);
+                    var up = fmb.PFmbLabResults.Where(c => c.MaNguyenLieu == labInfo.MaNguyenLieu).ToList();
+                    foreach (var item in up)
+                    {
+                        item.FmbNo++;
+                        if (item.FmbNo > 5)
+                        {
+                            item.FmbNo = 1;
+                            item.FmbLine = item.FmbLine + 1;
+                        }
+                    }
+                    insert.InputFmb = DateTime.Now;
+                    insert.PicInput = lbName.Text;
+                    insert.FmbLine = first.FmbLine;
+                    insert.FmbNo = 1;
+                    insert.Place = "FMB Stock";
+                    fmb.SaveChanges();
+                    lbInformation.Text = "Mã xe: " + insert.MaCode + " được thêm vào hàng " + insert.FmbLine + " Thời gian: " + insert.InputFmb + "\nNgười thêm: " + _message;
+                    lbError.Text = "";
+                    if (due != null)
+                    {
+                        int duemax = Convert.ToInt32(due.VadilityMax);
+                        int duemin = Convert.ToInt32(due.VadilityMin);
+                        insert.MinDuedate = insert.InputFmb.Value.AddHours(duemin);
+                        insert.MaxDuedate = insert.InputFmb.Value.AddHours(duemax);
+                        fmb.SaveChanges();
+                    }
+                    lbError.Text = "";
+                    txtID.Text = "";
+                }
+                else
+                {
+                    lbError.Text = "Mã cao su chưa có trong kho";
+                    lbInformation.Text = string.Empty;
+                }
             }
+            //}
+            //catch (Exception ex)
+            //{
+            //    lbError.Text = ex.Message;
+            //    lbInformation.Text = string.Empty;
+            //}
         }
 
         private void btnOut_Click(object sender, EventArgs e)

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 #nullable disable
 
-namespace FMB_SYS.Models
+namespace FMB_SYS.Models2
 {
     public partial class PFmbLabResult
     {
@@ -38,5 +38,6 @@ namespace FMB_SYS.Models
         public string PicTake { get; set; }
         public string PicReturn { get; set; }
         public string PicRemove { get; set; }
+        public DateTime? InputFmb { get; set; }
     }
 }

@@ -177,10 +177,10 @@
             // lbSP
             // 
             this.lbSP.AutoSize = true;
-            this.lbSP.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lbSP.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lbSP.Location = new System.Drawing.Point(27, 144);
             this.lbSP.Name = "lbSP";
-            this.lbSP.Size = new System.Drawing.Size(42, 50);
+            this.lbSP.Size = new System.Drawing.Size(34, 41);
             this.lbSP.TabIndex = 1;
             this.lbSP.Text = "..";
             // 

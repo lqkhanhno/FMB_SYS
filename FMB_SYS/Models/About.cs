@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 #nullable disable
 
-namespace FMB_SYS.Models
+namespace FMB_SYS.Models2
 {
     public partial class About
     {

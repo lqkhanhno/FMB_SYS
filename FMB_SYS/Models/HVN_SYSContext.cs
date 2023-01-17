@@ -6,7 +6,7 @@ using Microsoft.Extensions.Configuration;
 
 #nullable disable
 
-namespace FMB_SYS.Models
+namespace FMB_SYS.Models2
 {
     public partial class HVN_SYSContext : DbContext
     {
@@ -110,7 +110,7 @@ namespace FMB_SYS.Models
             {
                 var builder = new ConfigurationBuilder()
                                                                 .SetBasePath(Directory.GetCurrentDirectory())
-                                                                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+                                                                .AddJsonFile("appsettings1.json", optional: true, reloadOnChange: true);
                 optionsBuilder.UseSqlServer("server =172.16.180.24; database = HVN_SYS;uid=hvn;pwd=Vietnam2023;");
             }
         }
@@ -1455,6 +1455,10 @@ namespace FMB_SYS.Models
                 entity.Property(e => e.IdloaiSp).HasColumnName("IDLoaiSP");
 
                 entity.Property(e => e.IdspthongSo).HasColumnName("IDSPThongSo");
+
+                entity.Property(e => e.InputFmb)
+                    .HasColumnType("datetime")
+                    .HasColumnName("input_fmb");
 
                 entity.Property(e => e.KhoiLuong).HasColumnName("Khoi_luong");
 
