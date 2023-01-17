@@ -151,7 +151,7 @@ namespace FMB_SYS
                 }
                 else
                 {
-                    lbError.Text = "Mã cao su chưa có trong kho";
+                    lbError.Text = "Mã cao su '" + labInfo.MaNguyenLieu+"' không tồn tại trong hệ thống. Vui lòng liên hệ IT";
                     lbInformation.Text = string.Empty;
                 }
             }

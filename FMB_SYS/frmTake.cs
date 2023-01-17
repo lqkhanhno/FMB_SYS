@@ -60,7 +60,7 @@ namespace FMB_SYS
                     }
                     else if (check != update && check != null)
                     {
-                        lbError.Text = "Xe " + update.MaCode + " không ở vị trí cuối cùng\nXe ở cuối cùng hiện tại ở hàng " + check.FmbLine + " vị trí " + check.FmbNo + "\nMã xe: " + check.MaCode;
+                        lbError.Text = "Xe " + update.MaCode + " không ở vị trí cuối cùng của hàng\nXe ở cuối cùng hiện tại ở hàng " + check.FmbLine + " vị trí " + check.FmbNo + "\nMã xe cần lấy: " + check.MaCode;
                         lbInformation.Text = "";
                     }
                 }

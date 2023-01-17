@@ -58,10 +58,9 @@ namespace FMB_SYS
                         if (txtWeight.Text == "")
                         {
                             txtWeight.Focus();
-                            lbError.Text = "Nhập khối lượng còn lại của xe " + update.MaCode;
-                            lbInformation.Text = string.Empty;
+                            lbInformation.Text = "Nhập khối lượng còn lại của xe " + update.MaCode;
                         }
-                        else if(int.Parse(txtWeight.Text) <= 0)
+                        else if (int.Parse(txtWeight.Text) <= 0)
                         {
                             lbError.Text = "Khối lượng không hợp lệ";
                             lbInformation.Text = string.Empty;
@@ -133,11 +132,14 @@ namespace FMB_SYS
                                 }
                                 txtWeight.Text = "";
                                 lbError.Text = "";
+                                txtID.Focus();
                             }
                             else
                             {
                                 lbError.Text = ("Xe trả về có khối lượng lớn hơn xe lấy đi");
                                 lbInformation.Text = "";
+                                txtWeight.Text = string.Empty;
+                                txtID.Focus();
                             }
                         }
                     }
@@ -151,14 +153,7 @@ namespace FMB_SYS
                     txtID.Text = string.Empty;
                     txtWeight.Text = string.Empty;
                 }
-                txtID.Text = string.Empty;
                 timer1.Enabled = true;
-            }
-            else
-            {
-                txtID.Focus();
-                lbError.Text = "Chưa quét mã QR của xe";
-                lbSP.Text = "Quét mã QR của xe rồi mới Enter";
             }
         }
 
@@ -176,7 +171,6 @@ namespace FMB_SYS
             if (txtID.Text.Length >= 10)
             {
                 lbSP.Text = "Nhập khối lượng còn lại";
-                txtWeight.Focus();
             }
         }
         private void btnCheck_Click(object sender, EventArgs e)
