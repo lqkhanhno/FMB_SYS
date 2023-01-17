@@ -1,4 +1,4 @@
-﻿using FMB_SYS.Models2;
+﻿using FMB_SYS.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -37,7 +37,7 @@ namespace FMB_SYS
             if (txtID.Text.Length >= 10)
             {
                 timer1.Enabled = false;
-                var update = fmb.PFmbLabels.SingleOrDefault(c => c.CartId == txtID.Text);
+                var update = fmb.PFmbLabResults.SingleOrDefault(c => c.MaCode == txtID.Text);
                 if (update != null && update.Place != "FMB Stock")
                 {
                     try
@@ -49,12 +49,12 @@ namespace FMB_SYS
                         int save = fmb.SaveChanges();
                         if (save > 0)
                         {
-                            lbInformation.Text = ("Xe " + update.CartId + " đã hết.\nNgười báo hết: " + _message);
+                            lbInformation.Text = ("Xe " + update.MaCode + " đã hết.\nNgười báo hết: " + _message);
                             lbError.Text = "";
                         }
                         else
                         {
-                            lbInformation.Text = ("Xe " + update.CartId + " đã được báo hết");
+                            lbInformation.Text = ("Xe " + update.MaCode + " đã được báo hết");
                         }
                     }
                     catch (Exception ex)
@@ -69,11 +69,11 @@ namespace FMB_SYS
                     DialogResult box = MessageBox.Show("Bạn có chắc chắn muốn bỏ?", "Thông báo", MessageBoxButtons.YesNo);
                     if (box == DialogResult.Yes)
                     {
-                        var check = fmb.PFmbLabels.Where(c => c.Place == "FMB Stock").OrderByDescending(c => c.FmbLine).ThenByDescending(c => c.FmbNo)
-                            .FirstOrDefault(c => c.RubberName == update.RubberName);
+                        var check = fmb.PFmbLabResults.Where(c => c.Place == "FMB Stock").OrderByDescending(c => c.FmbLine).ThenByDescending(c => c.FmbNo)
+                            .FirstOrDefault(c => c.MaNguyenLieu == update.MaNguyenLieu);
                         if (check != null && update != check)
                         {
-                            lbError.Text = "Xe không ở vị trí cuối cùng!\nXe ở cuối cùng hiện tại ở hàng" + check.FmbLine + " vị trí " + check.FmbNo + "\nMã xe: " + check.CartId + "\nNgười báo hết: " + _message;
+                            lbError.Text = "Xe không ở vị trí cuối cùng!\nXe ở cuối cùng hiện tại ở hàng" + check.FmbLine + " vị trí " + check.FmbNo + "\nMã xe: " + check.MaCode + "\nNgười báo hết: " + _message;
                             lbInformation.Text = "";
                         }
                         else
@@ -86,7 +86,7 @@ namespace FMB_SYS
                                 int save = fmb.SaveChanges();
                                 if (save > 0)
                                 {
-                                    lbInformation.Text = ("Xe " + update.CartId + " đã được bỏ");
+                                    lbInformation.Text = ("Xe " + update.MaCode + " đã được bỏ");
                                     lbError.Text = "";
                                 }
                                 lbSP.Text = "Thoát hoặc quét mã QR của xe tiếp theo";
@@ -129,6 +129,8 @@ namespace FMB_SYS
 
         private void frmBacknew_Load(object sender, EventArgs e)
         {
+            lbError.Text = string.Empty;
+            lbInformation.Text = string.Empty;
             lbSP.Text = "Quét mã QR của xe";
             txtID.Focus();
             lbName.Text = _message;

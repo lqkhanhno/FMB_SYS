@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 #nullable disable
 
-namespace FMB_SYS.Models2
+namespace FMB_SYS.Models
 {
     public partial class KpiActionMonitoring
     {

@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 #nullable disable
 
-namespace FMB_SYS.Models2
+namespace FMB_SYS.Models
 {
     public partial class PFmbLabResult
     {
-        public int Id { get; set; }
+        public string MaCode { get; set; }
         public DateTime? NgayCan { get; set; }
         public DateTime? ThoiGian { get; set; }
         public int? IdspthongSo { get; set; }
@@ -27,8 +27,16 @@ namespace FMB_SYS.Models2
         public string Kq { get; set; }
         public bool? ByPass { get; set; }
         public bool? Huy { get; set; }
-        public string MaCode { get; set; }
         public string MaNguyenLieu { get; set; }
-        public string CardId { get; set; }
+        public int? FmbLine { get; set; }
+        public int? FmbNo { get; set; }
+        public string Place { get; set; }
+        public string Labkind { get; set; }
+        public DateTime? MinDuedate { get; set; }
+        public DateTime? MaxDuedate { get; set; }
+        public string PicInput { get; set; }
+        public string PicTake { get; set; }
+        public string PicReturn { get; set; }
+        public string PicRemove { get; set; }
     }
 }

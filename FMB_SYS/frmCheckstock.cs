@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Net.Mime.MediaTypeNames;
-using FMB_SYS.Models2;
+using FMB_SYS.Models;
 
 namespace FMB_SYS
 {
@@ -50,11 +50,22 @@ namespace FMB_SYS
             {
                 for (int j = 1; j <= 5; j++)
                 {
-                    var check = fmb.PFmbLabels.SingleOrDefault(c => c.FmbLine == i && c.FmbNo == j);
-                    if (check != null && check.InputTime != null)
+                    var check = fmb.PFmbLabResults.SingleOrDefault(c => c.FmbLine == i && c.FmbNo == j);
+                    if (check != null && check.ThoiGian != null && check.MaxDuedate != null)
                     {
-                        buttons[(i - 1) * 5 + j - 1].Text = check.RubberName + "\n" + check.RubberWeight + "kg\n" + check.InputTime.Value.ToShortDateString();
-                        buttons[(i - 1) * 5 + j - 1].BackColor = Color.LightGreen;
+                        buttons[(i - 1) * 5 + j - 1].Text = check.MaNguyenLieu + "\n" + check.KhoiLuong + "kg\n" + check.ThoiGian.Value.ToShortDateString() + "\nHạn còn: " + ((int)(check.MaxDuedate - DateTime.Now).Value.TotalHours) + "h";
+                        if ((int)(check.MaxDuedate - DateTime.Now).Value.TotalHours <= 72 && (int)(check.MaxDuedate - DateTime.Now).Value.TotalHours >= 0)
+                        {
+                            buttons[(i - 1) * 5 + j - 1].BackColor = Color.Yellow;
+                        }
+                        else if (check.MaxDuedate < DateTime.Now)
+                        {
+                            buttons[(i - 1) * 5 + j - 1].BackColor = Color.Red;
+                        }
+                        else if (check.MaxDuedate > DateTime.Now && check.MinDuedate < DateTime.Now)
+                        {
+                            buttons[(i - 1) * 5 + j - 1].BackColor = Color.LightGreen;
+                        }
                     }
                     else
                     {
@@ -66,9 +77,9 @@ namespace FMB_SYS
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var sum = (from c in fmb.PFmbLabels
-                       where c.RubberName == listBox1.Text
-                       select c.RubberWeight).Sum();
+            var sum = (from c in fmb.PFmbLabResults
+                       where c.MaNguyenLieu == listBox1.Text && c.Place == "FMB Stock"
+                       select c.KhoiLuong).Sum();
             textBox1.Text = sum.ToString();
         }
 

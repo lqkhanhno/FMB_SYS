@@ -21,6 +21,7 @@ namespace FMB_SYS
             frmMain child = new frmMain(); child.Message = txtName.Text;
             child.ShowDialog();
             txtName.Text = string.Empty;
+            lbSP.Text = string.Empty;
         }
 
         private void frmPIC_Load(object sender, EventArgs e)

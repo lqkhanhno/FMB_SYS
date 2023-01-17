@@ -6,7 +6,7 @@ using Microsoft.Extensions.Configuration;
 
 #nullable disable
 
-namespace FMB_SYS.Models2
+namespace FMB_SYS.Models
 {
     public partial class HVN_SYSContext : DbContext
     {
@@ -66,7 +66,6 @@ namespace FMB_SYS.Models2
         public virtual DbSet<PDashboardFg> PDashboardFgs { get; set; }
         public virtual DbSet<PErrorScanLog> PErrorScanLogs { get; set; }
         public virtual DbSet<PFmbLabResult> PFmbLabResults { get; set; }
-        public virtual DbSet<PFmbLabel> PFmbLabels { get; set; }
         public virtual DbSet<PFmbMasterListRubber> PFmbMasterListRubbers { get; set; }
         public virtual DbSet<PFmbMasterLocationRubber> PFmbMasterLocationRubbers { get; set; }
         public virtual DbSet<PLabel> PLabels { get; set; }
@@ -107,12 +106,11 @@ namespace FMB_SYS.Models2
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-
             if (!optionsBuilder.IsConfigured)
             {
                 var builder = new ConfigurationBuilder()
-                                                .SetBasePath(Directory.GetCurrentDirectory())
-                                                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+                                                                .SetBasePath(Directory.GetCurrentDirectory())
+                                                                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
                 optionsBuilder.UseSqlServer("server =172.16.180.24; database = HVN_SYS;uid=hvn;pwd=Vietnam2023;");
             }
         }
@@ -1432,20 +1430,19 @@ namespace FMB_SYS.Models2
 
             modelBuilder.Entity<PFmbLabResult>(entity =>
             {
+                entity.HasKey(e => e.MaCode);
+
                 entity.ToTable("P_FMB_Lab_Result");
 
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
-
-                entity.Property(e => e.CardId)
-                    .HasMaxLength(30)
-                    .IsUnicode(false)
-                    .HasColumnName("card_id");
+                entity.Property(e => e.MaCode).HasMaxLength(100);
 
                 entity.Property(e => e.Cmb).HasColumnName("CMB");
 
                 entity.Property(e => e.Fmb).HasColumnName("FMB");
+
+                entity.Property(e => e.FmbLine).HasColumnName("fmb_line");
+
+                entity.Property(e => e.FmbNo).HasColumnName("fmb_no");
 
                 entity.Property(e => e.GravityCmb).HasColumnName("Gravity_CMB");
 
@@ -1465,90 +1462,57 @@ namespace FMB_SYS.Models2
                     .HasMaxLength(20)
                     .HasColumnName("KQ");
 
+                entity.Property(e => e.Labkind)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("labkind");
+
                 entity.Property(e => e.Lotruber)
                     .HasColumnType("datetime")
                     .HasColumnName("LOTRuber");
 
-                entity.Property(e => e.MaCode).HasMaxLength(100);
-
                 entity.Property(e => e.MaNguyenLieu).HasMaxLength(100);
 
-                entity.Property(e => e.NgayCan).HasColumnType("datetime");
-
-                entity.Property(e => e.TenlsiBelong).HasColumnName("Tenlsi_Belong");
-
-                entity.Property(e => e.TenlsiUts).HasColumnName("Tenlsi_UTS");
-
-                entity.Property(e => e.ThoiGian).HasColumnType("datetime");
-            });
-
-            modelBuilder.Entity<PFmbLabel>(entity =>
-            {
-                entity.HasKey(e => e.CartId);
-
-                entity.ToTable("P_FMB_Label");
-
-                entity.Property(e => e.CartId)
-                    .HasMaxLength(30)
-                    .IsUnicode(false)
-                    .HasColumnName("cart_id");
-
-                entity.Property(e => e.FmbLine).HasColumnName("fmb_line");
-
-                entity.Property(e => e.FmbNo).HasColumnName("fmb_no");
-
-                entity.Property(e => e.InputTime)
-                    .HasColumnType("datetime")
-                    .HasColumnName("input_time");
-
-                entity.Property(e => e.LabKind)
-                    .HasMaxLength(30)
-                    .IsUnicode(false)
-                    .HasColumnName("lab_kind");
-
                 entity.Property(e => e.MaxDuedate)
-                    .HasColumnType("date")
+                    .HasColumnType("datetime")
                     .HasColumnName("max_duedate");
 
                 entity.Property(e => e.MinDuedate)
-                    .HasColumnType("date")
+                    .HasColumnType("datetime")
                     .HasColumnName("min_duedate");
 
-                entity.Property(e => e.MixingDate)
-                    .HasColumnType("date")
-                    .HasColumnName("mixing_date");
+                entity.Property(e => e.NgayCan).HasColumnType("datetime");
 
                 entity.Property(e => e.PicInput)
                     .HasMaxLength(50)
                     .IsUnicode(false)
-                    .HasColumnName("PIC_input");
-
-                entity.Property(e => e.PicOutput)
-                    .HasMaxLength(50)
-                    .IsUnicode(false)
-                    .HasColumnName("PIC_output");
+                    .HasColumnName("pic_input");
 
                 entity.Property(e => e.PicRemove)
                     .HasMaxLength(50)
                     .IsUnicode(false)
-                    .HasColumnName("PIC_remove");
+                    .HasColumnName("pic_remove");
 
                 entity.Property(e => e.PicReturn)
                     .HasMaxLength(50)
                     .IsUnicode(false)
-                    .HasColumnName("PIC_return");
+                    .HasColumnName("pic_return");
+
+                entity.Property(e => e.PicTake)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("pic_take");
 
                 entity.Property(e => e.Place)
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasColumnName("place");
 
-                entity.Property(e => e.RubberName)
-                    .HasMaxLength(50)
-                    .IsUnicode(false)
-                    .HasColumnName("rubber_name");
+                entity.Property(e => e.TenlsiBelong).HasColumnName("Tenlsi_Belong");
 
-                entity.Property(e => e.RubberWeight).HasColumnName("rubber_weight");
+                entity.Property(e => e.TenlsiUts).HasColumnName("Tenlsi_UTS");
+
+                entity.Property(e => e.ThoiGian).HasColumnType("datetime");
             });
 
             modelBuilder.Entity<PFmbMasterListRubber>(entity =>
