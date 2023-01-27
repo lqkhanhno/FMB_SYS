@@ -1058,7 +1058,7 @@
             // textBox1
             // 
             this.textBox1.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBox1.Location = new System.Drawing.Point(1675, 540);
+            this.textBox1.Location = new System.Drawing.Point(1726, 581);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(150, 43);
             this.textBox1.TabIndex = 100;
@@ -1084,7 +1084,7 @@
             "EPR3167V",
             "3A72023",
             "3A72014"});
-            this.listBox1.Location = new System.Drawing.Point(1675, 230);
+            this.listBox1.Location = new System.Drawing.Point(1726, 271);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(150, 263);
             this.listBox1.TabIndex = 101;
@@ -1094,7 +1094,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(1675, 500);
+            this.label1.Location = new System.Drawing.Point(1726, 541);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(118, 38);
             this.label1.TabIndex = 102;
@@ -1104,7 +1104,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(1675, 171);
+            this.label2.Location = new System.Drawing.Point(1726, 212);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(143, 38);
             this.label2.TabIndex = 103;
@@ -1314,9 +1314,9 @@
             // 
             this.btnOut.BackColor = System.Drawing.Color.Red;
             this.btnOut.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnOut.Location = new System.Drawing.Point(1634, 26);
+            this.btnOut.Location = new System.Drawing.Point(1726, 26);
             this.btnOut.Name = "btnOut";
-            this.btnOut.Size = new System.Drawing.Size(242, 100);
+            this.btnOut.Size = new System.Drawing.Size(150, 100);
             this.btnOut.TabIndex = 124;
             this.btnOut.Text = "Thoát";
             this.btnOut.UseVisualStyleBackColor = false;

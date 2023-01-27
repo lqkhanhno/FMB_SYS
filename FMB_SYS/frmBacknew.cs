@@ -94,7 +94,7 @@ namespace FMB_SYS
                         update.Place = null;
                         update.PicRemove = _message;
                         fmb.SaveChanges();
-                        lbInformation.Text = "Xe có mã: " + update.MaCode + "đã được hủy thành công";
+                        lbInformation.Text = "Xe có mã: " + update.MaCode + " đã được hủy thành công";
                         lbError.Text = string.Empty;
                         lbSP.Text = "Thoát hoặc quét mã QR của xe tiếp theo";
                         txtID.Focus();

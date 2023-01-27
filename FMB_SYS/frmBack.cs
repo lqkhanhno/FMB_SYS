@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Net.Mime.MediaTypeNames;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
 
 namespace FMB_SYS
 {
@@ -67,32 +68,42 @@ namespace FMB_SYS
                         {
                             if (update.KhoiLuong >= int.Parse(txtWeight.Text))
                             {
-                                update.PicReturn = _message;
-                                update.KhoiLuong = int.Parse(txtWeight.Text);
-                                update.Place = "FMB Stock";
-                                var down = fmb.PFmbLabResults.Where(c => c.MaNguyenLieu == update.MaNguyenLieu).ToList();
-                                foreach (var item in down)
+                                var count = fmb.PFmbMasterLocationRubbers.Count(c => c.RubberName == update.MaNguyenLieu);
+                                var countno = fmb.PFmbLabResults.Where(c => c.Place == "FMB Stock").Count(c => c.MaNguyenLieu == update.MaNguyenLieu);
+                                if (countno >= count * 5)
                                 {
-                                    item.FmbNo--;
-                                    if (item.FmbNo < 1)
+                                    lbError.Text = "Kho đã đầy không thể nhập";
+                                    lbInformation.Text = "";
+                                }
+                                else
+                                {
+                                    update.PicReturn = _message;
+                                    update.KhoiLuong = int.Parse(txtWeight.Text);
+                                    update.Place = "FMB Stock";
+                                    var down = fmb.PFmbLabResults.Where(c => c.MaNguyenLieu == update.MaNguyenLieu).ToList();
+                                    foreach (var item in down)
                                     {
-                                        item.FmbNo = 5;
-                                        item.FmbLine = item.FmbLine - 1;
+                                        item.FmbNo--;
+                                        if (item.FmbNo < 1)
+                                        {
+                                            item.FmbNo = 5;
+                                            item.FmbLine = item.FmbLine - 1;
+                                        }
                                     }
+                                    update.FmbLine = first.FmbLine;
+                                    update.FmbNo = 5;
+                                    update.ReturnTime = DateTime.Now;
+                                    int save = fmb.SaveChanges();
+                                    if (save > 0)
+                                    {
+                                        lbInformation.Text = ("Xe " + update.MaCode + " đã được trả về hàng " + update.FmbLine + " vị trí " + update.FmbNo + "\nXe còn lại " + txtWeight.Text + ". Người trả xe: " + _message);
+                                    }
+                                    txtWeight.Text = "";
+                                    lbError.Text = "";
+                                    lbSP.Text = "Thoát hoặc quét mã QR của xe tiếp theo";
+                                    txtID.Text = string.Empty;
+                                    txtID.Focus();
                                 }
-                                update.FmbLine = first.FmbLine;
-                                update.FmbNo = 5;
-                                update.ReturnTime = DateTime.Now;
-                                int save = fmb.SaveChanges();
-                                if (save > 0)
-                                {
-                                    lbInformation.Text = ("Xe " + update.MaCode + " đã được trả về hàng " + update.FmbLine + " vị trí " + update.FmbNo + "\nXe còn lại " + txtWeight.Text + ". Người trả xe: " + _message);
-                                }
-                                txtWeight.Text = "";
-                                lbError.Text = "";
-                                lbSP.Text = "Thoát hoặc quét mã QR của xe tiếp theo";
-                                txtID.Text = string.Empty;
-                                txtID.Focus();
                             }
                             else
                             {
