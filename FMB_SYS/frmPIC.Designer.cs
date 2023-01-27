@@ -104,6 +104,7 @@
             this.AcceptButton = this.btnEnter;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(701, 537);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.btnEnter);
