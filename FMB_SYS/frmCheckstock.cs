@@ -51,20 +51,29 @@ namespace FMB_SYS
                 for (int j = 1; j <= 5; j++)
                 {
                     var check = fmb.PFmbLabResults.SingleOrDefault(c => c.FmbLine == i && c.FmbNo == j);
-                    if (check != null && check.ThoiGian != null && check.MaxDuedate != null)
+                    if (check != null && check.ThoiGian != null && check.MaxDuedate != null && check.Lotruber != null)
                     {
-                        buttons[(i - 1) * 5 + j - 1].Text = check.MaNguyenLieu + "\n" + check.KhoiLuong + "kg\n" + check.ThoiGian.Value.ToShortDateString() + "\nHạn còn: " + ((int)(check.MaxDuedate - DateTime.Now).Value.TotalHours) + "h";
-                        if ((int)(check.MaxDuedate - DateTime.Now).Value.TotalHours <= 72 && (int)(check.MaxDuedate - DateTime.Now).Value.TotalHours >= 0)
+                        buttons[(i - 1) * 5 + j - 1].Text = check.KhoiLuong + "kg\n" + check.Lotruber.Value.ToString("dd/MM") + "|" + check.Idca + "\nHạn còn: " + (int)(check.MaxDuedate - DateTime.Now).Value.TotalHours + "h";
+                        if (check.MaxDuedate > DateTime.Now && check.MinDuedate < DateTime.Now && check.Kq == "OK")
+                        {
+                            buttons[(i - 1) * 5 + j - 1].BackColor = Color.LightGreen;
+                        }
+                        else if (check.MinDuedate > DateTime.Now && check.InputTime <= DateTime.Now)
+                        {
+                            buttons[(i - 1) * 5 + j - 1].BackColor = Color.Yellow;
+
+                        }
+                        else if ((int)(check.MaxDuedate - DateTime.Now).Value.TotalHours < 100)
                         {
                             buttons[(i - 1) * 5 + j - 1].BackColor = Color.Yellow;
                         }
-                        else if (check.MaxDuedate < DateTime.Now)
+                        else if (check.Kq == "OK special")
+                        {
+                            buttons[(i - 1) * 5 + j - 1].BackColor = Color.Yellow;
+                        }
+                        else
                         {
                             buttons[(i - 1) * 5 + j - 1].BackColor = Color.Red;
-                        }
-                        else if (check.MaxDuedate > DateTime.Now && check.MinDuedate < DateTime.Now)
-                        {
-                            buttons[(i - 1) * 5 + j - 1].BackColor = Color.LightGreen;
                         }
                     }
                     else
@@ -74,7 +83,6 @@ namespace FMB_SYS
                 }
             }
         }
-
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             var sum = (from c in fmb.PFmbLabResults
@@ -91,3 +99,4 @@ namespace FMB_SYS
         }
     }
 }
+

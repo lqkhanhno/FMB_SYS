@@ -44,12 +44,24 @@ namespace FMB_SYS
                             {
                                 lbInformation.Text = "Xe được lấy đi ở hàng " + update.FmbLine + " vị trí " + update.FmbNo + "\nMã xe: " + update.MaCode + "\nNgười lấy: " + _message;
                                 update.PicTake = _message;
+                                var down = fmb.PFmbLabResults.Where(c => c.MaNguyenLieu == update.MaNguyenLieu).ToList();
+                                foreach (var item in down)
+                                {
+                                    item.FmbNo++;
+                                    if (item.FmbNo > 5)
+                                    {
+                                        item.FmbNo = 1;
+                                        item.FmbLine = item.FmbLine + 1;
+                                    }
+                                }
+                                update.TakeTime = DateTime.Now;
                                 update.FmbLine = null;
                                 update.FmbNo = null;
                                 update.Place = "PD";
                                 fmb.SaveChanges();
                                 lbError.Text = "";
                                 lbSP.Text = "Thoát hoặc quét mã QR của xe tiếp theo";
+                                txtID.Text = string.Empty;
                                 txtID.Focus();
                             }
                         }
@@ -62,22 +74,30 @@ namespace FMB_SYS
                     {
                         lbError.Text = "Xe " + update.MaCode + " không ở vị trí cuối cùng của hàng\nXe ở cuối cùng hiện tại ở hàng " + check.FmbLine + " vị trí " + check.FmbNo + "\nMã xe cần lấy: " + check.MaCode;
                         lbInformation.Text = "";
+                        txtID.Text = string.Empty;
+                        txtID.Focus();
                     }
                 }
                 else if (update != null && update.Place != "FMB Stock")
                 {
                     lbError.Text = "Xe " + update.MaCode + " không còn trong kho";
                     lbInformation.Text = "";
+                    txtID.Text = string.Empty;
+                    txtID.Focus();
                 }
                 else if (update == null)
                 {
                     lbError.Text = "Xe không tồn tại";
                     lbInformation.Text = "";
+                    txtID.Text = string.Empty;
+                    txtID.Focus();
                 }
                 else
                 {
                     lbInformation.Text = string.Empty;
                     lbError.Text = string.Empty;
+                    txtID.Text = string.Empty;
+                    txtID.Focus();
                 }
                 txtID.Text = string.Empty;
                 timer1.Enabled = true;

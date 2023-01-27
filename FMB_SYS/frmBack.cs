@@ -49,16 +49,14 @@ namespace FMB_SYS
                 {
                     var check = fmb.PFmbLabResults.Where(c => c.Place == "FMB Stock").OrderByDescending(c => c.FmbLine).ThenByDescending(c => c.FmbNo)
                 .FirstOrDefault(c => c.MaNguyenLieu == update.MaNguyenLieu);
-                    var first = (from p in fmb.PFmbLabResults
-                                 join m in fmb.PFmbMasterLocationRubbers on p.MaNguyenLieu equals m.RubberName
-                                 where p.MaCode == txtID.Text
-                                 select m).FirstOrDefault();
-                    if (check != null && update.Place == "PD")
+                    var first = fmb.PFmbMasterLocationRubbers.OrderByDescending(c => c.FmbLine).FirstOrDefault(c => c.RubberName == update.MaNguyenLieu);
+                    if (check != null && update.Place == "PD" && first != null)
                     {
                         if (txtWeight.Text == "")
                         {
                             txtWeight.Focus();
                             lbInformation.Text = "Nhập khối lượng còn lại của xe " + update.MaCode;
+                            lbError.Text = string.Empty;
                         }
                         else if (int.Parse(txtWeight.Text) <= 0)
                         {
@@ -72,16 +70,19 @@ namespace FMB_SYS
                                 update.PicReturn = _message;
                                 update.KhoiLuong = int.Parse(txtWeight.Text);
                                 update.Place = "FMB Stock";
-                                if (check.FmbNo == 5)
+                                var down = fmb.PFmbLabResults.Where(c => c.MaNguyenLieu == update.MaNguyenLieu).ToList();
+                                foreach (var item in down)
                                 {
-                                    update.FmbLine = check.FmbLine + 1;
-                                    update.FmbNo = 1;
+                                    item.FmbNo--;
+                                    if (item.FmbNo < 1)
+                                    {
+                                        item.FmbNo = 5;
+                                        item.FmbLine = item.FmbLine - 1;
+                                    }
                                 }
-                                else
-                                {
-                                    update.FmbLine = check.FmbLine;
-                                    update.FmbNo = check.FmbNo + 1;
-                                }
+                                update.FmbLine = first.FmbLine;
+                                update.FmbNo = 5;
+                                update.ReturnTime = DateTime.Now;
                                 int save = fmb.SaveChanges();
                                 if (save > 0)
                                 {
@@ -90,12 +91,15 @@ namespace FMB_SYS
                                 txtWeight.Text = "";
                                 lbError.Text = "";
                                 lbSP.Text = "Thoát hoặc quét mã QR của xe tiếp theo";
+                                txtID.Text = string.Empty;
                                 txtID.Focus();
                             }
                             else
                             {
                                 lbError.Text = ("Xe trả về có khối lượng lớn hơn xe lấy đi");
                                 lbInformation.Text = "";
+                                txtID.Text = string.Empty;
+                                txtID.Focus();
                             }
                         }
                     }
@@ -103,11 +107,15 @@ namespace FMB_SYS
                     {
                         lbError.Text = ("Chọn sai chức năng\nXe " + update.MaCode + " đang ở trong kho\nHàng " + update.FmbLine + " vị trí " + update.FmbNo);
                         lbInformation.Text = "";
+                        txtID.Text = string.Empty;
+                        txtID.Focus();
                     }
                     else if (update.Place == null)
                     {
                         lbError.Text = ("Chọn sai chức năng\nXe " + update.MaCode + " chưa nhập kho");
                         lbInformation.Text = "";
+                        txtID.Text = string.Empty;
+                        txtID.Focus();
                     }
                     else if (check == null && first != null)
                     {
@@ -120,6 +128,7 @@ namespace FMB_SYS
                         {
                             if (update.KhoiLuong >= int.Parse(txtWeight.Text))
                             {
+                                update.ReturnTime= DateTime.Now;
                                 update.PicReturn = _message;
                                 update.KhoiLuong = int.Parse(txtWeight.Text);
                                 update.Place = "FMB Stock";
@@ -132,6 +141,7 @@ namespace FMB_SYS
                                 }
                                 txtWeight.Text = "";
                                 lbError.Text = "";
+                                txtID.Text = string.Empty;
                                 txtID.Focus();
                             }
                             else
@@ -139,6 +149,7 @@ namespace FMB_SYS
                                 lbError.Text = ("Xe trả về có khối lượng lớn hơn xe lấy đi");
                                 lbInformation.Text = "";
                                 txtWeight.Text = string.Empty;
+                                txtID.Text = string.Empty;
                                 txtID.Focus();
                             }
                         }
@@ -152,6 +163,8 @@ namespace FMB_SYS
                 {
                     txtID.Text = string.Empty;
                     txtWeight.Text = string.Empty;
+                    txtID.Text = string.Empty;
+                    txtID.Focus();
                 }
                 timer1.Enabled = true;
             }

@@ -110,7 +110,7 @@ namespace FMB_SYS.Models2
             {
                 var builder = new ConfigurationBuilder()
                                                                 .SetBasePath(Directory.GetCurrentDirectory())
-                                                                .AddJsonFile("appsettings1.json", optional: true, reloadOnChange: true);
+                                                                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
                 optionsBuilder.UseSqlServer("server =172.16.180.24; database = HVN_SYS;uid=hvn;pwd=Vietnam2023;");
             }
         }
@@ -1456,9 +1456,9 @@ namespace FMB_SYS.Models2
 
                 entity.Property(e => e.IdspthongSo).HasColumnName("IDSPThongSo");
 
-                entity.Property(e => e.InputFmb)
+                entity.Property(e => e.InputTime)
                     .HasColumnType("datetime")
-                    .HasColumnName("input_fmb");
+                    .HasColumnName("input_time");
 
                 entity.Property(e => e.KhoiLuong).HasColumnName("Khoi_luong");
 
@@ -1511,6 +1511,22 @@ namespace FMB_SYS.Models2
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasColumnName("place");
+
+                entity.Property(e => e.RemoveReason)
+                    .HasMaxLength(50)
+                    .HasColumnName("remove_reason");
+
+                entity.Property(e => e.RemoveTime)
+                    .HasColumnType("datetime")
+                    .HasColumnName("remove_time");
+
+                entity.Property(e => e.ReturnTime)
+                    .HasColumnType("datetime")
+                    .HasColumnName("return_time");
+
+                entity.Property(e => e.TakeTime)
+                    .HasColumnType("datetime")
+                    .HasColumnName("take_time");
 
                 entity.Property(e => e.TenlsiBelong).HasColumnName("Tenlsi_Belong");
 

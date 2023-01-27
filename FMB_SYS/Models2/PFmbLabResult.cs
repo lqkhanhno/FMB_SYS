@@ -38,6 +38,10 @@ namespace FMB_SYS.Models2
         public string PicTake { get; set; }
         public string PicReturn { get; set; }
         public string PicRemove { get; set; }
-        public DateTime? InputFmb { get; set; }
+        public DateTime? InputTime { get; set; }
+        public DateTime? TakeTime { get; set; }
+        public DateTime? ReturnTime { get; set; }
+        public DateTime? RemoveTime { get; set; }
+        public string RemoveReason { get; set; }
     }
 }

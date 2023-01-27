@@ -44,6 +44,8 @@
             this.btnCheck = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.lbName = new System.Windows.Forms.Label();
+            this.txtlistreason = new System.Windows.Forms.ListBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -207,6 +209,34 @@
             this.lbName.TabIndex = 30;
             this.lbName.Text = "__________";
             // 
+            // txtlistreason
+            // 
+            this.txtlistreason.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.txtlistreason.FormattingEnabled = true;
+            this.txtlistreason.ItemHeight = 37;
+            this.txtlistreason.Items.AddRange(new object[] {
+            "Hết hạn",
+            "NG kết quả lab",
+            "Thừa cao su do BOM",
+            "Cao su test",
+            "Cao su tráng máy",
+            "Cao su lỗi công đoạn",
+            "Lý do khác"});
+            this.txtlistreason.Location = new System.Drawing.Point(275, 111);
+            this.txtlistreason.Name = "txtlistreason";
+            this.txtlistreason.Size = new System.Drawing.Size(317, 115);
+            this.txtlistreason.TabIndex = 32;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label4.Location = new System.Drawing.Point(114, 155);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(144, 38);
+            this.label4.TabIndex = 33;
+            this.label4.Text = "Lý do hủy";
+            // 
             // frmBacknew
             // 
             this.AcceptButton = this.btnEnter;
@@ -214,6 +244,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnOut;
             this.ClientSize = new System.Drawing.Size(1902, 1033);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.txtlistreason);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.lbName);
             this.Controls.Add(this.btnCheck);
@@ -256,5 +288,7 @@
         private System.Windows.Forms.Button btnCheck;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lbName;
+        private System.Windows.Forms.ListBox txtlistreason;
+        private System.Windows.Forms.Label label4;
     }
 }
