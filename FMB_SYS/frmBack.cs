@@ -46,7 +46,11 @@ namespace FMB_SYS
             {
                 timer1.Enabled = false;
                 var update = fmb.PFmbLabResults.SingleOrDefault(c => c.MaCode == txtID.Text);
-                if (update != null)
+                if(update != null && update.Labkind != null)
+                {
+
+                }
+                else if (update != null)
                 {
                     var check = fmb.PFmbLabResults.Where(c => c.Place == "FMB Stock").OrderByDescending(c => c.FmbLine).ThenByDescending(c => c.FmbNo)
                 .FirstOrDefault(c => c.MaNguyenLieu == update.MaNguyenLieu);

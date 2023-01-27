@@ -44,6 +44,8 @@
             this.btnCheck = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.lbName = new System.Windows.Forms.Label();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -207,6 +209,31 @@
             this.lbName.TabIndex = 21;
             this.lbName.Text = "__________";
             // 
+            // listBox1
+            // 
+            this.listBox1.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.ItemHeight = 37;
+            this.listBox1.Items.AddRange(new object[] {
+            "Test",
+            "Tráng máy",
+            "Back up",
+            "Remixxing"});
+            this.listBox1.Location = new System.Drawing.Point(279, 96);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(196, 115);
+            this.listBox1.TabIndex = 23;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label4.Location = new System.Drawing.Point(143, 133);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(71, 38);
+            this.label4.TabIndex = 24;
+            this.label4.Text = "Loại";
+            // 
             // frmAdd
             // 
             this.AcceptButton = this.btnEnter;
@@ -214,6 +241,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnOut;
             this.ClientSize = new System.Drawing.Size(1902, 1033);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.listBox1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.lbName);
             this.Controls.Add(this.btnCheck);
@@ -256,5 +285,7 @@
         private System.Windows.Forms.Button btnCheck;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lbName;
+        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.Label label4;
     }
 }
