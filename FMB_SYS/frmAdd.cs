@@ -160,6 +160,8 @@ namespace FMB_SYS
                     {
                         lbError.Text = "Kho đã đầy không thể nhập";
                         lbInformation.Text = "";
+                        txtID.Text = string.Empty;
+                        txtID.Focus();
                     }
                     else
                     {
@@ -179,6 +181,7 @@ namespace FMB_SYS
                             insert.FmbLine = line.FmbLine;
                             insert.InputTime = DateTime.Now;
                             insert.PicInput = lbName.Text;
+                            insert.Place = "FMB Stock";
                             lbInformation.Text = "Mã xe: " + insert.MaCode + " được thêm vào hàng " + insert.FmbLine + "\nNgười thêm: " + _message;
                             lbError.Text = "";
                             txtID.Text = string.Empty;
@@ -197,6 +200,8 @@ namespace FMB_SYS
                         lbError.Text = "Kho đã đầy không thể nhập";
                         lbInformation.Text = "";
                         insert.Place = "FMB Stock";
+                        txtID.Text = string.Empty;
+                        txtID.Focus();
                     }
                     else
                     {
@@ -265,9 +270,9 @@ namespace FMB_SYS
                             }
                             else
                             {
-                                lbError.Text = "Chưa có thông tin hạn của mã cao su " + insert.MaNguyenLieu;
+                                lbError.Text = "Chưa có thông tin hạn của mã cao su. Vui lòng liên hệ IT " + insert.MaNguyenLieu;
                                 lbInformation.Text = string.Empty;
-                                lbSP.Text = "Vui lòng báo với IT";
+                                lbSP.Text = "Thoát hoặc quét mã QR tiếp";
                                 txtID.Text = string.Empty;
                                 txtID.Focus();
                             }

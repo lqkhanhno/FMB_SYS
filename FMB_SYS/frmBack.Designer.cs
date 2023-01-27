@@ -199,7 +199,7 @@
             this.btnCheck.AutoSize = true;
             this.btnCheck.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.btnCheck.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnCheck.Location = new System.Drawing.Point(726, 13);
+            this.btnCheck.Location = new System.Drawing.Point(639, 13);
             this.btnCheck.Margin = new System.Windows.Forms.Padding(10, 11, 10, 11);
             this.btnCheck.Name = "btnCheck";
             this.btnCheck.Size = new System.Drawing.Size(400, 200);
@@ -212,7 +212,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(37, 25);
+            this.label4.Location = new System.Drawing.Point(1083, 25);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(256, 45);
             this.label4.TabIndex = 33;
@@ -222,7 +222,7 @@
             // 
             this.lbName.AutoSize = true;
             this.lbName.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lbName.Location = new System.Drawing.Point(306, 25);
+            this.lbName.Location = new System.Drawing.Point(1352, 25);
             this.lbName.Name = "lbName";
             this.lbName.Size = new System.Drawing.Size(160, 45);
             this.lbName.TabIndex = 32;

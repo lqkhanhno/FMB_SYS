@@ -77,7 +77,7 @@
             // txtID
             // 
             this.txtID.Font = new System.Drawing.Font("Segoe UI", 25.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtID.Location = new System.Drawing.Point(279, 250);
+            this.txtID.Location = new System.Drawing.Point(212, 250);
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(650, 65);
             this.txtID.TabIndex = 10;
@@ -87,7 +87,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(139, 260);
+            this.label1.Location = new System.Drawing.Point(72, 260);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(97, 38);
             this.label1.TabIndex = 13;
@@ -180,7 +180,7 @@
             this.btnCheck.AutoSize = true;
             this.btnCheck.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.btnCheck.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnCheck.Location = new System.Drawing.Point(618, 13);
+            this.btnCheck.Location = new System.Drawing.Point(614, 16);
             this.btnCheck.Margin = new System.Windows.Forms.Padding(10, 11, 10, 11);
             this.btnCheck.Name = "btnCheck";
             this.btnCheck.Size = new System.Drawing.Size(400, 200);
@@ -193,7 +193,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label3.Location = new System.Drawing.Point(24, 25);
+            this.label3.Location = new System.Drawing.Point(1059, 25);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(256, 45);
             this.label3.TabIndex = 22;
@@ -203,7 +203,7 @@
             // 
             this.lbName.AutoSize = true;
             this.lbName.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lbName.Location = new System.Drawing.Point(293, 25);
+            this.lbName.Location = new System.Drawing.Point(1328, 25);
             this.lbName.Name = "lbName";
             this.lbName.Size = new System.Drawing.Size(160, 45);
             this.lbName.TabIndex = 21;
@@ -219,16 +219,16 @@
             "Tráng máy",
             "Back up",
             "Remixxing"});
-            this.listBox1.Location = new System.Drawing.Point(279, 96);
+            this.listBox1.Location = new System.Drawing.Point(212, 64);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(196, 115);
+            this.listBox1.Size = new System.Drawing.Size(190, 152);
             this.listBox1.TabIndex = 23;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(143, 133);
+            this.label4.Location = new System.Drawing.Point(98, 116);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(71, 38);
             this.label4.TabIndex = 24;

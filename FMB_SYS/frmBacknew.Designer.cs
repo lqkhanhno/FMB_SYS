@@ -180,7 +180,7 @@
             this.btnCheck.AutoSize = true;
             this.btnCheck.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.btnCheck.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnCheck.Location = new System.Drawing.Point(744, 15);
+            this.btnCheck.Location = new System.Drawing.Point(656, 15);
             this.btnCheck.Margin = new System.Windows.Forms.Padding(10, 11, 10, 11);
             this.btnCheck.Name = "btnCheck";
             this.btnCheck.Size = new System.Drawing.Size(400, 200);
@@ -193,7 +193,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label3.Location = new System.Drawing.Point(47, 25);
+            this.label3.Location = new System.Drawing.Point(1069, 25);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(256, 45);
             this.label3.TabIndex = 31;
@@ -203,7 +203,7 @@
             // 
             this.lbName.AutoSize = true;
             this.lbName.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lbName.Location = new System.Drawing.Point(316, 25);
+            this.lbName.Location = new System.Drawing.Point(1338, 25);
             this.lbName.Name = "lbName";
             this.lbName.Size = new System.Drawing.Size(160, 45);
             this.lbName.TabIndex = 30;
@@ -222,7 +222,7 @@
             "Cao su tráng máy",
             "Cao su lỗi công đoạn",
             "Lý do khác"});
-            this.txtlistreason.Location = new System.Drawing.Point(275, 111);
+            this.txtlistreason.Location = new System.Drawing.Point(275, 65);
             this.txtlistreason.Name = "txtlistreason";
             this.txtlistreason.Size = new System.Drawing.Size(317, 115);
             this.txtlistreason.TabIndex = 32;
@@ -231,7 +231,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(114, 155);
+            this.label4.Location = new System.Drawing.Point(114, 109);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(144, 38);
             this.label4.TabIndex = 33;

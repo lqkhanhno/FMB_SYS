@@ -38,36 +38,38 @@ namespace FMB_SYS
                             .FirstOrDefault(c => c.MaNguyenLieu == update.MaNguyenLieu);
                     if (check == update)
                     {
-                        try
+                        if (update != null)
                         {
-                            if (update != null)
+                            lbInformation.Text = "Xe được lấy đi ở hàng " + update.FmbLine + " vị trí " + update.FmbNo + "\nMã xe: " + update.MaCode + "\nNgười lấy: " + _message;
+                            update.PicTake = _message;
+                            var down = fmb.PFmbLabResults.Where(c => c.MaNguyenLieu == update.MaNguyenLieu).ToList();
+                            foreach (var item in down)
                             {
-                                lbInformation.Text = "Xe được lấy đi ở hàng " + update.FmbLine + " vị trí " + update.FmbNo + "\nMã xe: " + update.MaCode + "\nNgười lấy: " + _message;
-                                update.PicTake = _message;
-                                var down = fmb.PFmbLabResults.Where(c => c.MaNguyenLieu == update.MaNguyenLieu).ToList();
-                                foreach (var item in down)
+                                item.FmbNo++;
+                                if (item.FmbNo > 5)
                                 {
-                                    item.FmbNo++;
-                                    if (item.FmbNo > 5)
-                                    {
-                                        item.FmbNo = 1;
-                                        item.FmbLine = item.FmbLine + 1;
-                                    }
+                                    item.FmbNo = 1;
+                                    item.FmbLine = item.FmbLine + 1;
                                 }
-                                update.TakeTime = DateTime.Now;
-                                update.FmbLine = null;
-                                update.FmbNo = null;
-                                update.Place = "PD";
-                                fmb.SaveChanges();
-                                lbError.Text = "";
-                                lbSP.Text = "Thoát hoặc quét mã QR của xe tiếp theo";
-                                txtID.Text = string.Empty;
-                                txtID.Focus();
                             }
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show(ex.Message, "Error");
+                            update.TakeTime = DateTime.Now;
+                            update.FmbLine = null;
+                            update.FmbNo = null;
+                            update.Place = "PD";
+                            if (update.Labkind == "Arnormal")
+                            {
+                                update.Place = null;
+                                update.PicTake = null;
+                                update.TakeTime = null;
+                                update.RemoveTime = DateTime.Now;
+                                update.RemoveReason = "NG kết quả lab";
+                                update.PicRemove = _message;
+                            }
+                            fmb.SaveChanges();
+                            lbError.Text = "";
+                            lbSP.Text = "Thoát hoặc quét mã QR của xe tiếp theo";
+                            txtID.Text = string.Empty;
+                            txtID.Focus();
                         }
                     }
                     else if (check != update && check != null)

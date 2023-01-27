@@ -191,7 +191,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label3.Location = new System.Drawing.Point(45, 25);
+            this.label3.Location = new System.Drawing.Point(1087, 25);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(256, 45);
             this.label3.TabIndex = 25;
@@ -201,7 +201,7 @@
             // 
             this.lbName.AutoSize = true;
             this.lbName.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lbName.Location = new System.Drawing.Point(314, 25);
+            this.lbName.Location = new System.Drawing.Point(1356, 25);
             this.lbName.Name = "lbName";
             this.lbName.Size = new System.Drawing.Size(160, 45);
             this.lbName.TabIndex = 24;

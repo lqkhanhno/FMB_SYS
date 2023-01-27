@@ -76,6 +76,11 @@ namespace FMB_SYS
                             buttons[(i - 1) * 5 + j - 1].BackColor = Color.Red;
                         }
                     }
+                    else if (check != null && check.Lotruber != null)
+                    {
+                        buttons[(i - 1) * 5 + j - 1].Text = check.KhoiLuong + "kg\n" + check.Kq + "\n" + check.Lotruber.Value.ToString("dd/MM") + "|" + check.Idca;
+                        buttons[(i - 1) * 5 + j - 1].BackColor = Color.Red;
+                    }
                     else
                     {
                         buttons[(i - 1) * 5 + j - 1].Text = "Trống";
@@ -96,6 +101,47 @@ namespace FMB_SYS
             frmMain main = new frmMain();
             main.Refresh();
             this.Close();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var check = fmb.PFmbLabResults.SingleOrDefault(c => c.FmbLine == 1 && c.FmbNo == 1);
+            if (check != null)
+            {
+                MessageBox.Show("Mã xe: "
+                    + check.MaCode
+                    + "\nNgày cán: "
+                    + check.NgayCan.Value.ToString("dd/MM/yyyy")
+                    + "\nCa: "
+                    + check.Idca
+                    + "\nKhối lượng: "
+                    + check.KhoiLuong
+                    + "kg\nKết quả test lab: "
+                    + check.Kq
+                    + "\nLotruber: "
+                    + check.Lotruber.Value.ToString("dd/MM/yyyy")
+                    + "\nHạn còn: "
+                    + (int)(check.MaxDuedate - DateTime.Now).Value.TotalHours
+                    + " giờ", "Thông tin");
+            }
+        }
+
+        private void button50_Click(object sender, EventArgs e)
+        {
+            var check = fmb.PFmbLabResults.SingleOrDefault(c => c.FmbLine == 10 && c.FmbNo == 5);
+            if (check != null)
+            {
+                MessageBox.Show("Mã xe: "+check.MaCode +"\nNgày cán: "+check.NgayCan.Value.ToString("dd/MM/yyyy")+"\nCa: "+check.Idca +"\nKhối lượng: "+ check.KhoiLuong + "kg\nKết quả test lab: " + check.Kq + "\nLotruber: " + check.Lotruber.Value.ToString("dd/MM/yyyy") + "\nHạn còn: " + (int)(check.MaxDuedate - DateTime.Now).Value.TotalHours + " giờ","Thông tin");
+            }
+        }
+
+        private void button20_Click(object sender, EventArgs e)
+        {
+            var check = fmb.PFmbLabResults.SingleOrDefault(c => c.FmbLine == 4 && c.FmbNo == 5);
+            if (check != null)
+            {
+                MessageBox.Show("Mã xe: " + check.MaCode + "\nNgày cán: " + check.NgayCan.Value.ToString("dd/MM/yyyy") + "\nCa: " + check.Idca + "\nKhối lượng: " + check.KhoiLuong + "kg\nKết quả test lab: " + check.Kq + "\nLotruber: " + check.Lotruber.Value.ToString("dd/MM/yyyy") + "\nHạn còn: " + (int)(check.MaxDuedate - DateTime.Now).Value.TotalHours + " giờ", "Thông tin");
+            }
         }
     }
 }
