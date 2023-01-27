@@ -226,7 +226,7 @@
             this.Controls.Add(this.txtID);
             this.Name = "frmTake";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmTake";
+            this.Text = "Lấy xe";
             this.Load += new System.EventHandler(this.frmTake_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();

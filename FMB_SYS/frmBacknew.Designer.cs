@@ -258,7 +258,7 @@
             this.Controls.Add(this.txtID);
             this.Name = "frmBacknew";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmBacknew";
+            this.Text = "Báo hủy xe";
             this.Load += new System.EventHandler(this.frmBacknew_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();

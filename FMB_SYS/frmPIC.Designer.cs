@@ -111,7 +111,7 @@
             this.Controls.Add(this.txtName);
             this.Name = "frmPIC";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmPIC";
+            this.Text = "Đổi tên";
             this.Load += new System.EventHandler(this.frmPIC_Load);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
