@@ -55,7 +55,7 @@
             // 
             this.groupBox2.Controls.Add(this.lbError);
             this.groupBox2.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.groupBox2.Location = new System.Drawing.Point(76, 654);
+            this.groupBox2.Location = new System.Drawing.Point(75, 653);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(1720, 300);
             this.groupBox2.TabIndex = 27;
@@ -77,7 +77,7 @@
             // 
             this.groupBox1.Controls.Add(this.lbInformation);
             this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.groupBox1.Location = new System.Drawing.Point(76, 354);
+            this.groupBox1.Location = new System.Drawing.Point(75, 355);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(1720, 300);
             this.groupBox1.TabIndex = 26;
@@ -99,7 +99,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(135, 254);
+            this.label1.Location = new System.Drawing.Point(32, 299);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(97, 38);
             this.label1.TabIndex = 25;
@@ -108,7 +108,7 @@
             // btnEnter
             // 
             this.btnEnter.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnEnter.Location = new System.Drawing.Point(975, 244);
+            this.btnEnter.Location = new System.Drawing.Point(939, 285);
             this.btnEnter.Name = "btnEnter";
             this.btnEnter.Size = new System.Drawing.Size(150, 65);
             this.btnEnter.TabIndex = 24;
@@ -122,7 +122,7 @@
             this.btnOut.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnOut.Location = new System.Drawing.Point(1550, 25);
             this.btnOut.Name = "btnOut";
-            this.btnOut.Size = new System.Drawing.Size(300, 100);
+            this.btnOut.Size = new System.Drawing.Size(299, 100);
             this.btnOut.TabIndex = 23;
             this.btnOut.Text = "Thoát";
             this.btnOut.UseVisualStyleBackColor = false;
@@ -131,9 +131,9 @@
             // txtID
             // 
             this.txtID.Font = new System.Drawing.Font("Segoe UI", 25.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtID.Location = new System.Drawing.Point(275, 244);
+            this.txtID.Location = new System.Drawing.Point(135, 285);
             this.txtID.Name = "txtID";
-            this.txtID.Size = new System.Drawing.Size(650, 65);
+            this.txtID.Size = new System.Drawing.Size(763, 65);
             this.txtID.TabIndex = 22;
             this.txtID.TextChanged += new System.EventHandler(this.txtID_TextChanged);
             // 
@@ -150,7 +150,7 @@
             this.groupBox3.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.groupBox3.Location = new System.Drawing.Point(1157, 131);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(693, 218);
+            this.groupBox3.Size = new System.Drawing.Size(693, 219);
             this.groupBox3.TabIndex = 28;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Thao tác";
@@ -222,16 +222,16 @@
             "Cao su tráng máy",
             "Cao su lỗi công đoạn",
             "Lý do khác"});
-            this.txtlistreason.Location = new System.Drawing.Point(275, 65);
+            this.txtlistreason.Location = new System.Drawing.Point(193, 12);
             this.txtlistreason.Name = "txtlistreason";
-            this.txtlistreason.Size = new System.Drawing.Size(317, 115);
+            this.txtlistreason.Size = new System.Drawing.Size(317, 263);
             this.txtlistreason.TabIndex = 32;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(114, 109);
+            this.label4.Location = new System.Drawing.Point(32, 96);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(144, 38);
             this.label4.TabIndex = 33;

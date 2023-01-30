@@ -210,7 +210,7 @@ namespace FMB_SYS
                             insert.InputTime = DateTime.Now;
                             insert.PicInput = lbName.Text;
                             insert.Place = "FMB Stock";
-                            lbInformation.Text = "Mã xe: " + insert.MaCode + " được thêm vào hàng " + insert.FmbLine + "\nNgười thêm: " + _message;
+                            lbInformation.Text = "Mã xe: " + insert.MaCode + " được thêm vào hàng" + insert.FmbLine + "\nKết quả test: NG " + "\nNgười thêm: " + _message;
                             lbError.Text = "";
                             txtID.Text = string.Empty;
                             txtID.Focus();
@@ -283,7 +283,7 @@ namespace FMB_SYS
                             insert.FmbNo = 5;
                             insert.Place = "FMB Stock";
                             insert.Labkind = "Normal";
-                            lbInformation.Text = "Mã xe: " + insert.MaCode + " được thêm vào hàng " + insert.FmbLine + " Thời gian: " + insert.ThoiGian + "\nNgười thêm: " + _message;
+                            lbInformation.Text = "Mã xe: " + insert.MaCode + " được thêm vào hàng " + insert.FmbLine + "\nNgười thêm: " + _message;
                             if (due != null)
                             {
                                 int duemax = Convert.ToInt32(due.VadilityMax);

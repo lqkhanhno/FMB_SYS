@@ -117,7 +117,7 @@
             this.btnBacknew.Name = "btnBacknew";
             this.btnBacknew.Size = new System.Drawing.Size(400, 200);
             this.btnBacknew.TabIndex = 12;
-            this.btnBacknew.Text = "Báo hết / Hủy xe";
+            this.btnBacknew.Text = "Hủy xe";
             this.btnBacknew.UseVisualStyleBackColor = false;
             this.btnBacknew.Click += new System.EventHandler(this.btnBacknew_Click);
             // 

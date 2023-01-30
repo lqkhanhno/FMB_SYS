@@ -166,8 +166,10 @@
             this.label32 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -1164,9 +1166,9 @@
             this.label6.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label6.Location = new System.Drawing.Point(340, 12);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(168, 35);
+            this.label6.Size = new System.Drawing.Size(191, 35);
             this.label6.TabIndex = 106;
-            this.label6.Text = "15. Arnormal";
+            this.label6.Text = "15. Bất thường";
             // 
             // label7
             // 
@@ -1292,11 +1294,11 @@
             // 
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label19.Location = new System.Drawing.Point(1455, 12);
+            this.label19.Location = new System.Drawing.Point(1489, 12);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(176, 35);
+            this.label19.Size = new System.Drawing.Size(121, 35);
             this.label19.TabIndex = 121;
-            this.label19.Text = "1. RE-MIXING";
+            this.label19.Text = "1. Cán lại";
             // 
             // label20
             // 
@@ -1312,11 +1314,11 @@
             // 
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label21.Location = new System.Drawing.Point(1471, 512);
+            this.label21.Location = new System.Drawing.Point(1490, 509);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(149, 35);
+            this.label21.Size = new System.Drawing.Size(120, 35);
             this.label21.TabIndex = 123;
-            this.label21.Text = "2. BACK UP";
+            this.label21.Text = "2. Hỗ trợ";
             // 
             // label22
             // 
@@ -1344,7 +1346,7 @@
             // 
             this.label23.AutoSize = true;
             this.label23.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label23.Location = new System.Drawing.Point(1, 71);
+            this.label23.Location = new System.Drawing.Point(1, 431);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(33, 38);
             this.label23.TabIndex = 125;
@@ -1354,7 +1356,7 @@
             // 
             this.label24.AutoSize = true;
             this.label24.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label24.Location = new System.Drawing.Point(1, 161);
+            this.label24.Location = new System.Drawing.Point(1, 341);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(33, 38);
             this.label24.TabIndex = 126;
@@ -1374,7 +1376,7 @@
             // 
             this.label26.AutoSize = true;
             this.label26.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label26.Location = new System.Drawing.Point(1, 341);
+            this.label26.Location = new System.Drawing.Point(1, 161);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(33, 38);
             this.label26.TabIndex = 128;
@@ -1384,7 +1386,7 @@
             // 
             this.label27.AutoSize = true;
             this.label27.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label27.Location = new System.Drawing.Point(1, 431);
+            this.label27.Location = new System.Drawing.Point(1, 71);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(33, 38);
             this.label27.TabIndex = 129;
@@ -1394,7 +1396,7 @@
             // 
             this.label28.AutoSize = true;
             this.label28.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label28.Location = new System.Drawing.Point(1, 571);
+            this.label28.Location = new System.Drawing.Point(1, 931);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(33, 38);
             this.label28.TabIndex = 130;
@@ -1404,7 +1406,7 @@
             // 
             this.label29.AutoSize = true;
             this.label29.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label29.Location = new System.Drawing.Point(1, 661);
+            this.label29.Location = new System.Drawing.Point(1, 841);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(33, 38);
             this.label29.TabIndex = 131;
@@ -1424,7 +1426,7 @@
             // 
             this.label31.AutoSize = true;
             this.label31.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label31.Location = new System.Drawing.Point(1, 841);
+            this.label31.Location = new System.Drawing.Point(1, 661);
             this.label31.Name = "label31";
             this.label31.Size = new System.Drawing.Size(33, 38);
             this.label31.TabIndex = 133;
@@ -1434,7 +1436,7 @@
             // 
             this.label32.AutoSize = true;
             this.label32.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label32.Location = new System.Drawing.Point(1, 931);
+            this.label32.Location = new System.Drawing.Point(1, 571);
             this.label32.Name = "label32";
             this.label32.Size = new System.Drawing.Size(33, 38);
             this.label32.TabIndex = 134;
@@ -1443,9 +1445,9 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(1634, 60);
+            this.pictureBox1.Location = new System.Drawing.Point(1625, 12);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(86, 260);
+            this.pictureBox1.Size = new System.Drawing.Size(86, 66);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 135;
             this.pictureBox1.TabStop = false;
@@ -1453,12 +1455,22 @@
             // pictureBox2
             // 
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(1634, 654);
+            this.pictureBox2.Location = new System.Drawing.Point(1536, 916);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(107, 347);
+            this.pictureBox2.Size = new System.Drawing.Size(354, 112);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 136;
             this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
+            this.pictureBox3.Location = new System.Drawing.Point(1616, 496);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(86, 66);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox3.TabIndex = 137;
+            this.pictureBox3.TabStop = false;
             // 
             // frmCheckstock
             // 
@@ -1467,7 +1479,7 @@
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1902, 1033);
-            this.Controls.Add(this.pictureBox2);
+            this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label32);
             this.Controls.Add(this.label31);
@@ -1604,6 +1616,7 @@
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
+            this.Controls.Add(this.pictureBox2);
             this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.Name = "frmCheckstock";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -1611,6 +1624,7 @@
             this.Load += new System.EventHandler(this.frmCheckstock_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1755,5 +1769,6 @@
         private System.Windows.Forms.Label label32;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox pictureBox3;
     }
 }

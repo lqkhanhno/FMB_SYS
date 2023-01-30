@@ -223,6 +223,7 @@
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(190, 152);
             this.listBox1.TabIndex = 23;
+            this.listBox1.Visible = false;
             // 
             // label4
             // 
@@ -233,6 +234,7 @@
             this.label4.Size = new System.Drawing.Size(71, 38);
             this.label4.TabIndex = 24;
             this.label4.Text = "Loại";
+            this.label4.Visible = false;
             // 
             // frmAdd
             // 
@@ -241,7 +243,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.CancelButton = this.btnOut;
-            this.ClientSize = new System.Drawing.Size(1902, 1033);
+            this.ClientSize = new System.Drawing.Size(1712, 935);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.label3);

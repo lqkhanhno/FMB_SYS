@@ -40,7 +40,7 @@ namespace FMB_SYS
                     {
                         if (update != null)
                         {
-                            lbInformation.Text = "Xe được lấy đi ở hàng " + update.FmbLine + " vị trí " + update.FmbNo + "\nMã xe: " + update.MaCode + "\nNgười lấy: " + _message;
+                            lbInformation.Text = "Xe được lấy đi ở cuối hàng " + update.FmbLine + "\nMã xe: " + update.MaCode + "\nNgười lấy: " + _message;
                             update.PicTake = _message;
                             var down = fmb.PFmbLabResults.Where(c => c.MaNguyenLieu == update.MaNguyenLieu).ToList();
                             foreach (var item in down)
@@ -74,7 +74,7 @@ namespace FMB_SYS
                     }
                     else if (check != update && check != null)
                     {
-                        lbError.Text = "Xe " + update.MaCode + " không ở vị trí cuối cùng của hàng\nXe ở cuối cùng hiện tại ở hàng " + check.FmbLine + " vị trí " + check.FmbNo + "\nMã xe cần lấy: " + check.MaCode;
+                        lbError.Text = "Xe " + update.MaCode + " không ở vị trí cuối cùng của hàng\nXe ở cuối cùng hiện tại ở hàng " + check.FmbLine + " vị trí " + (6-check.FmbNo) + "\nMã xe cần lấy: " + check.MaCode;
                         lbInformation.Text = "";
                         txtID.Text = string.Empty;
                         txtID.Focus();

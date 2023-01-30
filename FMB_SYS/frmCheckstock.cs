@@ -64,7 +64,7 @@ namespace FMB_SYS
                         }
                         else if (check.Kq == "OK special")
                         {
-                            buttons[(i - 1) * 5 + j - 1].BackColor = Color.Yellow;
+                            buttons[(i - 1) * 5 + j - 1].BackColor = Color.Orange;
                         }
                         else
                         {
