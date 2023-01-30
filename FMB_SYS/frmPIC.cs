@@ -22,6 +22,7 @@ namespace FMB_SYS
             child.ShowDialog();
             txtName.Text = string.Empty;
             lbSP.Text = string.Empty;
+            txtName.Focus();
         }
 
         private void frmPIC_Load(object sender, EventArgs e)

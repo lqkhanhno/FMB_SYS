@@ -60,8 +60,10 @@ namespace FMB_SYS
                     if (txtlistreason.Text == string.Empty)
                     {
                         lbInformation.Text = string.Empty;
-                        lbSP.Text = "Cần nhập lý do hủy";
+                        lbSP.Text = "Cần nhập lý do hủy trước khi quét";
                         lbError.Text = "Chưa nhập lý do hủy";
+                        txtID.Text = string.Empty;
+                        txtID.Focus();
                     }
                     else {
                         var up = fmb.PFmbLabResults.Where(c => c.FmbLine == update.FmbLine).Where(c => c.FmbNo < update.FmbNo).ToList();

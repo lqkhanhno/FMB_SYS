@@ -60,12 +60,7 @@ namespace FMB_SYS
                         }
                         else if (check.MinDuedate > DateTime.Now && check.InputTime <= DateTime.Now)
                         {
-                            buttons[(i - 1) * 5 + j - 1].BackColor = Color.Yellow;
-
-                        }
-                        else if ((int)(check.MaxDuedate - DateTime.Now).Value.TotalHours < 100)
-                        {
-                            buttons[(i - 1) * 5 + j - 1].BackColor = Color.Yellow;
+                            //buttons[(i - 1) * 5 + j - 1].BackColor = Color.;
                         }
                         else if (check.Kq == "OK special")
                         {
@@ -74,6 +69,18 @@ namespace FMB_SYS
                         else
                         {
                             buttons[(i - 1) * 5 + j - 1].BackColor = Color.Red;
+                        }
+                        var due = fmb.PFmbMasterListRubbers.SingleOrDefault(c => c.RubberName == check.MaNguyenLieu);
+                        if (due != null)
+                        {
+                            if ((int)(check.MaxDuedate - DateTime.Now).Value.TotalHours < due.VadilityMax * 0.7)
+                            {
+                                buttons[(i - 1) * 5 + j - 1].BackColor = Color.Yellow;
+                            }
+                            if ((int)(check.MaxDuedate - DateTime.Now).Value.TotalHours < 0)
+                            {
+                                buttons[(i - 1) * 5 + j - 1].BackColor = Color.Red;
+                            }
                         }
                     }
                     else if (check != null && check.Lotruber != null)
@@ -109,20 +116,20 @@ namespace FMB_SYS
             if (check != null)
             {
                 MessageBox.Show("Mã xe: "
-                    + check.MaCode
-                    + "\nNgày cán: "
-                    + check.NgayCan.Value.ToString("dd/MM/yyyy")
-                    + "\nCa: "
-                    + check.Idca
-                    + "\nKhối lượng: "
-                    + check.KhoiLuong
-                    + "kg\nKết quả test lab: "
-                    + check.Kq
-                    + "\nLotruber: "
-                    + check.Lotruber.Value.ToString("dd/MM/yyyy")
-                    + "\nHạn còn: "
-                    + (int)(check.MaxDuedate - DateTime.Now).Value.TotalHours
-                    + " giờ", "Thông tin");
+    + check.MaCode
+    + "\nNgày cán: "
+    + check.NgayCan.Value.ToString("dd/MM/yyyy")
+    + "\nCa: "
+    + check.Idca
+    + "\nKhối lượng: "
+    + check.KhoiLuong
+    + "kg\nKết quả test lab: "
+    + check.Kq
+    + "\nLotruber: "
+    + check.Lotruber.Value.ToString("dd/MM/yyyy")
+    + "\nHạn còn: "
+    + (int)(check.MaxDuedate - DateTime.Now).Value.TotalHours
+    + " giờ", "Thông tin");
             }
         }
 
@@ -131,7 +138,7 @@ namespace FMB_SYS
             var check = fmb.PFmbLabResults.SingleOrDefault(c => c.FmbLine == 10 && c.FmbNo == 5);
             if (check != null)
             {
-                MessageBox.Show("Mã xe: "+check.MaCode +"\nNgày cán: "+check.NgayCan.Value.ToString("dd/MM/yyyy")+"\nCa: "+check.Idca +"\nKhối lượng: "+ check.KhoiLuong + "kg\nKết quả test lab: " + check.Kq + "\nLotruber: " + check.Lotruber.Value.ToString("dd/MM/yyyy") + "\nHạn còn: " + (int)(check.MaxDuedate - DateTime.Now).Value.TotalHours + " giờ","Thông tin");
+                MessageBox.Show("Mã xe: " + check.MaCode + "\nNgày cán: " + check.NgayCan.Value.ToString("dd/MM/yyyy") + "\nCa: " + check.Idca + "\nKhối lượng: " + check.KhoiLuong + "kg\nKết quả test lab: " + check.Kq + "\nLotruber: " + check.Lotruber.Value.ToString("dd/MM/yyyy") + "\nHạn còn: " + (int)(check.MaxDuedate - DateTime.Now).Value.TotalHours + " giờ", "Thông tin");
             }
         }
 

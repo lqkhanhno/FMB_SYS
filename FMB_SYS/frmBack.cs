@@ -46,9 +46,14 @@ namespace FMB_SYS
             {
                 timer1.Enabled = false;
                 var update = fmb.PFmbLabResults.SingleOrDefault(c => c.MaCode == txtID.Text);
-                if(update != null && update.Labkind != null)
+                if (update != null && update.Labkind != "Normal")
                 {
-
+                    txtWeight.Text = "";
+                    lbError.Text = "Không thể trả xe về";
+                    lbInformation.Text = string.Empty;
+                    lbSP.Text = "Thoát hoặc quét mã QR của xe tiếp theo";
+                    txtID.Text = string.Empty;
+                    txtID.Focus();
                 }
                 else if (update != null)
                 {
@@ -67,6 +72,9 @@ namespace FMB_SYS
                         {
                             lbError.Text = "Khối lượng không hợp lệ";
                             lbInformation.Text = string.Empty;
+                            txtWeight.Text = string.Empty;
+                            txtWeight.Focus();
+                            lbSP.Text = "Nhập lại khối lượng cho cao su";
                         }
                         else
                         {
@@ -113,8 +121,10 @@ namespace FMB_SYS
                             {
                                 lbError.Text = ("Xe trả về có khối lượng lớn hơn xe lấy đi");
                                 lbInformation.Text = "";
+                                txtWeight.Text = string.Empty;
                                 txtID.Text = string.Empty;
                                 txtID.Focus();
+                                lbSP.Text = "Thoát hoặc quét mã QR của xe";
                             }
                         }
                     }
@@ -124,12 +134,14 @@ namespace FMB_SYS
                         lbInformation.Text = "";
                         txtID.Text = string.Empty;
                         txtID.Focus();
+                        txtWeight.Text = string.Empty;
                     }
                     else if (update.Place == null)
                     {
                         lbError.Text = ("Chọn sai chức năng\nXe " + update.MaCode + " chưa nhập kho");
                         lbInformation.Text = "";
                         txtID.Text = string.Empty;
+                        txtWeight.Text = string.Empty;
                         txtID.Focus();
                     }
                     else if (check == null && first != null)
@@ -137,18 +149,26 @@ namespace FMB_SYS
                         if (txtWeight.Text == "")
                         {
                             txtWeight.Focus();
-                            lbError.Text = "Nhập khối lượng còn lại của xe " + update.MaCode;
+                            lbInformation.Text = "Nhập khối lượng còn lại của xe " + update.MaCode;
+                        }
+                        else if (int.Parse(txtWeight.Text) <= 0)
+                        {
+                            lbError.Text = "Khối lượng không hợp lệ";
+                            lbInformation.Text = string.Empty;
+                            txtWeight.Text = string.Empty;
+                            txtWeight.Focus();
+                            lbSP.Text = "Nhập lại khối lượng cho cao su";
                         }
                         else
                         {
                             if (update.KhoiLuong >= int.Parse(txtWeight.Text))
                             {
-                                update.ReturnTime= DateTime.Now;
+                                update.ReturnTime = DateTime.Now;
                                 update.PicReturn = _message;
                                 update.KhoiLuong = int.Parse(txtWeight.Text);
                                 update.Place = "FMB Stock";
                                 update.FmbLine = first.FmbLine;
-                                update.FmbNo = 1;
+                                update.FmbNo = 5;
                                 int save = fmb.SaveChanges();
                                 if (save > 0)
                                 {
@@ -171,7 +191,11 @@ namespace FMB_SYS
                     }
                     else
                     {
-                        MessageBox.Show("Error");
+                        lbError.Text = "Xe trả về không còn có dữ liệu trong kho. Vui lòng liên hệ IT";
+                        lbInformation.Text = "";
+                        txtID.Text = string.Empty;
+                        txtID.Focus();
+                        lbSP.Text = "Thoát hoặc quét mã QR tiếp";
                     }
                 }
                 else
