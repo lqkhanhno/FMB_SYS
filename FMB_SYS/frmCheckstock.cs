@@ -50,7 +50,7 @@ namespace FMB_SYS
             {
                 for (int j = 1; j <= 5; j++)
                 {
-                    var check = fmb.PFmbLabResults.SingleOrDefault(c => c.FmbLine == i && c.FmbNo == j);
+                    var check = fmb.PFmbLabResults.Where(c => c.Place == "FMB Stock").SingleOrDefault(c => c.FmbLine == i && c.FmbNo == j);
                     if (check != null && check.ThoiGian != null && check.MaxDuedate != null && check.Lotruber != null)
                     {
                         buttons[(i - 1) * 5 + j - 1].Text = check.KhoiLuong + "kg\n" + check.Kq + "\n" + check.Lotruber.Value.ToString("dd/MM") + "|" + check.Idca + "\nHạn còn: " + (int)(check.MaxDuedate - DateTime.Now).Value.TotalHours + "h";

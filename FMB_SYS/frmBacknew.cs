@@ -61,7 +61,7 @@ namespace FMB_SYS
                 }
                 else
                 {
-                    var up = fmb.PFmbLabResults.Where(c => c.FmbLine == update.FmbLine).Where(c => c.FmbNo > update.FmbNo).ToList();
+                    var up = fmb.PFmbLabResults.Where(c => c.Place == "FMB Stock").Where(c => c.FmbLine == update.FmbLine).Where(c => c.FmbNo > update.FmbNo).ToList();
                     var check = fmb.PFmbMasterLocationRubbers.OrderBy(c => c.FmbLine).FirstOrDefault(c => c.RubberName == update.MaNguyenLieu);
                     var check1 = fmb.PFmbMasterLocationRubbers.OrderByDescending(c => c.FmbLine).FirstOrDefault(c => c.RubberName == update.MaNguyenLieu);
                     foreach (var item in up)
@@ -72,7 +72,7 @@ namespace FMB_SYS
                     {
                         if (update.FmbLine == check1.FmbLine)
                         {
-                            var down = fmb.PFmbLabResults.Where(c => c.FmbLine == check.FmbLine).ToList();
+                            var down = fmb.PFmbLabResults.Where(c => c.Place == "FMB Stock").Where(c => c.FmbLine == check.FmbLine).ToList();
                             foreach (var item in down)
                             {
                                 item.FmbNo--;

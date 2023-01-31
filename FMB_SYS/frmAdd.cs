@@ -67,7 +67,7 @@ namespace FMB_SYS
                     }
                     else
                     {
-                        var check = fmb.PFmbLabResults.OrderBy(c => c.FmbNo).FirstOrDefault(c => c.Labkind == fmbInfo.Labkind);
+                        var check = fmb.PFmbLabResults.Where(c => c.Place == "FMB Stock").OrderBy(c => c.FmbNo).FirstOrDefault(c => c.Labkind == fmbInfo.Labkind);
                         if (check != null)
                         {
                             fmbInfo.FmbNo = check.FmbNo + 1;
@@ -100,7 +100,7 @@ namespace FMB_SYS
                     }
                     else
                     {
-                        var check = fmb.PFmbLabResults.Where(c => c.Labkind == "Normal").OrderBy(c => c.FmbLine).ThenByDescending(c => c.FmbNo).FirstOrDefault(c => c.MaNguyenLieu == fmbInfo.MaNguyenLieu);
+                        var check = fmb.PFmbLabResults.Where(c => c.Labkind == "Normal").Where(c => c.Place == "FMB Stock").OrderBy(c => c.FmbLine).ThenByDescending(c => c.FmbNo).FirstOrDefault(c => c.MaNguyenLieu == fmbInfo.MaNguyenLieu);
                         var last = fmb.PFmbMasterLocationRubbers.OrderByDescending(c => c.FmbLine).FirstOrDefault(c => c.RubberName == fmbInfo.MaNguyenLieu);
                         if (check != null && last != null)
                         {
@@ -210,7 +210,7 @@ namespace FMB_SYS
                     else
                     {
                         fmb.PFmbLabResults.Add(insert);
-                        var check = fmb.PFmbLabResults.OrderByDescending(c => c.FmbNo).FirstOrDefault(c => c.Labkind == insert.Labkind);
+                        var check = fmb.PFmbLabResults.Where(c => c.Place == "FMB Stock").OrderByDescending(c => c.FmbNo).FirstOrDefault(c => c.Labkind == insert.Labkind);
                         if (check != null)
                         {
                             insert.FmbNo = check.FmbNo + 1;
@@ -242,10 +242,10 @@ namespace FMB_SYS
                         lbError.Text = "Kho đã đầy không thể nhập";
                         lbInformation.Text = "";
                     }
-                    else
+                    else if(insert != null)
                     {
                         fmb.PFmbLabResults.Add(insert);
-                        var check = fmb.PFmbLabResults.Where(c => c.Labkind == "Normal").OrderBy(c => c.FmbLine).ThenByDescending(c => c.FmbNo).FirstOrDefault(c => c.MaNguyenLieu == insert.MaNguyenLieu);
+                        var check = fmb.PFmbLabResults.Where(c => c.Labkind == "Normal").Where(c => c.Place == "FMB Stock").OrderBy(c => c.FmbLine).ThenByDescending(c => c.FmbNo).FirstOrDefault(c => c.MaNguyenLieu == insert.MaNguyenLieu);
                         var last = fmb.PFmbMasterLocationRubbers.OrderByDescending(c => c.FmbLine).FirstOrDefault(c => c.RubberName == insert.MaNguyenLieu);
                         if (check != null && last != null)
                         {

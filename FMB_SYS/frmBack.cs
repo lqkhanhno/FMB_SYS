@@ -90,7 +90,7 @@ namespace FMB_SYS
                                 update.PicReturn = _message;
                                 update.KhoiLuong = int.Parse(txtWeight.Text);
                                 update.Place = "FMB Stock";
-                                var down = fmb.PFmbLabResults.Where(c => c.MaNguyenLieu == update.MaNguyenLieu).ToList();
+                                var down = fmb.PFmbLabResults.Where(c => c.Place == "FMB Stock").Where(c => c.MaNguyenLieu == update.MaNguyenLieu).ToList();
                                 foreach (var item in down)
                                 {
                                     item.FmbNo++;
