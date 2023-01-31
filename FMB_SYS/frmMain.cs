@@ -153,10 +153,13 @@ namespace FMB_SYS
         }
         private void frmMain_Load(object sender, EventArgs e)
         {
+            frmload();
+        }
+        public void frmload()
+        {
             lbName.Text = _message;
             timer1.Enabled = true;
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
             timer1.Enabled = false;

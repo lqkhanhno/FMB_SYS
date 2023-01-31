@@ -79,6 +79,7 @@ namespace FMB_SYS
                         var line = fmb.PFmbMasterLocationRubbers.SingleOrDefault(c => c.RubberName == fmbInfo.Labkind);
                         if (line != null)
                         {
+                            fmbInfo.Place = "FMB Stock";
                             fmbInfo.FmbLine = line.FmbLine;
                             fmbInfo.InputTime = DateTime.Now;
                             fmbInfo.PicInput = lbName.Text;

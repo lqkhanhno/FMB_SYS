@@ -23,6 +23,11 @@ namespace FMB_SYS
         HVN_SYSContext fmb = new HVN_SYSContext();
         private void frmCheckstock_Load(object sender, EventArgs e)
         {
+            frmCheckstock_load();
+        }
+
+        private void frmCheckstock_load()
+        {
             List<Button> buttons = new List<Button>
             {
                 button1, button2, button3, button4, button5,
@@ -50,7 +55,8 @@ namespace FMB_SYS
             {
                 for (int j = 1; j <= 5; j++)
                 {
-                    var check = fmb.PFmbLabResults.Where(c => c.Place == "FMB Stock").SingleOrDefault(c => c.FmbLine == i && c.FmbNo == j);
+                    var check = fmb.PFmbLabResults.SingleOrDefault(c => c.FmbLine == i && c.FmbNo == j);
+                    buttons[(i - 1) * 5 + j - 1].TabIndex = (i - 1) * 5 + j - 1;
                     if (check != null && check.ThoiGian != null && check.MaxDuedate != null && check.Lotruber != null)
                     {
                         buttons[(i - 1) * 5 + j - 1].Text = check.KhoiLuong + "kg\n" + check.Kq + "\n" + check.Lotruber.Value.ToString("dd/MM") + "|" + check.Idca + "\nHạn còn: " + (int)(check.MaxDuedate - DateTime.Now).Value.TotalHours + "h";
@@ -95,6 +101,7 @@ namespace FMB_SYS
                 }
             }
         }
+
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             var sum = fmb.PFmbLabResults.Where(c => c.MaNguyenLieu.Contains(listBox1.Text)).Where(c => c.Place == "FMB Stock").Where(c => c.Labkind == "Normal").Sum(c => c.KhoiLuong);
@@ -107,45 +114,24 @@ namespace FMB_SYS
             main.Refresh();
             this.Close();
         }
-
-        private void button1_Click(object sender, EventArgs e)
+        private void btn_Click(object sender, EventArgs e)
         {
-            var check = fmb.PFmbLabResults.SingleOrDefault(c => c.FmbLine == 1 && c.FmbNo == 1);
-            if (check != null)
+            try
             {
-                MessageBox.Show("Mã xe: "
-    + check.MaCode
-    + "\nNgày cán: "
-    + check.NgayCan.Value.ToString("dd/MM/yyyy")
-    + "\nCa: "
-    + check.Idca
-    + "\nKhối lượng: "
-    + check.KhoiLuong
-    + "kg\nKết quả test lab: "
-    + check.Kq
-    + "\nLotruber: "
-    + check.Lotruber.Value.ToString("dd/MM/yyyy")
-    + "\nHạn còn: "
-    + (int)(check.MaxDuedate - DateTime.Now).Value.TotalHours
-    + " giờ", "Thông tin");
+                Button btn = (Button)sender;
+                var check = fmb.PFmbLabResults.SingleOrDefault(c => c.FmbLine == btn.TabIndex / 5 + 1 && c.FmbNo == btn.TabIndex % 5 + 1);
+                if (check != null && check.NgayCan != null && check.Lotruber != null && check.Lotruber != null && check.MaxDuedate == null)
+                {
+                    MessageBox.Show("Mã xe: " + check.MaCode + "\nNgày cán: " + check.NgayCan.Value.ToString("dd/MM/yyyy") + "\nCa: " + check.Idca + "\nKhối lượng: " + check.KhoiLuong + "kg\nKết quả test lab: " + check.Kq + "\nLotruber: " + check.Lotruber.Value.ToString("dd/MM/yyyy") , "Thông tin");
+                }
+                else if (check != null && check.MaxDuedate != null && check.NgayCan != null && check.Lotruber != null)
+                {
+                    MessageBox.Show("Mã xe: " + check.MaCode + "\nNgày cán: " + check.NgayCan.Value.ToString("dd/MM/yyyy") + "\nCa: " + check.Idca + "\nKhối lượng: " + check.KhoiLuong + "kg\nKết quả test lab: " + check.Kq + "\nLotruber: " + check.Lotruber.Value.ToString("dd/MM/yyyy") + "\nHạn còn: " + (int)(check.MaxDuedate - DateTime.Now).Value.TotalHours + " giờ", "Thông tin");
+                }
             }
-        }
-
-        private void button50_Click(object sender, EventArgs e)
-        {
-            var check = fmb.PFmbLabResults.SingleOrDefault(c => c.FmbLine == 10 && c.FmbNo == 5);
-            if (check != null)
+            catch (Exception)
             {
-                MessageBox.Show("Mã xe: " + check.MaCode + "\nNgày cán: " + check.NgayCan.Value.ToString("dd/MM/yyyy") + "\nCa: " + check.Idca + "\nKhối lượng: " + check.KhoiLuong + "kg\nKết quả test lab: " + check.Kq + "\nLotruber: " + check.Lotruber.Value.ToString("dd/MM/yyyy") + "\nHạn còn: " + (int)(check.MaxDuedate - DateTime.Now).Value.TotalHours + " giờ", "Thông tin");
-            }
-        }
-
-        private void button20_Click(object sender, EventArgs e)
-        {
-            var check = fmb.PFmbLabResults.SingleOrDefault(c => c.FmbLine == 4 && c.FmbNo == 5);
-            if (check != null)
-            {
-                MessageBox.Show("Mã xe: " + check.MaCode + "\nNgày cán: " + check.NgayCan.Value.ToString("dd/MM/yyyy") + "\nCa: " + check.Idca + "\nKhối lượng: " + check.KhoiLuong + "kg\nKết quả test lab: " + check.Kq + "\nLotruber: " + check.Lotruber.Value.ToString("dd/MM/yyyy") + "\nHạn còn: " + (int)(check.MaxDuedate - DateTime.Now).Value.TotalHours + " giờ", "Thông tin");
+                frmCheckstock_load();
             }
         }
     }
