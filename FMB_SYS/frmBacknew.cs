@@ -39,11 +39,11 @@ namespace FMB_SYS
             if (update != null && update.Place != "FMB Stock")
             {
                 lbError.Text = "Xe không còn trong kho";
-                if(update.PicTake != null)
+                if (update.PicTake != null)
                 {
                     lbError.Text += "Người lấy: " + update.PicTake + " Thời gian: " + update.TakeTime;
                 }
-                else if(update.PicRemove != null)
+                else if (update.PicRemove != null)
                 {
                     lbError.Text += "Xe đã được hủy bởi: " + update.PicRemove + " Thời gian" + update.RemoveTime + " Lý do: " + update.RemoveReason;
                 }
@@ -54,10 +54,8 @@ namespace FMB_SYS
                 if (txtlistreason.Text == string.Empty)
                 {
                     lbInformation.Text = string.Empty;
-                    lbSP.Text = "Cần nhập lý do hủy trước khi quét";
-                    lbError.Text = "Chưa nhập lý do hủy";
-                    txtID.Text = string.Empty;
-                    txtID.Focus();
+                    lbSP.Text = "Cần chọn lý do hủy trước khi quét";
+                    lbError.Text = "Chưa chọn lý do hủy";
                 }
                 else
                 {
@@ -97,6 +95,7 @@ namespace FMB_SYS
             }
             lbSP.Text = "Thoát hoặc quét mã QR của xe tiếp theo";
             txtID.Focus();
+            txtID.Text = string.Empty;
         }
 
         private void timer1_Tick(object sender, EventArgs e)
