@@ -28,88 +28,70 @@ namespace FMB_SYS
         HVN_SYSContext fmb = new HVN_SYSContext();
         private void btnEnter_Click(object sender, EventArgs e)
         {
-            timer1.Enabled = false;
-            if (txtID.Text.Length >= 10)
+            var update = fmb.PFmbLabResults.SingleOrDefault(c => c.MaCode == txtID.Text);
+            if (update != null && update.Place == "FMB Stock")
             {
-                var update = fmb.PFmbLabResults.SingleOrDefault(c => c.MaCode == txtID.Text);
-                if (update != null && update.Place == "FMB Stock")
+                var check = fmb.PFmbLabResults.Where(c => c.Place == "FMB Stock").OrderByDescending(c => c.FmbLine).ThenBy(c => c.FmbNo)
+                        .FirstOrDefault(c => c.MaNguyenLieu == update.MaNguyenLieu);
+                if (check == update)
                 {
-                    var check = fmb.PFmbLabResults.Where(c => c.Place == "FMB Stock").OrderByDescending(c => c.FmbLine).ThenByDescending(c => c.FmbNo)
-                            .FirstOrDefault(c => c.MaNguyenLieu == update.MaNguyenLieu);
-                    if (check == update)
+                    if (update != null)
                     {
-                        if (update != null)
+                        lbInformation.Text = "Xe được lấy đi ở đầu hàng " + update.FmbLine + "\nMã xe: " + update.MaCode + "\nNgười lấy: " + _message;
+                        update.PicTake = _message;
+                        var down = fmb.PFmbLabResults.Where(c => c.MaNguyenLieu == update.MaNguyenLieu).ToList();
+                        foreach (var item in down)
                         {
-                            lbInformation.Text = "Xe được lấy đi ở cuối hàng " + update.FmbLine + "\nMã xe: " + update.MaCode + "\nNgười lấy: " + _message;
-                            update.PicTake = _message;
-                            var down = fmb.PFmbLabResults.Where(c => c.MaNguyenLieu == update.MaNguyenLieu).ToList();
-                            foreach (var item in down)
+                            item.FmbNo--;
+                            if (item.FmbNo < 1)
                             {
-                                item.FmbNo++;
-                                if (item.FmbNo > 5)
-                                {
-                                    item.FmbNo = 1;
-                                    item.FmbLine = item.FmbLine + 1;
-                                }
+                                item.FmbNo = 5;
+                                item.FmbLine = item.FmbLine + 1;
                             }
-                            update.TakeTime = DateTime.Now;
-                            update.FmbLine = null;
-                            update.FmbNo = null;
-                            update.Place = "PD";
-                            if (update.Labkind == "Arnormal")
-                            {
-                                update.Place = null;
-                                update.PicTake = null;
-                                update.TakeTime = null;
-                                update.RemoveTime = DateTime.Now;
-                                update.RemoveReason = "NG kết quả lab";
-                                update.PicRemove = _message;
-                            }
-                            fmb.SaveChanges();
-                            lbError.Text = "";
-                            lbSP.Text = "Thoát hoặc quét mã QR của xe tiếp theo";
-                            txtID.Text = string.Empty;
-                            txtID.Focus();
                         }
+                        update.TakeTime = DateTime.Now;
+                        update.FmbLine = null;
+                        update.FmbNo = null;
+                        update.Place = "PD";
+                        if (update.Labkind == "Arnormal")
+                        {
+                            update.Place = null;
+                            update.PicTake = null;
+                            update.TakeTime = null;
+                            update.RemoveTime = DateTime.Now;
+                            update.RemoveReason = "NG kết quả lab";
+                            update.PicRemove = _message;
+                        }
+                        fmb.SaveChanges();
+                        lbError.Text = "";
+                        lbSP.Text = "Thoát hoặc quét mã QR của xe tiếp theo";
                     }
-                    else if (check != update && check != null)
-                    {
-                        lbError.Text = "Xe " + update.MaCode + " không ở vị trí cuối cùng của hàng\nXe ở cuối cùng hiện tại ở hàng " + check.FmbLine + " vị trí " + (6-check.FmbNo) + "\nMã xe cần lấy: " + check.MaCode;
-                        lbInformation.Text = "";
-                        txtID.Text = string.Empty;
-                        txtID.Focus();
-                    }
                 }
-                else if (update != null && update.Place != "FMB Stock")
+                else if (check != update && check != null)
                 {
-                    lbError.Text = "Xe " + update.MaCode + " không còn trong kho";
+                    lbError.Text = "Xe " + update.MaCode + " không ở vị trí đầu của hàng\nXe hiện tại ở hàng " + check.FmbLine + " vị trí " + check.FmbNo + "\nMã xe cần lấy: " + check.MaCode;
                     lbInformation.Text = "";
-                    txtID.Text = string.Empty;
-                    txtID.Focus();
                 }
-                else if (update == null)
-                {
-                    lbError.Text = "Xe không tồn tại";
-                    lbInformation.Text = "";
-                    txtID.Text = string.Empty;
-                    txtID.Focus();
-                }
-                else
-                {
-                    lbInformation.Text = string.Empty;
-                    lbError.Text = string.Empty;
-                    txtID.Text = string.Empty;
-                    txtID.Focus();
-                }
-                txtID.Text = string.Empty;
-                timer1.Enabled = true;
+            }
+            else if (update != null && update.Place != "FMB Stock")
+            {
+                lbError.Text = "Xe " + update.MaCode + " không còn trong kho";
+                lbInformation.Text = "";
+            }
+            else if (update == null)
+            {
+                lbError.Text = "Xe không tồn tại";
+                lbInformation.Text = "";
             }
             else
             {
-                txtID.Focus();
-                lbError.Text = "Chưa quét mã QR của xe";
-                lbSP.Text = "Quét mã QR của xe rồi mới Enter";
+                lbInformation.Text = string.Empty;
+                lbError.Text = string.Empty;
+
             }
+            txtID.Text = string.Empty;
+            timer1.Enabled = true;
+            txtID.Focus();
         }
 
         private void btnOut_Click(object sender, EventArgs e)

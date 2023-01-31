@@ -70,11 +70,11 @@ namespace FMB_SYS
                         var check = fmb.PFmbLabResults.OrderBy(c => c.FmbNo).FirstOrDefault(c => c.Labkind == fmbInfo.Labkind);
                         if (check != null)
                         {
-                            fmbInfo.FmbNo = check.FmbNo - 1;
+                            fmbInfo.FmbNo = check.FmbNo + 1;
                         }
                         else
                         {
-                            fmbInfo.FmbNo = 5;
+                            fmbInfo.FmbNo = 1;
                         }
                         var line = fmb.PFmbMasterLocationRubbers.SingleOrDefault(c => c.RubberName == fmbInfo.Labkind);
                         if (line != null)
@@ -84,8 +84,6 @@ namespace FMB_SYS
                             fmbInfo.PicInput = lbName.Text;
                             lbInformation.Text = "Mã xe: " + fmbInfo.MaCode + " được thêm vào hàng " + fmbInfo.FmbLine + "\nNgười thêm: " + _message;
                             lbError.Text = "";
-                            txtID.Text = string.Empty;
-                            txtID.Focus();
                             lbSP.Text = "Thoát hoặc quét mã QR tiếp";
                             fmb.SaveChanges();
                         }
@@ -99,57 +97,77 @@ namespace FMB_SYS
                     {
                         lbError.Text = "Kho đã đầy không thể nhập";
                         lbInformation.Text = "";
-                        txtID.Text = string.Empty;
-                        txtID.Focus();
                     }
                     else
                     {
-                        var check = fmb.PFmbLabResults.Where(c => c.Labkind == "Normal").OrderBy(c => c.FmbNo).ThenBy(c => c.FmbLine).FirstOrDefault(c => c.MaNguyenLieu == fmbInfo.MaNguyenLieu);
+                        var check = fmb.PFmbLabResults.Where(c => c.Labkind == "Normal").OrderBy(c => c.FmbLine).ThenByDescending(c => c.FmbNo).FirstOrDefault(c => c.MaNguyenLieu == fmbInfo.MaNguyenLieu);
                         var last = fmb.PFmbMasterLocationRubbers.OrderByDescending(c => c.FmbLine).FirstOrDefault(c => c.RubberName == fmbInfo.MaNguyenLieu);
                         if (check != null && last != null)
                         {
                             var due = fmb.PFmbMasterListRubbers.SingleOrDefault(c => c.RubberName == fmbInfo.MaNguyenLieu);
                             fmbInfo.InputTime = DateTime.Now;
                             fmbInfo.PicInput = lbName.Text;
-                            if (check.FmbNo == 1)
+                            if (check.FmbNo == 5)
                             {
                                 fmbInfo.FmbLine = check.FmbLine - 1;
-                                fmbInfo.FmbNo = 5;
+                                fmbInfo.FmbNo = 1;
                             }
                             else
                             {
                                 fmbInfo.FmbLine = check.FmbLine;
-                                fmbInfo.FmbNo = check.FmbNo - 1;
+                                fmbInfo.FmbNo = check.FmbNo + 1;
                             }
                             fmbInfo.Place = "FMB Stock";
                             lbInformation.Text = "Mã xe: " + fmbInfo.MaCode + " được thêm vào hàng " + fmbInfo.FmbLine + "\nNgười thêm: " + _message;
                             lbError.Text = "";
-                            if (due != null)
+                            if (due != null && fmbInfo.ThoiGian != null)
                             {
                                 int duemax = Convert.ToInt32(due.VadilityMax);
                                 int duemin = Convert.ToInt32(due.VadilityMin);
-                                fmbInfo.MinDuedate = fmbInfo.InputTime.Value.AddHours(duemin);
-                                fmbInfo.MaxDuedate = fmbInfo.InputTime.Value.AddHours(duemax);
+                                fmbInfo.MinDuedate = fmbInfo.ThoiGian.Value.AddHours(duemin);
+                                fmbInfo.MaxDuedate = fmbInfo.ThoiGian.Value.AddHours(duemax);
                                 fmb.SaveChanges();
-                                txtID.Text = string.Empty;
-                                txtID.Focus();
                                 lbSP.Text = "Thoát hoặc quét mã QR tiếp";
                             }
                             else
                             {
                                 lbError.Text = "Chưa có thông tin hạn của mã cao su " + fmbInfo.MaNguyenLieu;
                                 lbInformation.Text = string.Empty;
-                                txtID.Text = string.Empty;
-                                txtID.Focus();
                                 lbSP.Text = "Thoát hoặc quét mã QR tiếp";
                             }
+                        }
+                        else if (check == null && last != null)
+                        {
+                            var due = fmb.PFmbMasterListRubbers.SingleOrDefault(c => c.RubberName == fmbInfo.MaNguyenLieu);
+                            fmbInfo.InputTime = DateTime.Now;
+                            fmbInfo.PicInput = lbName.Text;
+                            fmbInfo.FmbLine = last.FmbLine;
+                            fmbInfo.FmbNo = 1;
+                            fmbInfo.Place = "FMB Stock";
+                            fmbInfo.Labkind = "Normal";
+                            lbInformation.Text = "Mã xe: " + fmbInfo.MaCode + " được thêm vào hàng " + fmbInfo.FmbLine + "\nNgười thêm: " + _message;
+                            if (due != null && fmbInfo.ThoiGian != null)
+                            {
+                                int duemax = Convert.ToInt32(due.VadilityMax);
+                                int duemin = Convert.ToInt32(due.VadilityMin);
+                                fmbInfo.MinDuedate = fmbInfo.ThoiGian.Value.AddHours(duemin);
+                                fmbInfo.MaxDuedate = fmbInfo.ThoiGian.Value.AddHours(duemax);
+                                fmb.SaveChanges();
+                                lbSP.Text = "Thoát hoặc quét mã QR tiếp";
+                            }
+                            else
+                            {
+                                lbError.Text = "Chưa có thông tin hạn của mã cao su. Vui lòng liên hệ IT " + fmbInfo.MaNguyenLieu;
+                                lbInformation.Text = string.Empty;
+                                lbSP.Text = "Thoát hoặc quét mã QR tiếp";                                
+                            }
+                            lbError.Text = "";
+                            lbSP.Text = "Thoát hoặc quét mã QR của xe tiếp";
                         }
                         else
                         {
                             lbError.Text = "Mã cao su chưa có trong kho";
                             lbInformation.Text = string.Empty;
-                            txtID.Text = string.Empty;
-                            txtID.Focus();
                             lbSP.Text = "Thoát hoặc quét mã QR tiếp";
                         }
                     }
@@ -188,20 +206,18 @@ namespace FMB_SYS
                     {
                         lbError.Text = "Kho đã đầy không thể nhập";
                         lbInformation.Text = "";
-                        txtID.Text = string.Empty;
-                        txtID.Focus();
                     }
                     else
                     {
                         fmb.PFmbLabResults.Add(insert);
-                        var check = fmb.PFmbLabResults.OrderBy(c => c.FmbNo).FirstOrDefault(c => c.Labkind == insert.Labkind);
+                        var check = fmb.PFmbLabResults.OrderByDescending(c => c.FmbNo).FirstOrDefault(c => c.Labkind == insert.Labkind);
                         if (check != null)
                         {
-                            insert.FmbNo = check.FmbNo - 1;
+                            insert.FmbNo = check.FmbNo + 1;
                         }
                         else
                         {
-                            insert.FmbNo = 5;
+                            insert.FmbNo = 1;
                         }
                         var line = fmb.PFmbMasterLocationRubbers.SingleOrDefault(c => c.RubberName == insert.Labkind);
                         if (line != null)
@@ -212,8 +228,6 @@ namespace FMB_SYS
                             insert.Place = "FMB Stock";
                             lbInformation.Text = "Mã xe: " + insert.MaCode + " được thêm vào hàng" + insert.FmbLine + "\nKết quả test: NG " + "\nNgười thêm: " + _message;
                             lbError.Text = "";
-                            txtID.Text = string.Empty;
-                            txtID.Focus();
                             lbSP.Text = "Thoát hoặc quét mã QR tiếp";
                             fmb.SaveChanges();
                         }
@@ -227,42 +241,38 @@ namespace FMB_SYS
                     {
                         lbError.Text = "Kho đã đầy không thể nhập";
                         lbInformation.Text = "";
-                        txtID.Text = string.Empty;
-                        txtID.Focus();
                     }
                     else
                     {
                         fmb.PFmbLabResults.Add(insert);
-                        var check = fmb.PFmbLabResults.Where(c => c.Labkind == "Normal").OrderBy(c => c.FmbLine).ThenBy(c => c.FmbNo).FirstOrDefault(c => c.MaNguyenLieu == insert.MaNguyenLieu);
+                        var check = fmb.PFmbLabResults.Where(c => c.Labkind == "Normal").OrderBy(c => c.FmbLine).ThenByDescending(c => c.FmbNo).FirstOrDefault(c => c.MaNguyenLieu == insert.MaNguyenLieu);
                         var last = fmb.PFmbMasterLocationRubbers.OrderByDescending(c => c.FmbLine).FirstOrDefault(c => c.RubberName == insert.MaNguyenLieu);
                         if (check != null && last != null)
                         {
                             var due = fmb.PFmbMasterListRubbers.SingleOrDefault(c => c.RubberName == insert.MaNguyenLieu);
                             insert.InputTime = DateTime.Now;
                             insert.PicInput = lbName.Text;
-                            if (check.FmbNo == 1)
+                            if (check.FmbNo == 5)
                             {
                                 insert.FmbLine = check.FmbLine - 1;
-                                insert.FmbNo = 5;
+                                insert.FmbNo = 1;
                             }
                             else
                             {
                                 insert.FmbLine = check.FmbLine;
-                                insert.FmbNo = check.FmbNo - 1;
+                                insert.FmbNo = check.FmbNo + 1;
                             }
                             insert.Place = "FMB Stock";
                             insert.Labkind = "Normal";
                             lbInformation.Text = "Mã xe: " + insert.MaCode + " được thêm vào hàng " + insert.FmbLine + "\nNgười thêm: " + _message;
                             lbError.Text = "";
-                            if (due != null)
+                            if (due != null && insert.ThoiGian != null)
                             {
                                 int duemax = Convert.ToInt32(due.VadilityMax);
                                 int duemin = Convert.ToInt32(due.VadilityMin);
-                                insert.MinDuedate = insert.InputTime.Value.AddHours(duemin);
-                                insert.MaxDuedate = insert.InputTime.Value.AddHours(duemax);
+                                insert.MinDuedate = insert.ThoiGian.Value.AddHours(duemin);
+                                insert.MaxDuedate = insert.ThoiGian.Value.AddHours(duemax);
                                 fmb.SaveChanges();
-                                txtID.Text = string.Empty;
-                                txtID.Focus();
                                 lbSP.Text = "Thoát hoặc quét mã QR tiếp";
                             }
                             else
@@ -270,8 +280,6 @@ namespace FMB_SYS
                                 lbError.Text = "Chưa có thông tin hạn của mã cao su " + insert.MaNguyenLieu;
                                 lbInformation.Text = string.Empty;
                                 lbSP.Text = "Vui lòng báo với IT";
-                                txtID.Text = string.Empty;
-                                txtID.Focus();
                             }
                         }
                         else if (check == null && last != null)
@@ -280,19 +288,17 @@ namespace FMB_SYS
                             insert.InputTime = DateTime.Now;
                             insert.PicInput = lbName.Text;
                             insert.FmbLine = last.FmbLine;
-                            insert.FmbNo = 5;
+                            insert.FmbNo = 1;
                             insert.Place = "FMB Stock";
                             insert.Labkind = "Normal";
                             lbInformation.Text = "Mã xe: " + insert.MaCode + " được thêm vào hàng " + insert.FmbLine + "\nNgười thêm: " + _message;
-                            if (due != null)
+                            if (due != null && insert.ThoiGian != null)
                             {
                                 int duemax = Convert.ToInt32(due.VadilityMax);
                                 int duemin = Convert.ToInt32(due.VadilityMin);
-                                insert.MinDuedate = insert.InputTime.Value.AddHours(duemin);
-                                insert.MaxDuedate = insert.InputTime.Value.AddHours(duemax);
+                                insert.MinDuedate = insert.ThoiGian.Value.AddHours(duemin);
+                                insert.MaxDuedate = insert.ThoiGian.Value.AddHours(duemax);
                                 fmb.SaveChanges();
-                                txtID.Text = string.Empty;
-                                txtID.Focus();
                                 lbSP.Text = "Thoát hoặc quét mã QR tiếp";
                             }
                             else
@@ -300,20 +306,14 @@ namespace FMB_SYS
                                 lbError.Text = "Chưa có thông tin hạn của mã cao su. Vui lòng liên hệ IT " + insert.MaNguyenLieu;
                                 lbInformation.Text = string.Empty;
                                 lbSP.Text = "Thoát hoặc quét mã QR tiếp";
-                                txtID.Text = string.Empty;
-                                txtID.Focus();
                             }
                             lbError.Text = "";
-                            txtID.Text = string.Empty;
-                            txtID.Focus();
                             lbSP.Text = "Thoát hoặc quét mã QR của xe tiếp";
                         }
                         else
                         {
                             lbError.Text = "Mã cao su '" + labInfo.MaNguyenLieu + "' không tồn tại trong hệ thống. Vui lòng liên hệ IT";
                             lbInformation.Text = string.Empty;
-                            txtID.Text = string.Empty;
-                            txtID.Focus();
                             lbSP.Text = "Thoát hoặc quét mã QR tiếp";
                         }
                     }
@@ -324,9 +324,9 @@ namespace FMB_SYS
                 lbError.Text = "Mã code không tồn tại";
                 lbInformation.Text = string.Empty;
                 lbSP.Text = "Quét mã QR của xe";
-                txtID.Text = "";
-                txtID.Focus();
             }
+            txtID.Text = string.Empty;
+            txtID.Focus();
         }
 
         private void btnOut_Click(object sender, EventArgs e)

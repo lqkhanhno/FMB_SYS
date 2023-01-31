@@ -34,75 +34,69 @@ namespace FMB_SYS
         HVN_SYSContext fmb = new HVN_SYSContext();
         private void btnEnter_Click(object sender, EventArgs e)
         {
-            if (txtID.Text.Length >= 10)
+            timer1.Enabled = false;
+            var update = fmb.PFmbLabResults.SingleOrDefault(c => c.MaCode == txtID.Text);
+            if (update != null && update.Place != "FMB Stock")
             {
-                timer1.Enabled = false;
-                var update = fmb.PFmbLabResults.SingleOrDefault(c => c.MaCode == txtID.Text);
-                if (update != null && update.Place != "FMB Stock")
+                lbError.Text = "Xe không còn trong kho";
+                if(update.PicTake != null)
                 {
-                    update.PicRemove = _message;
-                    update.FmbLine = null;
-                    update.FmbNo = null;
-                    update.Place = null;
-                    int save = fmb.SaveChanges();
-                    if (save > 0)
-                    {
-                        lbInformation.Text = ("Xe " + update.MaCode + " đã hết.\nNgười báo hết: " + _message);
-                        lbError.Text = "";
-                    }
-                    else
-                    {
-                        lbInformation.Text = ("Xe " + update.MaCode + " đã được báo hết");
-                    }
+                    lbError.Text += "Người lấy: " + update.PicTake + " Thời gian: " + update.TakeTime;
                 }
-                else if (update != null && update.Place == "FMB Stock")
+                else if(update.PicRemove != null)
                 {
-                    if (txtlistreason.Text == string.Empty)
+                    lbError.Text += "Xe đã được hủy bởi: " + update.PicRemove + " Thời gian" + update.RemoveTime + " Lý do: " + update.RemoveReason;
+                }
+                lbInformation.Text = string.Empty;
+            }
+            else if (update != null && update.Place == "FMB Stock")
+            {
+                if (txtlistreason.Text == string.Empty)
+                {
+                    lbInformation.Text = string.Empty;
+                    lbSP.Text = "Cần nhập lý do hủy trước khi quét";
+                    lbError.Text = "Chưa nhập lý do hủy";
+                    txtID.Text = string.Empty;
+                    txtID.Focus();
+                }
+                else
+                {
+                    var up = fmb.PFmbLabResults.Where(c => c.FmbLine == update.FmbLine).Where(c => c.FmbNo > update.FmbNo).ToList();
+                    var check = fmb.PFmbMasterLocationRubbers.OrderBy(c => c.FmbLine).FirstOrDefault(c => c.RubberName == update.MaNguyenLieu);
+                    var check1 = fmb.PFmbMasterLocationRubbers.OrderByDescending(c => c.FmbLine).FirstOrDefault(c => c.RubberName == update.MaNguyenLieu);
+                    foreach (var item in up)
                     {
-                        lbInformation.Text = string.Empty;
-                        lbSP.Text = "Cần nhập lý do hủy trước khi quét";
-                        lbError.Text = "Chưa nhập lý do hủy";
-                        txtID.Text = string.Empty;
-                        txtID.Focus();
+                        item.FmbNo--;
                     }
-                    else {
-                        var up = fmb.PFmbLabResults.Where(c => c.FmbLine == update.FmbLine).Where(c => c.FmbNo < update.FmbNo).ToList();
-                        var check = fmb.PFmbMasterLocationRubbers.OrderBy(c => c.FmbLine).FirstOrDefault(c => c.RubberName == update.MaNguyenLieu);
-                        var check1 = fmb.PFmbMasterLocationRubbers.OrderByDescending(c => c.FmbLine).FirstOrDefault(c => c.RubberName == update.MaNguyenLieu);
-                        foreach (var item in up)
+                    if (check != check1 && check != null && check1 != null)
+                    {
+                        if (update.FmbLine == check1.FmbLine)
                         {
-                            item.FmbNo++;
-                        }
-                        if (check != check1 && check != null && check1 != null)
-                        {
-                            if (update.FmbLine == check1.FmbLine)
+                            var down = fmb.PFmbLabResults.Where(c => c.FmbLine == check.FmbLine).ToList();
+                            foreach (var item in down)
                             {
-                                var down = fmb.PFmbLabResults.Where(c => c.FmbLine == check.FmbLine).ToList();
-                                foreach (var item in down)
+                                item.FmbNo--;
+                                if (item.FmbNo < 1)
                                 {
-                                    item.FmbNo++;
-                                    if (item.FmbNo > 5)
-                                    {
-                                        item.FmbNo = 1;
-                                        item.FmbLine = item.FmbLine + 1;
-                                    }
+                                    item.FmbNo = 5;
+                                    item.FmbLine = item.FmbLine + 1;
                                 }
                             }
                         }
-                        update.RemoveTime = DateTime.Now;
-                        update.RemoveReason = txtlistreason.Text;
-                        update.FmbLine = null;
-                        update.FmbNo = null;
-                        update.Place = null;
-                        update.PicRemove = _message;
-                        fmb.SaveChanges();
-                        lbInformation.Text = "Xe có mã: " + update.MaCode + " đã được hủy thành công\nNgười hủy: " +_message;
-                        lbError.Text = string.Empty;
-                        lbSP.Text = "Thoát hoặc quét mã QR của xe tiếp theo";
-                        txtID.Focus();
                     }
+                    update.RemoveTime = DateTime.Now;
+                    update.RemoveReason = txtlistreason.Text;
+                    update.FmbLine = null;
+                    update.FmbNo = null;
+                    update.Place = null;
+                    update.PicRemove = _message;
+                    fmb.SaveChanges();
+                    lbInformation.Text = "Xe có mã: " + update.MaCode + " đã được hủy thành công\nNgười hủy: " + _message;
+                    lbError.Text = string.Empty;
                 }
             }
+            lbSP.Text = "Thoát hoặc quét mã QR của xe tiếp theo";
+            txtID.Focus();
         }
 
         private void timer1_Tick(object sender, EventArgs e)
