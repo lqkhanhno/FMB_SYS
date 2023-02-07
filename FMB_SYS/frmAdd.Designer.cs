@@ -44,8 +44,9 @@
             this.btnCheck = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.lbName = new System.Windows.Forms.Label();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.listArnormal = new System.Windows.Forms.ListBox();
+            this.lbZoom = new System.Windows.Forms.Label();
+            this.btnZoom = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -54,9 +55,10 @@
             // btnEnter
             // 
             this.btnEnter.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnEnter.Location = new System.Drawing.Point(977, 250);
+            this.btnEnter.Location = new System.Drawing.Point(855, 188);
+            this.btnEnter.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnEnter.Name = "btnEnter";
-            this.btnEnter.Size = new System.Drawing.Size(150, 65);
+            this.btnEnter.Size = new System.Drawing.Size(131, 49);
             this.btnEnter.TabIndex = 12;
             this.btnEnter.Text = "Enter";
             this.btnEnter.UseVisualStyleBackColor = true;
@@ -66,9 +68,10 @@
             // 
             this.btnOut.BackColor = System.Drawing.Color.Red;
             this.btnOut.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnOut.Location = new System.Drawing.Point(1550, 25);
+            this.btnOut.Location = new System.Drawing.Point(1356, 19);
+            this.btnOut.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnOut.Name = "btnOut";
-            this.btnOut.Size = new System.Drawing.Size(300, 100);
+            this.btnOut.Size = new System.Drawing.Size(262, 75);
             this.btnOut.TabIndex = 11;
             this.btnOut.Text = "Thoát";
             this.btnOut.UseVisualStyleBackColor = false;
@@ -77,9 +80,10 @@
             // txtID
             // 
             this.txtID.Font = new System.Drawing.Font("Segoe UI", 25.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtID.Location = new System.Drawing.Point(212, 250);
+            this.txtID.Location = new System.Drawing.Point(186, 188);
+            this.txtID.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtID.Name = "txtID";
-            this.txtID.Size = new System.Drawing.Size(650, 65);
+            this.txtID.Size = new System.Drawing.Size(569, 53);
             this.txtID.TabIndex = 10;
             this.txtID.TextChanged += new System.EventHandler(this.txtID_TextChanged);
             // 
@@ -87,9 +91,9 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(72, 260);
+            this.label1.Location = new System.Drawing.Point(63, 195);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(97, 38);
+            this.label1.Size = new System.Drawing.Size(76, 30);
             this.label1.TabIndex = 13;
             this.label1.Text = "Mã xe";
             // 
@@ -97,9 +101,11 @@
             // 
             this.groupBox1.Controls.Add(this.lbInformation);
             this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.groupBox1.Location = new System.Drawing.Point(88, 381);
+            this.groupBox1.Location = new System.Drawing.Point(77, 286);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1720, 300);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox1.Size = new System.Drawing.Size(1505, 225);
             this.groupBox1.TabIndex = 14;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin";
@@ -109,9 +115,9 @@
             this.lbInformation.AutoSize = true;
             this.lbInformation.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lbInformation.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.lbInformation.Location = new System.Drawing.Point(50, 60);
+            this.lbInformation.Location = new System.Drawing.Point(44, 45);
             this.lbInformation.Name = "lbInformation";
-            this.lbInformation.Size = new System.Drawing.Size(76, 45);
+            this.lbInformation.Size = new System.Drawing.Size(61, 37);
             this.lbInformation.TabIndex = 0;
             this.lbInformation.Text = "____";
             // 
@@ -119,9 +125,11 @@
             // 
             this.groupBox2.Controls.Add(this.lbError);
             this.groupBox2.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.groupBox2.Location = new System.Drawing.Point(88, 681);
+            this.groupBox2.Location = new System.Drawing.Point(77, 511);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(1720, 300);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox2.Size = new System.Drawing.Size(1505, 225);
             this.groupBox2.TabIndex = 15;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Báo lỗi";
@@ -131,9 +139,9 @@
             this.lbError.AutoSize = true;
             this.lbError.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lbError.ForeColor = System.Drawing.Color.Red;
-            this.lbError.Location = new System.Drawing.Point(50, 60);
+            this.lbError.Location = new System.Drawing.Point(44, 45);
             this.lbError.Name = "lbError";
-            this.lbError.Size = new System.Drawing.Size(90, 45);
+            this.lbError.Size = new System.Drawing.Size(72, 37);
             this.lbError.TabIndex = 0;
             this.lbError.Text = "_____";
             // 
@@ -148,9 +156,11 @@
             this.groupBox3.Controls.Add(this.lbSP);
             this.groupBox3.Controls.Add(this.label2);
             this.groupBox3.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.groupBox3.Location = new System.Drawing.Point(1157, 133);
+            this.groupBox3.Location = new System.Drawing.Point(1012, 100);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(693, 242);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox3.Size = new System.Drawing.Size(606, 182);
             this.groupBox3.TabIndex = 16;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Thao tác";
@@ -159,9 +169,9 @@
             // 
             this.lbSP.AutoSize = true;
             this.lbSP.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lbSP.Location = new System.Drawing.Point(31, 148);
+            this.lbSP.Location = new System.Drawing.Point(27, 111);
             this.lbSP.Name = "lbSP";
-            this.lbSP.Size = new System.Drawing.Size(157, 50);
+            this.lbSP.Size = new System.Drawing.Size(126, 41);
             this.lbSP.TabIndex = 1;
             this.lbSP.Text = "_________";
             // 
@@ -169,9 +179,9 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(15, 39);
+            this.label2.Location = new System.Drawing.Point(13, 29);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(252, 90);
+            this.label2.Size = new System.Drawing.Size(206, 74);
             this.label2.TabIndex = 0;
             this.label2.Text = "B1: Quét mã xe \r\nB2: Quét mã lab";
             // 
@@ -180,10 +190,10 @@
             this.btnCheck.AutoSize = true;
             this.btnCheck.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.btnCheck.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnCheck.Location = new System.Drawing.Point(614, 16);
-            this.btnCheck.Margin = new System.Windows.Forms.Padding(10, 11, 10, 11);
+            this.btnCheck.Location = new System.Drawing.Point(537, 12);
+            this.btnCheck.Margin = new System.Windows.Forms.Padding(9, 8, 9, 8);
             this.btnCheck.Name = "btnCheck";
-            this.btnCheck.Size = new System.Drawing.Size(400, 200);
+            this.btnCheck.Size = new System.Drawing.Size(350, 150);
             this.btnCheck.TabIndex = 18;
             this.btnCheck.Text = "Kiểm tra tình trạng kho";
             this.btnCheck.UseVisualStyleBackColor = false;
@@ -193,9 +203,9 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label3.Location = new System.Drawing.Point(1059, 25);
+            this.label3.Location = new System.Drawing.Point(927, 19);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(256, 45);
+            this.label3.Size = new System.Drawing.Size(209, 37);
             this.label3.TabIndex = 22;
             this.label3.Text = "Người thực hiện";
             // 
@@ -203,49 +213,61 @@
             // 
             this.lbName.AutoSize = true;
             this.lbName.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lbName.Location = new System.Drawing.Point(1328, 25);
+            this.lbName.Location = new System.Drawing.Point(1162, 19);
             this.lbName.Name = "lbName";
-            this.lbName.Size = new System.Drawing.Size(160, 45);
+            this.lbName.Size = new System.Drawing.Size(127, 37);
             this.lbName.TabIndex = 21;
             this.lbName.Text = "__________";
             // 
-            // listBox1
+            // listArnormal
             // 
-            this.listBox1.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 37;
-            this.listBox1.Items.AddRange(new object[] {
+            this.listArnormal.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.listArnormal.FormattingEnabled = true;
+            this.listArnormal.ItemHeight = 30;
+            this.listArnormal.Items.AddRange(new object[] {
             "Test",
             "Trang may",
             "Back up",
             "Re-mixing"});
-            this.listBox1.Location = new System.Drawing.Point(212, 64);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(190, 152);
-            this.listBox1.TabIndex = 23;
-            this.listBox1.Visible = false;
+            this.listArnormal.Location = new System.Drawing.Point(186, 36);
+            this.listArnormal.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.listArnormal.Name = "listArnormal";
+            this.listArnormal.Size = new System.Drawing.Size(167, 124);
+            this.listArnormal.TabIndex = 23;
+            this.listArnormal.Visible = false;
             // 
-            // label4
+            // lbZoom
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(98, 116);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(71, 38);
-            this.label4.TabIndex = 24;
-            this.label4.Text = "Loại";
-            this.label4.Visible = false;
+            this.lbZoom.AutoSize = true;
+            this.lbZoom.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lbZoom.Location = new System.Drawing.Point(86, 87);
+            this.lbZoom.Name = "lbZoom";
+            this.lbZoom.Size = new System.Drawing.Size(55, 30);
+            this.lbZoom.TabIndex = 24;
+            this.lbZoom.Text = "Loại";
+            this.lbZoom.Visible = false;
+            // 
+            // btnZoom
+            // 
+            this.btnZoom.Location = new System.Drawing.Point(387, 72);
+            this.btnZoom.Name = "btnZoom";
+            this.btnZoom.Size = new System.Drawing.Size(51, 45);
+            this.btnZoom.TabIndex = 25;
+            this.btnZoom.Text = ".";
+            this.btnZoom.UseVisualStyleBackColor = true;
+            this.btnZoom.Click += new System.EventHandler(this.btnZoom_Click);
             // 
             // frmAdd
             // 
             this.AcceptButton = this.btnEnter;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.CancelButton = this.btnOut;
-            this.ClientSize = new System.Drawing.Size(1902, 1033);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.listBox1);
+            this.ClientSize = new System.Drawing.Size(1199, 562);
+            this.Controls.Add(this.btnZoom);
+            this.Controls.Add(this.lbZoom);
+            this.Controls.Add(this.listArnormal);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.lbName);
             this.Controls.Add(this.btnCheck);
@@ -256,6 +278,7 @@
             this.Controls.Add(this.btnEnter);
             this.Controls.Add(this.btnOut);
             this.Controls.Add(this.txtID);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "frmAdd";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Thêm xe";
@@ -288,7 +311,8 @@
         private System.Windows.Forms.Button btnCheck;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lbName;
-        private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ListBox listArnormal;
+        private System.Windows.Forms.Label lbZoom;
+        private System.Windows.Forms.Button btnZoom;
     }
 }

@@ -53,9 +53,13 @@ namespace FMB_SYS
             }
             else if (fmbInfo != null && fmbInfo.Place == null && labInfo != null)
             {
-                if (fmbInfo.Kq == "NG")
+                if (fmbInfo.Kq == "NG" || listArnormal.Visible == true && listArnormal.SelectedItems != null)
                 {
                     fmbInfo.Labkind = "Arnormal";
+                    if (listArnormal.Visible == true && listArnormal.SelectedItems != null)
+                    {
+                        fmbInfo.Labkind = listArnormal.Text;
+                    }
                     var countno = fmb.PFmbLabResults.Where(c => c.Place == "FMB Stock").Count(c => c.Labkind == fmbInfo.Labkind);
                     if (countno >= 5)
                     {
@@ -146,7 +150,7 @@ namespace FMB_SYS
                             fmbInfo.FmbNo = 1;
                             fmbInfo.Place = "FMB Stock";
                             fmbInfo.Labkind = "Normal";
-                            lbInformation.Text = "Mã xe: " + fmbInfo.MaCode + " được thêm vào hàng " + fmbInfo.FmbLine + "\nNgười thêm: " + _message;
+                            lbInformation.Text = "Mã xe: " + fmbInfo.MaCode + " được thêm vào hàng " + fmbInfo.FmbLine + "\nKết quả test: " + fmbInfo.Kq + "\nNgười thêm: " + _message;
                             if (due != null && fmbInfo.ThoiGian != null)
                             {
                                 int duemax = Convert.ToInt32(due.VadilityMax);
@@ -199,9 +203,13 @@ namespace FMB_SYS
                     ByPass = labInfo.ByPass,
                     Huy = labInfo.Huy,
                 };
-                if (insert.Kq == "NG")
+                if (insert.Kq == "NG" || listArnormal.Visible == true && listArnormal.SelectedItems != null)
                 {
                     insert.Labkind = "Arnormal";
+                    if(listArnormal.Visible == true && listArnormal.SelectedItems != null)
+                    {
+                        insert.Labkind = listArnormal.Text;
+                    }
                     var countno = fmb.PFmbLabResults.Where(c => c.Place == "FMB Stock").Count(c => c.Labkind == insert.Labkind);
                     if (countno >= 5)
                     {
@@ -227,7 +235,7 @@ namespace FMB_SYS
                             insert.InputTime = DateTime.Now;
                             insert.PicInput = lbName.Text;
                             insert.Place = "FMB Stock";
-                            lbInformation.Text = "Mã xe: " + insert.MaCode + " được thêm vào hàng" + insert.FmbLine + "\nKết quả test: NG " + "\nNgười thêm: " + _message;
+                            lbInformation.Text = "Mã xe: " + insert.MaCode + " được thêm vào hàng " + insert.FmbLine + "\nKết quả test: "+insert.Kq + "\nNgười thêm: " + _message;
                             lbError.Text = "";
                             lbSP.Text = "Thoát hoặc quét mã QR tiếp";
                             fmb.SaveChanges();
@@ -265,7 +273,7 @@ namespace FMB_SYS
                             }
                             insert.Place = "FMB Stock";
                             insert.Labkind = "Normal";
-                            lbInformation.Text = "Mã xe: " + insert.MaCode + " được thêm vào hàng " + insert.FmbLine + "\nNgười thêm: " + _message;
+                            lbInformation.Text = "Mã xe: " + insert.MaCode + " được thêm vào hàng " + insert.FmbLine + "\nKết quả test: " + insert.Kq + "\nNgười thêm: " + _message;
                             lbError.Text = "";
                             if (due != null && insert.ThoiGian != null)
                             {
@@ -365,6 +373,25 @@ namespace FMB_SYS
             if (txtID.Text.Length >= 10)
             {
                 lbSP.Text = "Enter";
+            }
+        }
+
+        private void btnZoom_Click(object sender, EventArgs e)
+        {
+            if(btnZoom.Text == ".")
+            {
+                btnZoom.Text = "__";
+                lbZoom.Visible = true;
+                listArnormal.Visible = true;
+                listArnormal.Enabled = true;
+            }
+            else
+            {
+                btnZoom.Text = ".";
+                lbZoom.Visible = false;
+                listArnormal.Visible = false;
+                listArnormal.Enabled = false;
+                listArnormal.SelectedItems.Clear();
             }
         }
     }
