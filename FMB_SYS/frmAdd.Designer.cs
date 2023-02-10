@@ -226,9 +226,9 @@
             this.listArnormal.ItemHeight = 30;
             this.listArnormal.Items.AddRange(new object[] {
             "Test",
-            "Trang may",
-            "Back up",
-            "Re-mixing"});
+            "Tráng máy",
+            "Bổ sung",
+            "Cán lại"});
             this.listArnormal.Location = new System.Drawing.Point(186, 36);
             this.listArnormal.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.listArnormal.Name = "listArnormal";

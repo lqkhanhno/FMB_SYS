@@ -1,5 +1,5 @@
 ﻿using FMB_SYS.Models1;
-using FMB_SYS.Models2;
+using FMB_SYS.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -55,7 +55,7 @@ namespace FMB_SYS
             {
                 if (fmbInfo.Kq == "NG" || listArnormal.Visible == true && listArnormal.SelectedItems != null)
                 {
-                    fmbInfo.Labkind = "Arnormal";
+                    fmbInfo.Labkind = "NG lab";
                     if (listArnormal.Visible == true && listArnormal.SelectedItems != null)
                     {
                         fmbInfo.Labkind = listArnormal.Text;
@@ -221,10 +221,10 @@ namespace FMB_SYS
                 };
                 if (insert.Kq == "NG" || listArnormal.Visible == true && listArnormal.SelectedItems != null)
                 {
-                    insert.Labkind = "Arnormal";
+                    insert.Labkind = "NG lab";
                     if (listArnormal.Visible == true && listArnormal.SelectedItems != null)
                     {
-                        insert.Labkind = listArnormal.Text;
+                        insert.Labkind=listArnormal.Text;
                         var due = fmb.PFmbMasterListRubbers.SingleOrDefault(c => c.RubberName == insert.MaNguyenLieu);
                         if (due != null && insert.ThoiGian != null)
                         {

@@ -1,5 +1,5 @@
 ﻿using FMB_SYS.Models1;
-using FMB_SYS.Models2;
+using FMB_SYS.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -53,7 +53,7 @@ namespace FMB_SYS
                         update.FmbLine = null;
                         update.FmbNo = null;
                         update.Place = "PD";
-                        if (update.Labkind == "Arnormal")
+                        if (update.Labkind == "NG lab")
                         {
                             update.Place = null;
                             update.PicTake = null;
@@ -67,7 +67,7 @@ namespace FMB_SYS
                         lbSP.Text = "Thoát hoặc quét mã QR của xe tiếp theo";
                     }
                 }
-                else if (update.Labkind == "Arnormal")
+                else if (update.Labkind == "NG lab")
                 {
                     var up = fmb.PFmbLabResults.Where(c => c.Place == "FMB Stock").Where(c => c.FmbLine == update.FmbLine).Where(c => c.FmbNo > update.FmbNo).ToList();
                     foreach (var item in up)
@@ -110,6 +110,23 @@ namespace FMB_SYS
                     }
                     update.RemoveTime = DateTime.Now;
                     update.RemoveReason = "Cao su tráng máy"; 
+                    update.FmbLine = null;
+                    update.FmbNo = null;
+                    update.Place = null;
+                    update.PicRemove = _message;
+                    fmb.SaveChanges();
+                    lbInformation.Text = "Xe có mã: " + update.MaCode + " đã được lấy thành công\nNgười lấy: " + _message;
+                    lbError.Text = string.Empty;
+                }
+                else if (update.Labkind == "Can lai")
+                {
+                    var up = fmb.PFmbLabResults.Where(c => c.Place == "FMB Stock").Where(c => c.FmbLine == update.FmbLine).Where(c => c.FmbNo > update.FmbNo).ToList();
+                    foreach (var item in up)
+                    {
+                        item.FmbNo--;
+                    }
+                    update.RemoveTime = DateTime.Now;
+                    update.RemoveReason = "Cao su tráng máy";
                     update.FmbLine = null;
                     update.FmbNo = null;
                     update.Place = null;
