@@ -249,11 +249,12 @@
             // 
             // btnZoom
             // 
+            this.btnZoom.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnZoom.Location = new System.Drawing.Point(387, 72);
             this.btnZoom.Name = "btnZoom";
-            this.btnZoom.Size = new System.Drawing.Size(51, 45);
+            this.btnZoom.Size = new System.Drawing.Size(70, 45);
             this.btnZoom.TabIndex = 25;
-            this.btnZoom.Text = ".";
+            this.btnZoom.Text = "Khác";
             this.btnZoom.UseVisualStyleBackColor = true;
             this.btnZoom.Click += new System.EventHandler(this.btnZoom_Click);
             // 

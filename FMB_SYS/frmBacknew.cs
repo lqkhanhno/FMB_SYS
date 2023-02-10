@@ -38,14 +38,14 @@ namespace FMB_SYS
             var update = fmb.PFmbLabResults.SingleOrDefault(c => c.MaCode == txtID.Text);
             if (update != null && update.Place != "FMB Stock")
             {
-                lbError.Text = "Xe không còn trong kho";
-                if (update.PicTake != null)
+                lbError.Text = "Xe không còn trong kho\n";
+                if (update.PicRemove != null)
                 {
-                    lbError.Text += "Người lấy: " + update.PicTake + " Thời gian: " + update.TakeTime;
+                    lbError.Text += "Xe đã được hủy bởi: " + update.PicRemove + "\nThời gian hủy: " + update.RemoveTime + "\nLý do: " + update.RemoveReason;
                 }
-                else if (update.PicRemove != null)
+                else if(update.PicTake != null)
                 {
-                    lbError.Text += "Xe đã được hủy bởi: " + update.PicRemove + " Thời gian" + update.RemoveTime + " Lý do: " + update.RemoveReason;
+                    lbError.Text += "Người lấy: " + update.PicTake + "\nThời gian lấy: " + update.TakeTime;
                 }
                 lbInformation.Text = string.Empty;
             }
@@ -89,8 +89,9 @@ namespace FMB_SYS
                     update.Place = null;
                     update.PicRemove = _message;
                     fmb.SaveChanges();
-                    lbInformation.Text = "Xe có mã: " + update.MaCode + " đã được hủy thành công\nNgười hủy: " + _message;
+                    lbInformation.Text = "Xe có mã: " + update.MaCode + " đã được hủy thành công\nNgười hủy: " + _message+"\nLý do hủy: "+update.RemoveReason;
                     lbError.Text = string.Empty;
+                    txtlistreason.SelectedItems.Clear();
                 }
             }
             lbSP.Text = "Thoát hoặc quét mã QR của xe tiếp theo";

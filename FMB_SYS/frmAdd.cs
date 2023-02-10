@@ -59,6 +59,22 @@ namespace FMB_SYS
                     if (listArnormal.Visible == true && listArnormal.SelectedItems != null)
                     {
                         fmbInfo.Labkind = listArnormal.Text;
+                        var due = fmb.PFmbMasterListRubbers.SingleOrDefault(c => c.RubberName == fmbInfo.MaNguyenLieu);
+                        if (due != null && fmbInfo.ThoiGian != null)
+                        {
+                            int duemax = Convert.ToInt32(due.VadilityMax);
+                            int duemin = Convert.ToInt32(due.VadilityMin);
+                            fmbInfo.MinDuedate = fmbInfo.ThoiGian.Value.AddHours(duemin);
+                            fmbInfo.MaxDuedate = fmbInfo.ThoiGian.Value.AddHours(duemax);
+                            fmb.SaveChanges();
+                            lbSP.Text = "Thoát hoặc quét mã QR tiếp";
+                        }
+                        else
+                        {
+                            lbError.Text = "Chưa có thông tin hạn của mã cao su " + fmbInfo.MaNguyenLieu;
+                            lbInformation.Text = string.Empty;
+                            lbSP.Text = "Vui lòng báo với IT";
+                        }
                     }
                     var countno = fmb.PFmbLabResults.Where(c => c.Place == "FMB Stock").Count(c => c.Labkind == fmbInfo.Labkind);
                     if (countno >= 5)
@@ -164,7 +180,7 @@ namespace FMB_SYS
                             {
                                 lbError.Text = "Chưa có thông tin hạn của mã cao su. Vui lòng liên hệ IT " + fmbInfo.MaNguyenLieu;
                                 lbInformation.Text = string.Empty;
-                                lbSP.Text = "Thoát hoặc quét mã QR tiếp";                                
+                                lbSP.Text = "Thoát hoặc quét mã QR tiếp";
                             }
                             lbError.Text = "";
                             lbSP.Text = "Thoát hoặc quét mã QR của xe tiếp";
@@ -206,9 +222,25 @@ namespace FMB_SYS
                 if (insert.Kq == "NG" || listArnormal.Visible == true && listArnormal.SelectedItems != null)
                 {
                     insert.Labkind = "Arnormal";
-                    if(listArnormal.Visible == true && listArnormal.SelectedItems != null)
+                    if (listArnormal.Visible == true && listArnormal.SelectedItems != null)
                     {
                         insert.Labkind = listArnormal.Text;
+                        var due = fmb.PFmbMasterListRubbers.SingleOrDefault(c => c.RubberName == insert.MaNguyenLieu);
+                        if (due != null && insert.ThoiGian != null)
+                        {
+                            int duemax = Convert.ToInt32(due.VadilityMax);
+                            int duemin = Convert.ToInt32(due.VadilityMin);
+                            insert.MinDuedate = insert.ThoiGian.Value.AddHours(duemin);
+                            insert.MaxDuedate = insert.ThoiGian.Value.AddHours(duemax);
+                            fmb.SaveChanges();
+                            lbSP.Text = "Thoát hoặc quét mã QR tiếp";
+                        }
+                        else
+                        {
+                            lbError.Text = "Chưa có thông tin hạn của mã cao su " + insert.MaNguyenLieu;
+                            lbInformation.Text = string.Empty;
+                            lbSP.Text = "Vui lòng báo với IT";
+                        }
                     }
                     var countno = fmb.PFmbLabResults.Where(c => c.Place == "FMB Stock").Count(c => c.Labkind == insert.Labkind);
                     if (countno >= 5)
@@ -235,7 +267,7 @@ namespace FMB_SYS
                             insert.InputTime = DateTime.Now;
                             insert.PicInput = lbName.Text;
                             insert.Place = "FMB Stock";
-                            lbInformation.Text = "Mã xe: " + insert.MaCode + " được thêm vào hàng " + insert.FmbLine + "\nKết quả test: "+insert.Kq + "\nNgười thêm: " + _message;
+                            lbInformation.Text = "Mã xe: " + insert.MaCode + " được thêm vào hàng " + insert.FmbLine + "\nKết quả test: " + insert.Kq + "\nNgười thêm: " + _message;
                             lbError.Text = "";
                             lbSP.Text = "Thoát hoặc quét mã QR tiếp";
                             fmb.SaveChanges();
@@ -251,7 +283,7 @@ namespace FMB_SYS
                         lbError.Text = "Kho đã đầy không thể nhập";
                         lbInformation.Text = "";
                     }
-                    else if(insert != null)
+                    else if (insert != null)
                     {
                         fmb.PFmbLabResults.Add(insert);
                         var check = fmb.PFmbLabResults.Where(c => c.Labkind == "Normal").Where(c => c.Place == "FMB Stock").OrderBy(c => c.FmbLine).ThenByDescending(c => c.FmbNo).FirstOrDefault(c => c.MaNguyenLieu == insert.MaNguyenLieu);
@@ -378,16 +410,16 @@ namespace FMB_SYS
 
         private void btnZoom_Click(object sender, EventArgs e)
         {
-            if(btnZoom.Text == ".")
+            if (btnZoom.Text == "Khác")
             {
-                btnZoom.Text = "__";
+                btnZoom.Text = "Đóng";
                 lbZoom.Visible = true;
                 listArnormal.Visible = true;
                 listArnormal.Enabled = true;
             }
             else
             {
-                btnZoom.Text = ".";
+                btnZoom.Text = "Khác";
                 lbZoom.Visible = false;
                 listArnormal.Visible = false;
                 listArnormal.Enabled = false;

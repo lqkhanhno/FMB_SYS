@@ -54,10 +54,10 @@
             this.btnCheck.AutoSize = true;
             this.btnCheck.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.btnCheck.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnCheck.Location = new System.Drawing.Point(749, 778);
-            this.btnCheck.Margin = new System.Windows.Forms.Padding(10, 11, 10, 11);
+            this.btnCheck.Location = new System.Drawing.Point(655, 584);
+            this.btnCheck.Margin = new System.Windows.Forms.Padding(9, 8, 9, 8);
             this.btnCheck.Name = "btnCheck";
-            this.btnCheck.Size = new System.Drawing.Size(400, 200);
+            this.btnCheck.Size = new System.Drawing.Size(350, 150);
             this.btnCheck.TabIndex = 17;
             this.btnCheck.Text = "Kiểm tra tình trạng kho";
             this.btnCheck.UseVisualStyleBackColor = false;
@@ -66,9 +66,10 @@
             // pictureBox4
             // 
             this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
-            this.pictureBox4.Location = new System.Drawing.Point(1378, 263);
+            this.pictureBox4.Location = new System.Drawing.Point(1206, 197);
+            this.pictureBox4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(400, 251);
+            this.pictureBox4.Size = new System.Drawing.Size(350, 188);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox4.TabIndex = 16;
             this.pictureBox4.TabStop = false;
@@ -77,9 +78,10 @@
             // pictureBox3
             // 
             this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(958, 263);
+            this.pictureBox3.Location = new System.Drawing.Point(838, 197);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(400, 251);
+            this.pictureBox3.Size = new System.Drawing.Size(350, 188);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox3.TabIndex = 15;
             this.pictureBox3.TabStop = false;
@@ -88,9 +90,10 @@
             // pictureBox2
             // 
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(538, 263);
+            this.pictureBox2.Location = new System.Drawing.Point(471, 197);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(400, 251);
+            this.pictureBox2.Size = new System.Drawing.Size(350, 188);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 14;
             this.pictureBox2.TabStop = false;
@@ -99,9 +102,10 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(120, 263);
+            this.pictureBox1.Location = new System.Drawing.Point(105, 197);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(400, 251);
+            this.pictureBox1.Size = new System.Drawing.Size(350, 188);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 13;
             this.pictureBox1.TabStop = false;
@@ -112,10 +116,10 @@
             this.btnBacknew.AutoSize = true;
             this.btnBacknew.BackColor = System.Drawing.Color.Red;
             this.btnBacknew.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnBacknew.Location = new System.Drawing.Point(1378, 509);
-            this.btnBacknew.Margin = new System.Windows.Forms.Padding(10, 11, 10, 11);
+            this.btnBacknew.Location = new System.Drawing.Point(1206, 382);
+            this.btnBacknew.Margin = new System.Windows.Forms.Padding(9, 8, 9, 8);
             this.btnBacknew.Name = "btnBacknew";
-            this.btnBacknew.Size = new System.Drawing.Size(400, 200);
+            this.btnBacknew.Size = new System.Drawing.Size(350, 150);
             this.btnBacknew.TabIndex = 12;
             this.btnBacknew.Text = "Hủy xe";
             this.btnBacknew.UseVisualStyleBackColor = false;
@@ -126,10 +130,10 @@
             this.btnBack.AutoSize = true;
             this.btnBack.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.btnBack.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnBack.Location = new System.Drawing.Point(958, 509);
-            this.btnBack.Margin = new System.Windows.Forms.Padding(10, 11, 10, 11);
+            this.btnBack.Location = new System.Drawing.Point(838, 382);
+            this.btnBack.Margin = new System.Windows.Forms.Padding(9, 8, 9, 8);
             this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(400, 200);
+            this.btnBack.Size = new System.Drawing.Size(350, 150);
             this.btnBack.TabIndex = 11;
             this.btnBack.Text = "Trả xe còn";
             this.btnBack.UseVisualStyleBackColor = false;
@@ -140,10 +144,10 @@
             this.btnTake.AutoSize = true;
             this.btnTake.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.btnTake.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnTake.Location = new System.Drawing.Point(538, 509);
-            this.btnTake.Margin = new System.Windows.Forms.Padding(10, 11, 10, 11);
+            this.btnTake.Location = new System.Drawing.Point(471, 382);
+            this.btnTake.Margin = new System.Windows.Forms.Padding(9, 8, 9, 8);
             this.btnTake.Name = "btnTake";
-            this.btnTake.Size = new System.Drawing.Size(400, 200);
+            this.btnTake.Size = new System.Drawing.Size(350, 150);
             this.btnTake.TabIndex = 10;
             this.btnTake.Text = "Lấy xe";
             this.btnTake.UseVisualStyleBackColor = false;
@@ -154,10 +158,10 @@
             this.btnAdd.AutoSize = true;
             this.btnAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.btnAdd.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnAdd.Location = new System.Drawing.Point(120, 509);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(10, 11, 10, 11);
+            this.btnAdd.Location = new System.Drawing.Point(105, 382);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(9, 8, 9, 8);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(400, 200);
+            this.btnAdd.Size = new System.Drawing.Size(350, 150);
             this.btnAdd.TabIndex = 9;
             this.btnAdd.Text = "Thêm xe";
             this.btnAdd.UseVisualStyleBackColor = false;
@@ -167,9 +171,9 @@
             // 
             this.lbName.AutoSize = true;
             this.lbName.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lbName.Location = new System.Drawing.Point(741, 99);
+            this.lbName.Location = new System.Drawing.Point(648, 74);
             this.lbName.Name = "lbName";
-            this.lbName.Size = new System.Drawing.Size(160, 45);
+            this.lbName.Size = new System.Drawing.Size(127, 37);
             this.lbName.TabIndex = 18;
             this.lbName.Text = "__________";
             // 
@@ -177,9 +181,10 @@
             // 
             this.btnChangename.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.btnChangename.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnChangename.Location = new System.Drawing.Point(958, 61);
+            this.btnChangename.Location = new System.Drawing.Point(838, 46);
+            this.btnChangename.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnChangename.Name = "btnChangename";
-            this.btnChangename.Size = new System.Drawing.Size(158, 125);
+            this.btnChangename.Size = new System.Drawing.Size(138, 94);
             this.btnChangename.TabIndex = 19;
             this.btnChangename.Text = "Đổi tên";
             this.btnChangename.UseVisualStyleBackColor = false;
@@ -189,9 +194,9 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(472, 99);
+            this.label2.Location = new System.Drawing.Point(413, 74);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(234, 45);
+            this.label2.Size = new System.Drawing.Size(189, 37);
             this.label2.TabIndex = 20;
             this.label2.Text = "Tên công nhân";
             // 
@@ -202,11 +207,11 @@
             // 
             // frmMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(1902, 1033);
+            this.ClientSize = new System.Drawing.Size(1370, 749);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnChangename);
             this.Controls.Add(this.lbName);
@@ -219,6 +224,7 @@
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btnTake);
             this.Controls.Add(this.btnAdd);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FMB_SYSTEM";
