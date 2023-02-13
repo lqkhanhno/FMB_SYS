@@ -184,6 +184,7 @@ namespace FMB_SYS
             txtID.Focus();
             lbName.Text = _message;
             this.Size = new System.Drawing.Size(1920, 1080);
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
 
         private void btnCheck_Click(object sender, EventArgs e)

@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Net.Mime.MediaTypeNames;
 using FMB_SYS.Models;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace FMB_SYS
 {
@@ -29,6 +30,7 @@ namespace FMB_SYS
         private void frmCheckstock_load()
         {
             this.Size = new System.Drawing.Size(1920, 1080);
+            this.StartPosition = FormStartPosition.CenterScreen;
             List<Label> labelline = new List<Label>
             {
                 lbline1, lbline2, lbline3, lbline4, lbline5, lbline6, lbline7, lbline8, lbline9, lbline10,
@@ -39,7 +41,7 @@ namespace FMB_SYS
                 var line = fmb.PFmbMasterLocationRubbers.SingleOrDefault(c => c.FmbLine == i + 1);
                 if (line != null)
                 {
-                    labelline[i].Text = (i+1)+". " +line.RubberName;
+                    labelline[i].Text = (i + 1) + ". " + line.RubberName;
                 }
             }
             List<Button> buttons = new List<Button>
@@ -136,11 +138,46 @@ namespace FMB_SYS
                 var check = fmb.PFmbLabResults.SingleOrDefault(c => c.FmbLine == btn.TabIndex / 5 + 1 && c.FmbNo == btn.TabIndex % 5 + 1);
                 if (check != null && check.NgayCan != null && check.Lotruber != null && check.Lotruber != null && check.MaxDuedate == null)
                 {
-                   MessageBox.Show("Mã xe: " + check.MaCode + "\nNgày cán: " + check.NgayCan.Value.ToString("dd/MM/yyyy") + "\nCa: " + check.Idca + "\nKhối lượng: " + check.KhoiLuong + "kg\nKết quả test lab: " + check.Kq + "\nLotruber: " + check.Lotruber.Value.ToString("dd/MM/yyyy"), "Thông tin", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    DialogResult result = MessageBox.Show("Mã xe: " + check.MaCode + "\nNgày cán: " + check.NgayCan.Value.ToString("dd/MM/yyyy") + "\nCa: " + check.Idca + "\nKhối lượng: " + check.KhoiLuong + "kg\nKết quả test lab: " + check.Kq + "\nLotruber: " + check.Lotruber.Value.ToString("dd/MM/yyyy") + "\nThời gian nhập kho: " + check.InputTime + "\nNgười nhập kho: " + check.PicInput, "Thông tin", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    //if(result == DialogResult.Yes)
+                    //{
+                    //    DialogResult remove = MessageBox.Show("Bạn có chắc chắn muốn hủy xe cao xu này?", "Thông báo hủy xe", MessageBoxButtons.YesNo,MessageBoxIcon.Warning);
+                    //    if (remove == DialogResult.Yes)
+                    //    {
+                    //        var up = fmb.PFmbLabResults.Where(c => c.Place == "FMB Stock").Where(c => c.FmbLine == check.FmbLine).Where(c => c.FmbNo > check.FmbNo).ToList();
+                    //        var check1 = fmb.PFmbMasterLocationRubbers.OrderBy(c => c.FmbLine).FirstOrDefault(c => c.RubberName == check.MaNguyenLieu);
+                    //        var check2 = fmb.PFmbMasterLocationRubbers.OrderByDescending(c => c.FmbLine).FirstOrDefault(c => c.RubberName == check.MaNguyenLieu);
+                    //        foreach (var item in up)
+                    //        {
+                    //            item.FmbNo--;
+                    //        }
+                    //        if (check1 != check2 && check1 != null && check2 != null)
+                    //        {
+                    //            if (check1.FmbLine == check2.FmbLine)
+                    //            {
+                    //                var down = fmb.PFmbLabResults.Where(c => c.Place == "FMB Stock").Where(c => c.FmbLine == check1.FmbLine).ToList();
+                    //                foreach (var item in down)
+                    //                {
+                    //                    item.FmbNo--;
+                    //                    if (item.FmbNo < 1)
+                    //                    {
+                    //                        item.FmbNo = 5;
+                    //                        item.FmbLine = item.FmbLine + 1;
+                    //                    }
+                    //                }
+                    //            }
+                    //        }
+                    //        check.RemoveTime = DateTime.Now;
+                    //        check.RemoveReason = "Lý do khác";
+                    //        check.FmbLine = null;
+                    //        check.FmbNo = null;
+                    //        check.Place = null;
+                    //    }
+                    //}
                 }
                 else if (check != null && check.MaxDuedate != null && check.NgayCan != null && check.Lotruber != null)
                 {
-                    MessageBox.Show("Mã xe: " + check.MaCode + "\nNgày cán: " + check.NgayCan.Value.ToString("dd/MM/yyyy") + "\nCa: " + check.Idca + "\nKhối lượng: " + check.KhoiLuong + "kg\nKết quả test lab: " + check.Kq + "\nLotruber: " + check.Lotruber.Value.ToString("dd/MM/yyyy") + "\nHạn còn: " + (int)(check.MaxDuedate - DateTime.Now).Value.TotalHours + " giờ", "Thông tin", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Mã xe: " + check.MaCode + "\nNgày cán: " + check.NgayCan.Value.ToString("dd/MM/yyyy") + "\nCa: " + check.Idca + "\nKhối lượng: " + check.KhoiLuong + "kg\nKết quả test lab: " + check.Kq + "\nLotruber: " + check.Lotruber.Value.ToString("dd/MM/yyyy") + "\nHạn còn: " + (int)(check.MaxDuedate - DateTime.Now).Value.TotalHours + " giờ" + "\nThời gian nhập kho: " + check.InputTime + "\nNgười nhập kho: " + check.PicInput, "Thông tin", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception)
