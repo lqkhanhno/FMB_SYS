@@ -159,6 +159,7 @@ namespace FMB_SYS
         {
             lbName.Text = _message;
             timer1.Enabled = true;
+            this.Size = new System.Drawing.Size(1920, 1080);
         }
         private void button1_Click(object sender, EventArgs e)
         {

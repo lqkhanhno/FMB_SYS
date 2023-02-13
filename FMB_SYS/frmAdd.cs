@@ -392,6 +392,7 @@ namespace FMB_SYS
             lbSP.Text = "Quét mã QR của xe";
             txtID.Focus();
             lbName.Text = _message;
+            this.Size = new System.Drawing.Size(1920, 1080);
         }
 
         private void btnCheck_Click(object sender, EventArgs e)
