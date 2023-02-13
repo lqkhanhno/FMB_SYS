@@ -138,7 +138,7 @@ namespace FMB_SYS
                 var check = fmb.PFmbLabResults.SingleOrDefault(c => c.FmbLine == btn.TabIndex / 5 + 1 && c.FmbNo == btn.TabIndex % 5 + 1);
                 if (check != null && check.NgayCan != null && check.Lotruber != null && check.Lotruber != null && check.MaxDuedate == null)
                 {
-                    DialogResult result = MessageBox.Show("Mã xe: " + check.MaCode + "\nNgày cán: " + check.NgayCan.Value.ToString("dd/MM/yyyy") + "\nCa: " + check.Idca + "\nKhối lượng: " + check.KhoiLuong + "kg\nKết quả test lab: " + check.Kq + "\nLotruber: " + check.Lotruber.Value.ToString("dd/MM/yyyy") + "\nThời gian nhập kho: " + check.InputTime + "\nNgười nhập kho: " + check.PicInput, "Thông tin", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    DialogResult result = MessageBox.Show("Mã xe: " + check.MaCode + "\nNgày cán: " + check.NgayCan.Value.ToString("dd/MM/yyyy") + "\nCa: " + check.Idca + "\nKhối lượng: " + check.KhoiLuong + "kg\nKết quả test lab: " + check.Kq + "\nLotruber: " + check.Lotruber.Value.ToString("dd/MM/yyyy") + "\nThời gian nhập kho: " + check.InputTime + "\nNgười nhập kho: " + check.PicInput, "Thông tin", MessageBoxButtons.OK, MessageBoxIcon.Information);  
                     //if(result == DialogResult.Yes)
                     //{
                     //    DialogResult remove = MessageBox.Show("Bạn có chắc chắn muốn hủy xe cao xu này?", "Thông báo hủy xe", MessageBoxButtons.YesNo,MessageBoxIcon.Warning);
