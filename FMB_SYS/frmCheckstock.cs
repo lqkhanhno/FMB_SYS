@@ -95,7 +95,7 @@ namespace FMB_SYS
                         }
                         else if (check.MinDuedate > DateTime.Now && check.ThoiGian <= DateTime.Now)
                         {
-                            //buttons[(i - 1) * 5 + j - 1].BackColor = Color.;
+                            buttons[(i - 1) * 5 + j - 1].BackColor = Color.White;
                         }
                         else if (check.Kq == "OK special")
                         {
