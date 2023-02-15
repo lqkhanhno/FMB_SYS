@@ -204,6 +204,7 @@ namespace FMB_SYS
                     ThoiGian = labInfo.ThoiGian,
                     IdspthongSo = labInfo.IdspthongSo,
                     IdNl = labInfo.IdNl,
+                    IdloaiSp= labInfo.IdloaiSp,
                     Lotruber = labInfo.Lotruber,
                     Idca = labInfo.Idca,
                     Cmb = labInfo.Cmb,
