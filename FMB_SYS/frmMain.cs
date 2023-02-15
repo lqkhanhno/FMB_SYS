@@ -82,6 +82,7 @@ namespace FMB_SYS
         {
             timer1.Enabled = false;
             frmCheckstock checkstock = new frmCheckstock();
+            checkstock.Message = lbName.Text;
             checkstock.ShowDialog();
         }
 

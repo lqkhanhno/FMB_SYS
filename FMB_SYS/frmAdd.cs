@@ -224,7 +224,7 @@ namespace FMB_SYS
                     insert.Labkind = "NG lab";
                     if (listArnormal.Visible == true && listArnormal.SelectedItems != null)
                     {
-                        insert.Labkind=listArnormal.Text;
+                        insert.Labkind = listArnormal.Text;
                         var due = fmb.PFmbMasterListRubbers.SingleOrDefault(c => c.RubberName == insert.MaNguyenLieu);
                         if (due != null && insert.ThoiGian != null)
                         {
@@ -399,7 +399,7 @@ namespace FMB_SYS
         private void btnCheck_Click(object sender, EventArgs e)
         {
             frmCheckstock open = new frmCheckstock();
-            open.ShowDialog();
+            open.Message = lbName.Text; open.ShowDialog();
         }
 
         private void txtID_TextChanged(object sender, EventArgs e)

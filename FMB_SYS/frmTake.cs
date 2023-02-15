@@ -190,6 +190,7 @@ namespace FMB_SYS
         private void btnCheck_Click(object sender, EventArgs e)
         {
             frmCheckstock open = new frmCheckstock();
+            open.Message = lbName.Text;
             open.ShowDialog();
         }
 
