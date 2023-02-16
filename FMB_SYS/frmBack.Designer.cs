@@ -46,6 +46,9 @@
             this.btnCheck = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.lbName = new System.Windows.Forms.Label();
+            this.btnZoom = new System.Windows.Forms.Button();
+            this.lbZoom = new System.Windows.Forms.Label();
+            this.listArnormal = new System.Windows.Forms.ListBox();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -228,6 +231,45 @@
             this.lbName.TabIndex = 32;
             this.lbName.Text = "__________";
             // 
+            // btnZoom
+            // 
+            this.btnZoom.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnZoom.Location = new System.Drawing.Point(481, 89);
+            this.btnZoom.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnZoom.Name = "btnZoom";
+            this.btnZoom.Size = new System.Drawing.Size(80, 60);
+            this.btnZoom.TabIndex = 36;
+            this.btnZoom.Text = "Khác";
+            this.btnZoom.UseVisualStyleBackColor = true;
+            this.btnZoom.Click += new System.EventHandler(this.btnZoom_Click);
+            // 
+            // lbZoom
+            // 
+            this.lbZoom.AutoSize = true;
+            this.lbZoom.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lbZoom.Location = new System.Drawing.Point(137, 109);
+            this.lbZoom.Name = "lbZoom";
+            this.lbZoom.Size = new System.Drawing.Size(71, 38);
+            this.lbZoom.TabIndex = 35;
+            this.lbZoom.Text = "Loại";
+            this.lbZoom.Visible = false;
+            // 
+            // listArnormal
+            // 
+            this.listArnormal.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.listArnormal.FormattingEnabled = true;
+            this.listArnormal.ItemHeight = 37;
+            this.listArnormal.Items.AddRange(new object[] {
+            "Test",
+            "Tráng máy",
+            "Bổ sung",
+            "Cán lại"});
+            this.listArnormal.Location = new System.Drawing.Point(252, 41);
+            this.listArnormal.Name = "listArnormal";
+            this.listArnormal.Size = new System.Drawing.Size(190, 152);
+            this.listArnormal.TabIndex = 34;
+            this.listArnormal.Visible = false;
+            // 
             // frmBack
             // 
             this.AcceptButton = this.btnEnter;
@@ -236,6 +278,9 @@
             this.AutoSize = true;
             this.CancelButton = this.btnOut;
             this.ClientSize = new System.Drawing.Size(1902, 1033);
+            this.Controls.Add(this.btnZoom);
+            this.Controls.Add(this.lbZoom);
+            this.Controls.Add(this.listArnormal);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.lbName);
             this.Controls.Add(this.btnCheck);
@@ -282,5 +327,8 @@
         private System.Windows.Forms.Button btnCheck;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label lbName;
+        private System.Windows.Forms.Button btnZoom;
+        private System.Windows.Forms.Label lbZoom;
+        private System.Windows.Forms.ListBox listArnormal;
     }
 }

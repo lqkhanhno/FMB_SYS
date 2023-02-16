@@ -155,7 +155,7 @@ namespace FMB_SYS
                         var check = fmb.PFmbLabResults.SingleOrDefault(c => c.FmbLine == btn.TabIndex / 5 + 1 && c.FmbNo == btn.TabIndex % 5 + 1);
                         if (check != null && check.NgayCan != null && check.Lotruber != null && check.Lotruber != null && check.MaxDuedate == null)
                         {
-                            DialogResult result = MessageBox.Show("Mã xe: " + check.MaCode + "\nNgày cán: " + check.NgayCan.Value.ToString("dd/MM/yyyy") + "\nCa: " + check.Idca + "\nKhối lượng: " + check.KhoiLuong + "kg\nKết quả test lab: " + check.Kq + "\nLotruber: " + check.Lotruber.Value.ToString("dd/MM/yyyy") + "\nThời gian nhập kho: " + check.InputTime + "\nNgười nhập kho: " + check.PicInput
+                            DialogResult result = MessageBox.Show("Mã xe: " + check.MaCode + "\nMã cao su: " + check.MaNguyenLieu + "\nNgày cán: " + check.NgayCan.Value.ToString("dd/MM/yyyy") + "\nCa: " + check.Idca + "\nKhối lượng: " + check.KhoiLuong + "kg\nKết quả test lab: " + check.Kq + "\nLotruber: " + check.Lotruber.Value.ToString("dd/MM/yyyy") + "\nThời gian nhập kho: " + check.InputTime + "\nNgười nhập kho: " + check.PicInput
                                 + "\n_________________________________________\n      Bạn có muốn hủy xe này?", "Thông tin", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                             if (result == DialogResult.Yes)
                             {
@@ -198,7 +198,7 @@ namespace FMB_SYS
                         }
                         else if (check != null && check.MaxDuedate != null && check.NgayCan != null && check.Lotruber != null)
                         {
-                            DialogResult result = MessageBox.Show("Mã xe: " + check.MaCode + "\nNgày cán: " + check.NgayCan.Value.ToString("dd/MM/yyyy") + "\nCa: " + check.Idca + "\nKhối lượng: " + check.KhoiLuong + "kg\nKết quả test lab: " + check.Kq + "\nLotruber: " + check.Lotruber.Value.ToString("dd/MM/yyyy") + "\nHạn còn: " + (int)(check.MaxDuedate - DateTime.Now).Value.TotalHours + " giờ" + "\nThời gian nhập kho: " + check.InputTime + "\nNgười nhập kho: " + check.PicInput
+                            DialogResult result = MessageBox.Show("Mã xe: " + check.MaCode + "\nMã cao su: " + check.MaNguyenLieu + "\nNgày cán: " + check.NgayCan.Value.ToString("dd/MM/yyyy") + "\nCa: " + check.Idca + "\nKhối lượng: " + check.KhoiLuong + "kg\nKết quả test lab: " + check.Kq + "\nLotruber: " + check.Lotruber.Value.ToString("dd/MM/yyyy") + "\nHạn còn: " + (int)(check.MaxDuedate - DateTime.Now).Value.TotalHours + " giờ" + "\nThời gian nhập kho: " + check.InputTime + "\nNgười nhập kho: " + check.PicInput
                                 + "\n_________________________________________\n      Bạn có muốn hủy xe này?", "Thông tin", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                             if (result == DialogResult.Yes)
                             {
@@ -252,11 +252,11 @@ namespace FMB_SYS
                     var check = fmb.PFmbLabResults.SingleOrDefault(c => c.FmbLine == btn.TabIndex / 5 + 1 && c.FmbNo == btn.TabIndex % 5 + 1);
                     if (check != null && check.NgayCan != null && check.Lotruber != null && check.Lotruber != null && check.MaxDuedate == null)
                     {
-                        MessageBox.Show("Mã xe: " + check.MaCode + "\nNgày cán: " + check.NgayCan.Value.ToString("dd/MM/yyyy") + "\nCa: " + check.Idca + "\nKhối lượng: " + check.KhoiLuong + "kg\nKết quả test lab: " + check.Kq + "\nLotruber: " + check.Lotruber.Value.ToString("dd/MM/yyyy") + "\nThời gian nhập kho: " + check.InputTime + "\nNgười nhập kho: " + check.PicInput, "Thông tin", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Mã xe: " + check.MaCode + "\nMã cao su: " + check.MaNguyenLieu + "\nNgày cán: " + check.NgayCan.Value.ToString("dd/MM/yyyy") + "\nCa: " + check.Idca + "\nKhối lượng: " + check.KhoiLuong + "kg\nKết quả test lab: " + check.Kq + "\nLotruber: " + check.Lotruber.Value.ToString("dd/MM/yyyy") + "\nThời gian nhập kho: " + check.InputTime + "\nNgười nhập kho: " + check.PicInput, "Thông tin", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else if (check != null && check.MaxDuedate != null && check.NgayCan != null && check.Lotruber != null)
                     {
-                        MessageBox.Show("Mã xe: " + check.MaCode + "\nNgày cán: " + check.NgayCan.Value.ToString("dd/MM/yyyy") + "\nCa: " + check.Idca + "\nKhối lượng: " + check.KhoiLuong + "kg\nKết quả test lab: " + check.Kq + "\nLotruber: " + check.Lotruber.Value.ToString("dd/MM/yyyy") + "\nHạn còn: " + (int)(check.MaxDuedate - DateTime.Now).Value.TotalHours + " giờ" + "\nThời gian nhập kho: " + check.InputTime + "\nNgười nhập kho: " + check.PicInput, "Thông tin", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Mã xe: " + check.MaCode + "\nMã cao su: " + check.MaNguyenLieu + "\nNgày cán: " + check.NgayCan.Value.ToString("dd/MM/yyyy") + "\nCa: " + check.Idca + "\nKhối lượng: " + check.KhoiLuong + "kg\nKết quả test lab: " + check.Kq + "\nLotruber: " + check.Lotruber.Value.ToString("dd/MM/yyyy") + "\nHạn còn: " + (int)(check.MaxDuedate - DateTime.Now).Value.TotalHours + " giờ" + "\nThời gian nhập kho: " + check.InputTime + "\nNgười nhập kho: " + check.PicInput, "Thông tin", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
                 catch (Exception)

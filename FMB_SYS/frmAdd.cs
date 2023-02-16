@@ -108,6 +108,12 @@ namespace FMB_SYS
                             lbSP.Text = "Thoát hoặc quét mã QR tiếp";
                             fmb.SaveChanges();
                         }
+                        else
+                        {
+                            lbError.Text = "Mã cao su '" + labInfo.MaNguyenLieu + "' không tồn tại trong hệ thống. Vui lòng liên hệ IT";
+                            lbInformation.Text = string.Empty;
+                            lbSP.Text = "Thoát hoặc quét mã QR tiếp";
+                        }
                     }
                 }
                 else
@@ -187,7 +193,7 @@ namespace FMB_SYS
                         }
                         else
                         {
-                            lbError.Text = "Mã cao su chưa có trong kho";
+                            lbError.Text = "Mã cao su '" + labInfo.MaNguyenLieu + "' không tồn tại trong hệ thống. Vui lòng liên hệ IT";
                             lbInformation.Text = string.Empty;
                             lbSP.Text = "Thoát hoặc quét mã QR tiếp";
                         }
@@ -272,6 +278,12 @@ namespace FMB_SYS
                             lbError.Text = "";
                             lbSP.Text = "Thoát hoặc quét mã QR tiếp";
                             fmb.SaveChanges();
+                        }
+                        else
+                        {
+                            lbError.Text = "Mã cao su '" + labInfo.MaNguyenLieu + "' không tồn tại trong hệ thống. Vui lòng liên hệ IT";
+                            lbInformation.Text = string.Empty;
+                            lbSP.Text = "Thoát hoặc quét mã QR tiếp";
                         }
                     }
                 }
