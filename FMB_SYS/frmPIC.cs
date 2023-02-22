@@ -18,7 +18,9 @@ namespace FMB_SYS
         }
         private void btnEnter_Click(object sender, EventArgs e)
         {
-            frmMain child = new frmMain(); child.Message = txtName.Text;
+            string name = txtName.Text;
+            frmMain child = new frmMain(); 
+            child.Message = name;
             child.ShowDialog();
             txtName.Text = string.Empty;
             lbSP.Text = string.Empty;

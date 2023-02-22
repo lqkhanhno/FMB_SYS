@@ -43,17 +43,17 @@ namespace FMB_SYS
         private void btnEnter_Click(object sender, EventArgs e)
         {
             timer1.Enabled = false;
-            var update = fmb.PFmbLabResults.SingleOrDefault(c => c.MaCode == txtID.Text);
+            string mabarcode = txtID.Text;
+            var update = fmb.PFmbLabResults.SingleOrDefault(c => c.MaCode == mabarcode);
             if (update != null)
             {
                 if (listArnormal.Visible == true && listArnormal.SelectedItems != null)
                 {
                     update.Labkind = listArnormal.Text;
-                    var check = fmb.PFmbLabResults.Where(c => c.Place != "FMB Stock").SingleOrDefault(c => c.MaCode == txtID.Text);
+                    var check = fmb.PFmbLabResults.Where(c => c.Place != "FMB Stock").SingleOrDefault(c => c.MaCode == mabarcode);
                     if (check != null)
                     {
                         if (txtWeight.Text == "")
-                        
                         {
                             txtWeight.Focus();
                             lbInformation.Text = "Nhập khối lượng còn lại của xe " + update.MaCode;
@@ -211,6 +211,14 @@ namespace FMB_SYS
                         txtID.Focus();
                         txtWeight.Text = string.Empty;
                     }
+                    else if (update.RemoveReason != null)
+                    {
+                        lbError.Text = "Xe đã từng bị hủy, lý do: " + update.RemoveReason;
+                        lbInformation.Text = string.Empty;
+                        txtID.Text = string.Empty;
+                        txtWeight.Text = string.Empty;
+                        txtID.Focus();
+                    }
                     else if (update.Place == null)
                     {
                         lbError.Text = ("Chọn sai chức năng\nXe " + update.MaCode + " chưa nhập kho");
@@ -225,7 +233,6 @@ namespace FMB_SYS
             {
                 txtID.Text = string.Empty;
                 txtWeight.Text = string.Empty;
-                txtID.Text = string.Empty;
                 txtID.Focus();
 
             }

@@ -28,14 +28,107 @@ namespace FMB_SYS
         HVN_SYSContext fmb = new HVN_SYSContext();
         private void btnEnter_Click(object sender, EventArgs e)
         {
-            var update = fmb.PFmbLabResults.SingleOrDefault(c => c.MaCode == txtID.Text);
+            string mabarcode = txtID.Text;
+            var update = fmb.PFmbLabResults.SingleOrDefault(c => c.MaCode == mabarcode);
             if (update != null && update.Place == "FMB Stock")
             {
-                var check = fmb.PFmbLabResults.Where(c => c.Place == "FMB Stock").OrderByDescending(c => c.FmbLine).ThenBy(c => c.FmbNo)
+                var check = fmb.PFmbLabResults.Where(c => c.Place == "FMB Stock").Where(c => c.Labkind == "Normal").OrderByDescending(c => c.FmbLine).ThenBy(c => c.FmbNo)
                         .FirstOrDefault(c => c.MaNguyenLieu == update.MaNguyenLieu);
-                if (check == update)
+                if (check == update && update.Labkind == "Normal")
                 {
-                    if (update != null)
+                    lbInformation.Text = "Xe được lấy đi ở đầu hàng " + update.FmbLine + "\nMã xe: " + update.MaCode + "\nNgười lấy: " + _message;
+                    update.PicTake = _message;
+                    var down = fmb.PFmbLabResults.Where(c => c.Place == "FMB Stock").Where(c => c.MaNguyenLieu == update.MaNguyenLieu).ToList();
+                    foreach (var item in down)
+                    {
+                        item.FmbNo--;
+                        if (item.FmbNo < 1)
+                        {
+                            item.FmbNo = 5;
+                            item.FmbLine = item.FmbLine + 1;
+                        }
+                    }
+                    update.TakeTime = DateTime.Now;
+                    update.FmbLine = null;
+                    update.FmbNo = null;
+                    update.Place = "PD";
+                    fmb.SaveChanges();
+                    lbError.Text = "";
+                    lbSP.Text = "Thoát hoặc quét mã QR của xe tiếp theo";
+                }
+                else if (update.Labkind == "NG lab")
+                {
+                    var up = fmb.PFmbLabResults.Where(c => c.Place == "FMB Stock").Where(c => c.FmbLine == update.FmbLine).Where(c => c.FmbNo > update.FmbNo).ToList();
+                    foreach (var item in up)
+                    {
+                        item.FmbNo--;
+                    }
+                    update.RemoveTime = DateTime.Now;
+                    update.RemoveReason = "NG kết quả lab";
+                    update.FmbLine = null;
+                    update.FmbNo = null;
+                    update.Place = null;
+                    update.PicRemove = _message;
+                    fmb.SaveChanges();
+                    lbInformation.Text = "Xe" + update.MaNguyenLieu + "có mã: " + update.MaCode + " đã được hủy thành công\nNgười hủy: " + _message;
+                    lbError.Text = string.Empty;
+                }
+                else if (update.Labkind == "Test")
+                {
+                    var up = fmb.PFmbLabResults.Where(c => c.Place == "FMB Stock").Where(c => c.FmbLine == update.FmbLine).Where(c => c.FmbNo > update.FmbNo).ToList();
+                    foreach (var item in up)
+                    {
+                        item.FmbNo--;
+                    }
+                    update.RemoveTime = DateTime.Now;
+                    update.RemoveReason = "Cao su test";
+                    update.FmbLine = null;
+                    update.FmbNo = null;
+                    update.Place = null;
+                    update.PicRemove = _message;
+                    fmb.SaveChanges();
+                    lbInformation.Text = "Xe có mã: " + update.MaCode + " đã được lấy thành công\nNgười lấy: " + _message;
+                    lbError.Text = string.Empty;
+                }
+                else if (update.Labkind == "Tráng máy")
+                {
+                    var up = fmb.PFmbLabResults.Where(c => c.Place == "FMB Stock").Where(c => c.FmbLine == update.FmbLine).Where(c => c.FmbNo > update.FmbNo).ToList();
+                    foreach (var item in up)
+                    {
+                        item.FmbNo--;
+                    }
+                    update.RemoveTime = DateTime.Now;
+                    update.RemoveReason = "Cao su tráng máy";
+                    update.FmbLine = null;
+                    update.FmbNo = null;
+                    update.Place = null;
+                    update.PicRemove = _message;
+                    fmb.SaveChanges();
+                    lbInformation.Text = "Xe có mã: " + update.MaCode + " đã được lấy thành công\nNgười lấy: " + _message;
+                    lbError.Text = string.Empty;
+                }
+                else if (update.Labkind == "Cán lại")
+                {
+                    var up = fmb.PFmbLabResults.Where(c => c.Place == "FMB Stock").Where(c => c.FmbLine == update.FmbLine).Where(c => c.FmbNo > update.FmbNo).ToList();
+                    foreach (var item in up)
+                    {
+                        item.FmbNo--;
+                    }
+                    update.RemoveTime = DateTime.Now;
+                    update.RemoveReason = "Cao su cán lại";
+                    update.FmbLine = null;
+                    update.FmbNo = null;
+                    update.Place = null;
+                    update.PicRemove = _message;
+                    fmb.SaveChanges();
+                    lbInformation.Text = "Xe có mã: " + update.MaCode + " đã được lấy thành công\nNgười lấy: " + _message;
+                    lbError.Text = string.Empty;
+                }
+                else if(update.Labkind == "Bổ sung")
+                {
+                    var checkbackup = fmb.PFmbLabResults.Where(c => c.Place == "FMB Stock").Where(c => c.Labkind == update.Labkind).OrderByDescending(c => c.FmbLine).ThenBy(c => c.FmbNo)
+                        .FirstOrDefault(c => c.MaNguyenLieu == update.MaNguyenLieu);
+                    if(checkbackup == update)
                     {
                         lbInformation.Text = "Xe được lấy đi ở đầu hàng " + update.FmbLine + "\nMã xe: " + update.MaCode + "\nNgười lấy: " + _message;
                         update.PicTake = _message;
@@ -53,87 +146,15 @@ namespace FMB_SYS
                         update.FmbLine = null;
                         update.FmbNo = null;
                         update.Place = "PD";
-                        if (update.Labkind == "NG lab")
-                        {
-                            update.Place = null;
-                            update.PicTake = null;
-                            update.TakeTime = null;
-                            update.RemoveTime = DateTime.Now;
-                            update.RemoveReason = "NG kết quả lab";
-                            update.PicRemove = _message;
-                        }
                         fmb.SaveChanges();
                         lbError.Text = "";
                         lbSP.Text = "Thoát hoặc quét mã QR của xe tiếp theo";
                     }
-                }
-                else if (update.Labkind == "NG lab")
-                {
-                    var up = fmb.PFmbLabResults.Where(c => c.Place == "FMB Stock").Where(c => c.FmbLine == update.FmbLine).Where(c => c.FmbNo > update.FmbNo).ToList();
-                    foreach (var item in up)
+                    else if(checkbackup != update && checkbackup != null)
                     {
-                        item.FmbNo--;
+                        lbError.Text = "Xe " + update.MaCode + " không ở vị trí đầu của hàng\nXe hiện tại ở hàng " + checkbackup.FmbLine + " vị trí " + checkbackup.FmbNo + "\nMã xe cần lấy: " + checkbackup.MaCode;
+                        lbInformation.Text = "";
                     }
-                    update.RemoveTime = DateTime.Now;
-                    update.RemoveReason = "NG kết quả lab"; 
-                    update.FmbLine = null;
-                    update.FmbNo = null;
-                    update.Place = null;
-                    update.PicRemove = _message;
-                    fmb.SaveChanges();
-                    lbInformation.Text = "Xe có mã: " + update.MaCode + " đã được hủy thành công\nNgười hủy: " + _message;
-                    lbError.Text = string.Empty;
-                }
-                else if(update.Labkind == "Test")
-                {
-                    var up = fmb.PFmbLabResults.Where(c => c.Place == "FMB Stock").Where(c => c.FmbLine == update.FmbLine).Where(c => c.FmbNo > update.FmbNo).ToList();
-                    foreach (var item in up)
-                    {
-                        item.FmbNo--;
-                    }
-                    update.RemoveTime = DateTime.Now;
-                    update.RemoveReason = "Cao su test"; 
-                    update.FmbLine = null;
-                    update.FmbNo = null;
-                    update.Place = null;
-                    update.PicRemove = _message;
-                    fmb.SaveChanges();
-                    lbInformation.Text = "Xe có mã: " + update.MaCode + " đã được lấy thành công\nNgười lấy: " + _message;
-                    lbError.Text = string.Empty;
-                }
-                else if (update.Labkind == "Trang may")
-                {
-                    var up = fmb.PFmbLabResults.Where(c => c.Place == "FMB Stock").Where(c => c.FmbLine == update.FmbLine).Where(c => c.FmbNo > update.FmbNo).ToList();
-                    foreach (var item in up)
-                    {
-                        item.FmbNo--;
-                    }
-                    update.RemoveTime = DateTime.Now;
-                    update.RemoveReason = "Cao su tráng máy"; 
-                    update.FmbLine = null;
-                    update.FmbNo = null;
-                    update.Place = null;
-                    update.PicRemove = _message;
-                    fmb.SaveChanges();
-                    lbInformation.Text = "Xe có mã: " + update.MaCode + " đã được lấy thành công\nNgười lấy: " + _message;
-                    lbError.Text = string.Empty;
-                }
-                else if (update.Labkind == "Can lai")
-                {
-                    var up = fmb.PFmbLabResults.Where(c => c.Place == "FMB Stock").Where(c => c.FmbLine == update.FmbLine).Where(c => c.FmbNo > update.FmbNo).ToList();
-                    foreach (var item in up)
-                    {
-                        item.FmbNo--;
-                    }
-                    update.RemoveTime = DateTime.Now;
-                    update.RemoveReason = "Cao su tráng máy";
-                    update.FmbLine = null;
-                    update.FmbNo = null;
-                    update.Place = null;
-                    update.PicRemove = _message;
-                    fmb.SaveChanges();
-                    lbInformation.Text = "Xe có mã: " + update.MaCode + " đã được lấy thành công\nNgười lấy: " + _message;
-                    lbError.Text = string.Empty;
                 }
                 else if (check != update && check != null)
                 {

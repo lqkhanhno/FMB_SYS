@@ -88,7 +88,7 @@ namespace FMB_SYS
                     buttons[(i - 1) * 5 + j - 1].TabIndex = (i - 1) * 5 + j - 1;
                     if (check != null && check.ThoiGian != null && check.MaxDuedate != null && check.Lotruber != null)
                     {
-                        buttons[(i - 1) * 5 + j - 1].Text = check.KhoiLuong + "kg\n" + check.Kq + "\n" + check.Lotruber.Value.ToString("dd/MM") + "|" + check.Idca + "\nHạn còn: " + (int)(check.MaxDuedate - DateTime.Now).Value.TotalHours + "h";
+                        buttons[(i - 1) * 5 + j - 1].Text = check.MaNguyenLieu + "|" + check.KhoiLuong + "kg\n" + check.Kq + "\n" + check.Lotruber.Value.ToString("dd/MM") + "|" + check.Idca + "\nHạn còn: " + (int)(check.MaxDuedate - DateTime.Now).Value.TotalHours + "h";
                         if (check.MaxDuedate > DateTime.Now && check.MinDuedate < DateTime.Now && check.Kq == "OK")
                         {
                             buttons[(i - 1) * 5 + j - 1].BackColor = Color.LightGreen;
@@ -120,7 +120,7 @@ namespace FMB_SYS
                     }
                     else if (check != null && check.Lotruber != null)
                     {
-                        buttons[(i - 1) * 5 + j - 1].Text = check.KhoiLuong + "kg\n" + check.Kq + "\n" + check.Lotruber.Value.ToString("dd/MM") + "|" + check.Idca;
+                        buttons[(i - 1) * 5 + j - 1].Text = check.MaNguyenLieu + "|" + check.KhoiLuong + "kg\n" + check.Kq + "\n" + check.Lotruber.Value.ToString("dd/MM") + "|" + check.Idca;
                         buttons[(i - 1) * 5 + j - 1].BackColor = Color.Red;
                     }
                     else

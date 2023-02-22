@@ -35,7 +35,8 @@ namespace FMB_SYS
         private void btnEnter_Click(object sender, EventArgs e)
         {
             timer1.Enabled = false;
-            var update = fmb.PFmbLabResults.SingleOrDefault(c => c.MaCode == txtID.Text);
+            string mabarcode = txtID.Text;
+            var update = fmb.PFmbLabResults.SingleOrDefault(c => c.MaCode == mabarcode);
             if (update != null && update.Place != "FMB Stock")
             {
                 lbError.Text = "Xe không còn trong kho\n";
