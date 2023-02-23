@@ -133,7 +133,7 @@ namespace FMB_SYS
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var sum = fmb.PFmbLabResults.Where(c => c.MaNguyenLieu.Contains(listBox1.Text)).Where(c => c.Place == "FMB Stock").Where(c => c.Labkind == "Normal").Sum(c => c.KhoiLuong);
+            var sum = fmb.PFmbLabResults.Where(c => c.MaNguyenLieu.Contains(listBox1.Text)).Where(c => c.Place == "FMB Stock").Where(c => c.Labkind == "Normal" || c.Labkind == "Bổ sung").Sum(c => c.KhoiLuong);
             textBox1.Text = sum.ToString();
         }
 

@@ -38,7 +38,7 @@ namespace FMB_SYS
             var fmbInfo = fmb.PFmbLabResults.SingleOrDefault(c => c.MaCode == mabarcode);
             if (fmbInfo != null && fmbInfo.Place == "PD")
             {
-                lbError.Text = "Chọn sai chức năng\nXe có mã: " + fmbInfo.MaCode + " hiện tại đang ở PD\nCần báo hết cho xe!";
+                lbError.Text = "Chọn sai chức năng\nXe có mã: " + fmbInfo.MaCode + " đã được mang đi cán lúc: " + fmbInfo.TakeTime + "bởi: " + fmbInfo.PicTake+"\nVui lòng liên hệ IT nếu bạn không chọn sai chức năng!";
                 lbInformation.Text = "";
                 txtID.Text = string.Empty;
                 txtID.Focus();

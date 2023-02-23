@@ -82,7 +82,7 @@ namespace FMB_SYS
                                     update.PicReturn = _message;
                                     update.KhoiLuong = int.Parse(txtWeight.Text);
                                     update.Place = "FMB Stock";
-                                    var down = fmb.PFmbLabResults.Where(c => c.Place == "FMB Stock").Where(c => c.MaNguyenLieu == update.MaNguyenLieu).ToList();
+                                    var down = fmb.PFmbLabResults.Where(c => c.Place == "FMB Stock").Where(c => c.Labkind == update.Labkind).ToList();
                                     foreach (var item in down)
                                     {
                                         item.FmbNo++;
@@ -106,7 +106,7 @@ namespace FMB_SYS
                                     }
                                     else
                                     {
-                                        lbError.Text = "Mã cao su '" + update.MaNguyenLieu + "' không tồn tại trong hệ thống. Vui lòng liên hệ IT";
+                                        lbError.Text = "Hàng '" + update.Labkind + "' không tồn tại trong hệ thống. Vui lòng liên hệ IT";
                                         lbInformation.Text = string.Empty;
                                         lbSP.Text = "Thoát hoặc quét mã QR tiếp";
                                     }

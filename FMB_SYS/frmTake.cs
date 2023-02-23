@@ -38,7 +38,7 @@ namespace FMB_SYS
                 {
                     lbInformation.Text = "Xe được lấy đi ở đầu hàng " + update.FmbLine + "\nMã xe: " + update.MaCode + "\nNgười lấy: " + _message;
                     update.PicTake = _message;
-                    var down = fmb.PFmbLabResults.Where(c => c.Place == "FMB Stock").Where(c => c.MaNguyenLieu == update.MaNguyenLieu).ToList();
+                    var down = fmb.PFmbLabResults.Where(c => c.Place == "FMB Stock").Where(c => c.FmbLine == update.FmbLine).ToList();
                     foreach (var item in down)
                     {
                         item.FmbNo--;
@@ -124,23 +124,18 @@ namespace FMB_SYS
                     lbInformation.Text = "Xe có mã: " + update.MaCode + " đã được lấy thành công\nNgười lấy: " + _message;
                     lbError.Text = string.Empty;
                 }
-                else if(update.Labkind == "Bổ sung")
+                else if (update.Labkind == "Bổ sung")
                 {
                     var checkbackup = fmb.PFmbLabResults.Where(c => c.Place == "FMB Stock").Where(c => c.Labkind == update.Labkind).OrderByDescending(c => c.FmbLine).ThenBy(c => c.FmbNo)
                         .FirstOrDefault(c => c.MaNguyenLieu == update.MaNguyenLieu);
-                    if(checkbackup == update)
+                    if (checkbackup == update)
                     {
                         lbInformation.Text = "Xe được lấy đi ở đầu hàng " + update.FmbLine + "\nMã xe: " + update.MaCode + "\nNgười lấy: " + _message;
                         update.PicTake = _message;
-                        var down = fmb.PFmbLabResults.Where(c => c.Place == "FMB Stock").Where(c => c.MaNguyenLieu == update.MaNguyenLieu).ToList();
+                        var down = fmb.PFmbLabResults.Where(c => c.Place == "FMB Stock").Where(c => c.FmbLine == checkbackup.FmbLine).ToList();
                         foreach (var item in down)
                         {
                             item.FmbNo--;
-                            if (item.FmbNo < 1)
-                            {
-                                item.FmbNo = 5;
-                                item.FmbLine = item.FmbLine + 1;
-                            }
                         }
                         update.TakeTime = DateTime.Now;
                         update.FmbLine = null;
@@ -150,9 +145,9 @@ namespace FMB_SYS
                         lbError.Text = "";
                         lbSP.Text = "Thoát hoặc quét mã QR của xe tiếp theo";
                     }
-                    else if(checkbackup != update && checkbackup != null)
+                    else if (checkbackup != update && checkbackup != null)
                     {
-                        lbError.Text = "Xe " + update.MaCode + " không ở vị trí đầu của hàng\nXe hiện tại ở hàng " + checkbackup.FmbLine + " vị trí " + checkbackup.FmbNo + "\nMã xe cần lấy: " + checkbackup.MaCode;
+                        lbError.Text = "Xe " + update.MaCode + " không ở vị trí đầu của hàng\nXe ở đầu hàng hiện tại ở hàng " + checkbackup.FmbLine + " vị trí " + checkbackup.FmbNo + "\nMã xe cần lấy: " + checkbackup.MaCode;
                         lbInformation.Text = "";
                     }
                 }
