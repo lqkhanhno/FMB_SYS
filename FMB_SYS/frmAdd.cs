@@ -38,7 +38,7 @@ namespace FMB_SYS
             var fmbInfo = fmb.PFmbLabResults.SingleOrDefault(c => c.MaCode == mabarcode);
             if (fmbInfo != null && fmbInfo.Place == "PD")
             {
-                lbError.Text = "Chọn sai chức năng\nXe có mã: " + fmbInfo.MaCode + " đã được mang đi cán lúc: " + fmbInfo.TakeTime + "bởi: " + fmbInfo.PicTake+"\nVui lòng liên hệ IT nếu bạn không chọn sai chức năng!";
+                lbError.Text = "Chọn sai chức năng\nXe: " + fmbInfo.MaNguyenLieu + " này đã được mang đi cán lúc: " + fmbInfo.TakeTime + " bởi: " + fmbInfo.PicTake;
                 lbInformation.Text = "";
                 txtID.Text = string.Empty;
                 txtID.Focus();
@@ -46,7 +46,7 @@ namespace FMB_SYS
             }
             else if (fmbInfo != null && fmbInfo.Place == "FMB Stock")
             {
-                lbError.Text = "Xe có mã: " + fmbInfo.MaCode + " đã ở trong kho\nHàng " + fmbInfo.FmbLine + " vị trí " + fmbInfo.FmbNo;
+                lbError.Text = "Xe: " + fmbInfo.MaNguyenLieu + " này đã ở trong kho\nHàng " + fmbInfo.FmbLine + " vị trí " + fmbInfo.FmbNo;
                 lbInformation.Text = "";
                 txtID.Text = string.Empty;
                 txtID.Focus();
@@ -85,13 +85,13 @@ namespace FMB_SYS
                         fmbInfo.InputTime = DateTime.Now;
                         fmbInfo.PicInput = lbName.Text;
                         fmbInfo.Place = "FMB Stock";
-                        lbInformation.Text = "Mã xe: " + fmbInfo.MaCode + " được thêm vào hàng " + fmbInfo.FmbLine + "\nKết quả test: " + fmbInfo.Kq + "\nNgười thêm: " + _message;
+                        lbInformation.Text = "Xe: " + fmbInfo.MaNguyenLieu + " được thêm vào hàng " + fmbInfo.FmbLine + "\nKết quả test: " + fmbInfo.Kq + "\nNgười thêm: " + _message;
                         lbError.Text = "";
                         lbSP.Text = "Thoát hoặc quét mã QR tiếp";
                         var countno = fmb.PFmbLabResults.Where(c => c.Place == "FMB Stock").Count(c => c.Labkind == fmbInfo.Labkind);
                         if (countno >= 5)
                         {
-                            lbError.Text = "Kho đã đầy không thể nhập";
+                            lbError.Text = "Hàng đã đầy không thể nhập mã cao su này";
                             lbInformation.Text = "";
                         }
                         else
@@ -112,7 +112,7 @@ namespace FMB_SYS
                     var countno = fmb.PFmbLabResults.Where(c => c.Place == "FMB Stock").Where(c => c.Labkind == "Normal").Count(c => c.MaNguyenLieu == fmbInfo.MaNguyenLieu);
                     if (count != 0 && countno != 0 && countno >= count * 5)
                     {
-                        lbError.Text = "Kho đã đầy không thể nhập";
+                        lbError.Text = "Hàng đã đầy không thể nhập mã cao su này";
                         lbInformation.Text = "";
                     }
                     else
@@ -135,7 +135,7 @@ namespace FMB_SYS
                                 fmbInfo.FmbNo = check.FmbNo + 1;
                             }
                             fmbInfo.Place = "FMB Stock";
-                            lbInformation.Text = "Mã xe: " + fmbInfo.MaCode + " được thêm vào hàng " + fmbInfo.FmbLine + "\nNgười thêm: " + _message;
+                            lbInformation.Text = "Mã xe: " + fmbInfo.MaNguyenLieu + " được thêm vào hàng " + fmbInfo.FmbLine + "\nKết quả test: " + fmbInfo.Kq + "\nNgười thêm: " + _message;
                             lbError.Text = "";
                             if (due != null && fmbInfo.ThoiGian != null)
                             {
@@ -162,7 +162,7 @@ namespace FMB_SYS
                             fmbInfo.FmbNo = 1;
                             fmbInfo.Place = "FMB Stock";
                             fmbInfo.Labkind = "Normal";
-                            lbInformation.Text = "Mã xe: " + fmbInfo.MaCode + " được thêm vào hàng " + fmbInfo.FmbLine + "\nKết quả test: " + fmbInfo.Kq + "\nNgười thêm: " + _message;
+                            lbInformation.Text = "Mã xe: " + fmbInfo.MaNguyenLieu + " được thêm vào hàng " + fmbInfo.FmbLine + "\nKết quả test: " + fmbInfo.Kq + "\nNgười thêm: " + _message;
                             if (due != null && fmbInfo.ThoiGian != null)
                             {
                                 int duemax = Convert.ToInt32(due.VadilityMax);
