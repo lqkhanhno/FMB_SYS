@@ -164,7 +164,7 @@ namespace FMB_SYS
                                         if (item.FmbNo > 5)
                                         {
                                             item.FmbNo = 1;
-                                            item.FmbLine = item.FmbLine - 1;
+                                            item.FmbLine--;
                                         }
                                     }
                                     var first = fmb.PFmbMasterLocationRubbers.OrderBy(c => c.FmbLine).FirstOrDefault(c => c.RubberName == update.MaNguyenLieu);

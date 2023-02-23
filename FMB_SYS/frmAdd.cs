@@ -394,7 +394,8 @@ namespace FMB_SYS
         private void btnCheck_Click(object sender, EventArgs e)
         {
             frmCheckstock open = new frmCheckstock();
-            open.Message = lbName.Text; open.ShowDialog();
+            open.Message = lbName.Text; 
+            open.ShowDialog();
         }
 
         private void txtID_TextChanged(object sender, EventArgs e)

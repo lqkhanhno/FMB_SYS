@@ -45,7 +45,7 @@ namespace FMB_SYS
                         if (item.FmbNo < 1)
                         {
                             item.FmbNo = 5;
-                            item.FmbLine = item.FmbLine + 1;
+                            item.FmbLine++;
                         }
                     }
                     update.TakeTime = DateTime.Now;

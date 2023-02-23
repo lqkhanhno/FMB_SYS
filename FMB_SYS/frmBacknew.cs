@@ -44,7 +44,7 @@ namespace FMB_SYS
                 {
                     lbError.Text += "Xe đã được hủy bởi: " + update.PicRemove + "\nThời gian hủy: " + update.RemoveTime + "\nLý do: " + update.RemoveReason;
                 }
-                else if(update.PicTake != null)
+                else if (update.PicTake != null)
                 {
                     lbError.Text += "Người lấy: " + update.PicTake + "\nThời gian lấy: " + update.TakeTime;
                 }
@@ -78,7 +78,7 @@ namespace FMB_SYS
                                 if (item.FmbNo < 1)
                                 {
                                     item.FmbNo = 5;
-                                    item.FmbLine = item.FmbLine + 1;
+                                    item.FmbLine++;
                                 }
                             }
                         }
@@ -90,7 +90,7 @@ namespace FMB_SYS
                     update.Place = null;
                     update.PicRemove = _message;
                     fmb.SaveChanges();
-                    lbInformation.Text = "Xe có mã: " + update.MaNguyenLieu + " đã được hủy thành công\nNgười hủy: " + _message+"\nLý do hủy: "+update.RemoveReason;
+                    lbInformation.Text = "Xe có mã: " + update.MaNguyenLieu + " đã được hủy thành công\nNgười hủy: " + _message + "\nLý do hủy: " + update.RemoveReason;
                     lbError.Text = string.Empty;
                     txtlistreason.SelectedItems.Clear();
                 }
