@@ -104,7 +104,7 @@ namespace FMB_SYS
                     update.Place = null;
                     update.PicRemove = _message;
                     fmb.SaveChanges();
-                    lbInformation.Text = "Xe có mã: " + update.MaCode + " đã được lấy thành công\nNgười lấy: " + _message;
+                    lbInformation.Text = "Xe có mã: " + update.MaNguyenLieu + " đã được lấy thành công\nNgười lấy: " + _message;
                     lbError.Text = string.Empty;
                 }
                 else if (update.Labkind == "Cán lại")

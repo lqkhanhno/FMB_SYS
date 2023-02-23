@@ -247,7 +247,7 @@ namespace FMB_SYS
                         insert.InputTime = DateTime.Now;
                         insert.PicInput = lbName.Text;
                         insert.Place = "FMB Stock";
-                        lbInformation.Text = "Mã xe: " + insert.MaCode + " được thêm vào hàng " + insert.FmbLine + "\nKết quả test: " + insert.Kq + "\nNgười thêm: " + _message;
+                        lbInformation.Text = "Mã xe: " + insert.MaNguyenLieu + " được thêm vào hàng " + insert.FmbLine + "\nKết quả test: " + insert.Kq + "\nNgười thêm: " + _message;
                         lbError.Text = "";
                         lbSP.Text = "Thoát hoặc quét mã QR tiếp";
                         var countno = fmb.PFmbLabResults.Where(c => c.Place == "FMB Stock").Count(c => c.Labkind == insert.Labkind);
@@ -300,7 +300,7 @@ namespace FMB_SYS
                             }
                             insert.Place = "FMB Stock";
                             insert.Labkind = "Normal";
-                            lbInformation.Text = "Mã xe: " + insert.MaCode + " được thêm vào hàng " + insert.FmbLine + "\nKết quả test: " + insert.Kq + "\nNgười thêm: " + _message;
+                            lbInformation.Text = "Mã xe: " + insert.MaNguyenLieu + " được thêm vào hàng " + insert.FmbLine + "\nKết quả test: " + insert.Kq + "\nNgười thêm: " + _message;
                             lbError.Text = "";
                             if (due != null && insert.ThoiGian != null)
                             {
@@ -327,7 +327,7 @@ namespace FMB_SYS
                             insert.FmbNo = 1;
                             insert.Place = "FMB Stock";
                             insert.Labkind = "Normal";
-                            lbInformation.Text = "Mã xe: " + insert.MaCode + " được thêm vào hàng " + insert.FmbLine + "\nNgười thêm: " + _message;
+                            lbInformation.Text = "Mã xe: " + insert.MaNguyenLieu + " được thêm vào hàng " + insert.FmbLine + "\nNgười thêm: " + _message;
                             if (due != null && insert.ThoiGian != null)
                             {
                                 int duemax = Convert.ToInt32(due.VadilityMax);

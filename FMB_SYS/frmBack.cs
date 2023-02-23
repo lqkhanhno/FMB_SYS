@@ -96,7 +96,7 @@ namespace FMB_SYS
                                         int save = fmb.SaveChanges();
                                         if (save > 0)
                                         {
-                                            lbInformation.Text = ("Xe " + update.MaCode + " đã được trả về hàng " + update.FmbLine + " vị trí " + update.FmbNo + "\nXe còn lại " + txtWeight.Text + ". Người trả xe: " + _message);
+                                            lbInformation.Text = ("Xe " + update.MaNguyenLieu + " đã được trả về hàng " + update.FmbLine + " vị trí " + update.FmbNo + "\nXe còn lại " + txtWeight.Text + ". Người trả xe: " + _message);
                                         }
                                         txtWeight.Text = "";
                                         lbError.Text = "";
@@ -176,7 +176,7 @@ namespace FMB_SYS
                                         int save = fmb.SaveChanges();
                                         if (save > 0)
                                         {
-                                            lbInformation.Text = ("Xe " + update.MaCode + " đã được trả về hàng " + update.FmbLine + " vị trí " + update.FmbNo + "\nXe còn lại " + txtWeight.Text + ". Người trả xe: " + _message);
+                                            lbInformation.Text = ("Xe " + update.MaNguyenLieu + " đã được trả về hàng " + update.FmbLine + " vị trí " + update.FmbNo + "\nXe còn lại " + txtWeight.Text + ". Người trả xe: " + _message);
                                         }
                                         txtWeight.Text = "";
                                         lbError.Text = "";
@@ -205,7 +205,7 @@ namespace FMB_SYS
                     }
                     else if (update.Place == "FMB Stock")
                     {
-                        lbError.Text = ("Chọn sai chức năng\nXe " + update.MaCode + " đang ở trong kho\nHàng " + update.FmbLine + " vị trí " + update.FmbNo);
+                        lbError.Text = ("Chọn sai chức năng\nXe " + update.MaNguyenLieu + " đang ở trong kho\nHàng " + update.FmbLine + " vị trí " + update.FmbNo);
                         lbInformation.Text = "";
                         txtID.Text = string.Empty;
                         txtID.Focus();
@@ -221,7 +221,7 @@ namespace FMB_SYS
                     }
                     else if (update.Place == null)
                     {
-                        lbError.Text = ("Chọn sai chức năng\nXe " + update.MaCode + " chưa nhập kho");
+                        lbError.Text = ("Chọn sai chức năng\nXe " + update.MaNguyenLieu + " chưa nhập kho");
                         lbInformation.Text = "";
                         txtID.Text = string.Empty;
                         txtWeight.Text = string.Empty;
