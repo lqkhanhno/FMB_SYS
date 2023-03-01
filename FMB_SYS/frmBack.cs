@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO.Ports;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -58,6 +59,7 @@ namespace FMB_SYS
                             txtWeight.Focus();
                             lbInformation.Text = "Nhập khối lượng còn lại của xe " + update.MaCode;
                             lbError.Text = string.Empty;
+                            lbSP.Text = "Nhập khối lượng cho xe";
                         }
                         else if (int.Parse(txtWeight.Text) <= 0)
                         {
@@ -65,7 +67,7 @@ namespace FMB_SYS
                             lbInformation.Text = string.Empty;
                             txtWeight.Text = string.Empty;
                             txtWeight.Focus();
-                            lbSP.Text = "Nhập lại khối lượng cho cao su";
+                            lbSP.Text = "Nhập lại khối lượng cho xe";
                         }
                         else
                         {
@@ -101,8 +103,6 @@ namespace FMB_SYS
                                         txtWeight.Text = "";
                                         lbError.Text = "";
                                         lbSP.Text = "Thoát hoặc quét mã QR của xe tiếp theo";
-                                        txtID.Text = string.Empty;
-                                        txtID.Focus();
                                     }
                                     else
                                     {
@@ -112,6 +112,15 @@ namespace FMB_SYS
                                     }
                                 }
                             }
+                            else
+                            {
+                                lbError.Text = ("Xe trả về có khối lượng lớn hơn xe lấy đi");
+                                lbInformation.Text = "";
+                                txtWeight.Text = string.Empty;
+                                lbSP.Text = "Thoát hoặc quét mã QR của xe";
+                            }
+                            txtID.Text = string.Empty;
+                            txtID.Focus();
                         }
                     }
                     else
@@ -132,6 +141,7 @@ namespace FMB_SYS
                             txtWeight.Focus();
                             lbInformation.Text = "Nhập khối lượng còn lại của xe " + update.MaCode;
                             lbError.Text = string.Empty;
+                            lbSP.Text = "Nhập khối lượng cho xe";
                         }
                         else if (int.Parse(txtWeight.Text) <= 0)
                         {
@@ -139,7 +149,7 @@ namespace FMB_SYS
                             lbInformation.Text = string.Empty;
                             txtWeight.Text = string.Empty;
                             txtWeight.Focus();
-                            lbSP.Text = "Nhập lại khối lượng cho cao su";
+                            lbSP.Text = "Nhập lại khối lượng cho xe";
                         }
                         else
                         {
@@ -181,8 +191,7 @@ namespace FMB_SYS
                                         txtWeight.Text = "";
                                         lbError.Text = "";
                                         lbSP.Text = "Thoát hoặc quét mã QR của xe tiếp theo";
-                                        txtID.Text = string.Empty;
-                                        txtID.Focus();
+
                                     }
                                     else
                                     {
@@ -197,10 +206,10 @@ namespace FMB_SYS
                                 lbError.Text = ("Xe trả về có khối lượng lớn hơn xe lấy đi");
                                 lbInformation.Text = "";
                                 txtWeight.Text = string.Empty;
-                                txtID.Text = string.Empty;
-                                txtID.Focus();
                                 lbSP.Text = "Thoát hoặc quét mã QR của xe";
                             }
+                            txtID.Text = string.Empty;
+                            txtID.Focus();
                         }
                     }
                     else if (update.Place == "FMB Stock")
@@ -210,6 +219,7 @@ namespace FMB_SYS
                         txtID.Text = string.Empty;
                         txtID.Focus();
                         txtWeight.Text = string.Empty;
+                        lbSP.Text = "Thoát hoặc quét mã QR tiếp";
                     }
                     else if (update.RemoveReason != null)
                     {
@@ -218,6 +228,7 @@ namespace FMB_SYS
                         txtID.Text = string.Empty;
                         txtWeight.Text = string.Empty;
                         txtID.Focus();
+                        lbSP.Text = "Thoát hoặc quét mã QR tiếp";
                     }
                     else if (update.Place == null)
                     {
@@ -226,6 +237,7 @@ namespace FMB_SYS
                         txtID.Text = string.Empty;
                         txtWeight.Text = string.Empty;
                         txtID.Focus();
+                        lbSP.Text = "Thoát hoặc quét mã QR tiếp";
                     }
                 }
             }
@@ -234,7 +246,6 @@ namespace FMB_SYS
                 txtID.Text = string.Empty;
                 txtWeight.Text = string.Empty;
                 txtID.Focus();
-
             }
             timer1.Enabled = true;
         }

@@ -268,11 +268,8 @@ namespace FMB_SYS
 
         private void btnRemove_Click(object sender, EventArgs e)
         {
-            if (_message == "khanh")
-            {
-                btnRemove.Visible = false;
-                txtlistreason.Visible = true;
-            }
+            btnRemove.Visible = false;
+            txtlistreason.Visible = true;
         }
     }
 }
