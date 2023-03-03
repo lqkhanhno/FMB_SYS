@@ -243,6 +243,18 @@ namespace FMB_SYS
                         frmCheckstock_load();
                     }
                 }
+                else
+                {
+                    try
+                    {
+                        Button btn = (Button)sender; 
+                        MessageBox.Show("Bạn cần phải chọn lý do trước khi hủy!");
+                    }
+                    catch (Exception)
+                    {
+                        frmCheckstock_load();
+                    }
+                }
             }
             else
             {
